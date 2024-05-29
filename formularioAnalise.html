@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Formulário para requisição de crédito adicional</title>
+    <!-- <link rel="stylesheet" href="./jquery-ui-1.13.3/jquery-ui.min.css" /> -->
+    <link
+      rel="stylesheet"
+      href="./bootstrap-5.3.3/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css"
+    />
+    <script src="./bootstrap-5.3.3/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
+    <!-- TESTANDO BOOT ONLINE -->
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- FIM TESTE BOOT ONLINE -->
+
+    <!-- <script src="jquery-3.7.1.min.js"></script>
+    <script src="./jquery-ui-1.13.3/jquery-ui.min.js"></script>
+    <script>
+      $(function () {});
+    </script> -->
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <div id="apresentacao"  class="d-flex flex-column gap-2 mt-5">
+          <div class="row d-flex align-items-center">
+            <div class="col-2 d-flex .justify-content-center align-items-center gap-3">
+              <label class="fw-bold" for="sigla-orgao">Órgão:</label>
+              <select
+                class="form-select"
+                name="sigla-orgao"
+                aria-label="Selecione o órgão"
+                id="select-sigla-orgao"
+              >
+                <option selected>AGEHAB</option>
+              </select>
+            </div>
+            <div class="col-10">
+              <input
+                type="text"
+                class="form-control"
+                name="orgao-selecionado"
+                id="input-orgao-selecionado"
+                placeholder="Nome do Órgão selecionado" disabled
+              />
+            </div>
+          </div>
+          <div class="row">
+            <!--  NOVA LINHA -->
+            <div class="col-3">
+              <label for="responsavel-pelas-informacoes" class="fw-bold"
+                >Responsável Pelas Informações</label
+              >
+            </div>
+            <div class="col-5">
+              <input
+                type="text"
+                class="form-control"
+                name="responsavel-pelas-informacoes"
+                id="input-responsavel-pelas-informacoes"
+                placeholder="Digite o nome do responsável"
+              />
+            </div>
+            <div class="col-4 d-flex align-items-center gap-3">
+              <label for="whatsapp" class="fw-bold">Whatsapp</label>
+              <input
+                type="text"
+                class="form-control"
+                name="whatsapp"
+                id="input-whatsapp"
+                placeholder="Digite o Whatsapp"
+              />
+            </div>
+          </div>
+          <!-- nova linha -->
+          <div class="row">
+            <div class="col-3">
+              <label for="valor-total-suplementacao" class="fw-bold"
+                >Valor Total Suplementacao</label
+              >
+            </div>
+            <div class="col-5">
+              <input
+                type="text"
+                class="form-control"
+                name="valor-suplementacao"
+                id="input-valor-total-suplementacao"
+                placeholder="Digite o valor total da suplementação"
+              />
+            </div>
+            <div class="col-4">
+              <input
+                type="text"
+                class="form-control"
+                name="valor-suplementacao-extenso"
+                id="input-valor-total-suplementacao-extenso"
+                placeholder="Valor por Extenso"
+                disabled
+              />
+            </div>
+          </div>
+
+          <div class="row d-flex align-items-center">
+            <div class="col-2  d-flex justify-content-center align-items-center gap-3">
+              <label for="fonte" class="fw-bold">Fonte:</label>
+              <select
+                class="form-select"
+                name="fonte-select"
+                aria-label="selecione a fonte"
+                id="select-fonte"
+              >
+                <option selected>15.010.001</option>
+              </select>
+            </div>
+            <div class="col-10">
+              <input
+                type="text"
+                class="form-control"
+                name="nome-fonte"
+                id="input-fonte-selecionada"
+                placeholder="Nome da Fonte"
+                disabled
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Novo Container Objeto -->
+        <div id="detalhes_credito">
+          <div id="objeto">
+            <div class="row">
+              <div class="col-12">
+                <label for="objeto" class="fw-bold">Objeto</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="input-objeto"
+                  id="text-area-objeto"
+                  placeholder="Informe o objeto"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- JUSTIFICATIVA -->
+          <div id="justificativa">
+            <div class="row">
+              <div class="col-12">
+                <label for="justificativa" class="fw-bold">Justificativa</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="input-justificativa"
+                  id="text-area-justificativa"
+                  placeholder="Informe a justificativa"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- IMPACTOS -->
+          <div id="impacto">
+            <div class="row">
+              <div class="col-12">
+                <label for="impacto" class="fw-bold">Impacto</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="input-impacto"
+                  id="text-area-impacto"
+                  placeholder="Informe o impacto do não atendimento do pedido"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INICIO TABELA 1 -->
+        <div id="tabela-1">
+          <div class="ind-class-orca">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
+                  <th scope="col">VALOR SUP (+) / RED (-)</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- FIM TABELA 1 -->
+
+        <!-- INICIO TABELA 2 -->
+        <div id="tabela-2">
+          <div class="detalhamento-pedido">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nº</th>
+                  <th scope="col">Nº SOLICCIT. SIOFI</th>
+                  <th scope="col">COD. AÇÃO</th>
+                  <th scope="col">AÇÃO</th>
+                  <th scope="col">PRODUTO</th>
+                  <th scope="col">INICIATIVA</th>
+                  <th scope="col">VALOR A SER SUPLEMENTADO</th>
+                  <th scope="col">ORIGEM DO RECURSO</th>
+                  <th scope="col">AÇÃO A SER ANULADA</th>
+                  <th scope="col">VALOR A SER REDUZIDO</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- FIM TABELA 2 -->
+
+        <!-- INICIO TABELA 3 -->
+        <div id="tabela-3">
+          <div class="elementos-macroprocesso">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nº</th>
+                  <th scope="col">AÇÃO</th>
+                  <th scope="col">PRODUTO</th>
+                  <th scope="col">META FÍSICA ATUAL</th>
+                  <th scope="col">UNIDADE DE MEDIDA</th>
+                  <th scope="col">ACUMU-LÁ?</th>
+                  <th scope="col">
+                    CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO
+                  </th>
+                  <th scope="col">
+                    CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO
+                  </th>
+                  <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
+                  <th scope="col">SALDO LIQUIDADO ATUAL</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- FIM TABELA 3 -->
+
+        <!-- INÍCIO TABELA 4 -->
+        <div id="tabela-4">
+          <div class="efeitos-pedido">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Nº</th>
+                  <th scope="col">AÇÃO</th>
+                  <th scope="col">PRODUTO</th>
+                  <th scope="col">META FÍSICA PROPOSTA</th>
+                  <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
+                  <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
+                  <th scope="col">
+                    CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
+                  </th>
+                  <th scope="col">¢ SUPLEMENTADO X CUSTO ESTIMADO</th>
+                  <th scope="col">% SUPLEMENTADO X SALDO ORÇÃMENTÁRIO</th>
+                  <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+        <!-- FIM TABELA 4 -->
+      </form>
+    </div>
+  </body>
+</html>

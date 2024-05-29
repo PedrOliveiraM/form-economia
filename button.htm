@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Button - Default functionality</title>
+  <link rel="stylesheet" href="./jquery-ui-1.13.3/jquery-ui.min.css">
+  <script src="jquery-3.7.1.min.js"></script>
+  <script src="./jquery-ui-1.13.3/jquery-ui.min.js"></script>
+  <script>
+  $( function() {
+    $( ".widget input[type=submit], .widget a, .widget button" ).button();
+    $( "button, input, a" ).on( "click", function( event ) {
+      event.preventDefault();
+    } );
+  } );
+  </script>
+</head>
+<body>
+<div class="widget">
+  <h1>Widget Buttons</h1>
+  <button>A button element</button>
+ 
+  <input type="submit" value="A submit button">
+ 
+  <a href="#">An anchor</a>
+</div>
+
+
+</body></html>
