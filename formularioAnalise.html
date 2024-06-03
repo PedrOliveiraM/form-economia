@@ -212,6 +212,7 @@
                 <tr>
                   <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
                   <th scope="col">VALOR SUP (+) / RED (-)</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody id="container-table1">
@@ -234,26 +235,25 @@
                       aria-describedby="inputGroup-sizing-default"
                     />
                   </td>
+                  <td>
+                    <button
+                      id="btn-remove-row-table1-id-1"
+                      type="button"
+                      class="btn btn-danger"
+                      data-id="1"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
+
         <div class="container-btn">
-          <button
-            id="btn-add-row-table1"
-            type="button"
-            class="btn btn-secondary"
-          >
+          <button id="btn-add-row-table1" type="button" class="btn btn-primary">
             Adicionar
-          </button>
-          <button
-            id="btn-remove-row-table1"
-            type="button"
-            class="btn btn-danger"
-          >
-            <i class="fa-solid fa-trash"></i>
-            Remover
           </button>
         </div>
 
@@ -275,6 +275,7 @@
                   <th scope="col">ORIGEM DO RECURSO</th>
                   <th scope="col">AÇÃO A SER ANULADA</th>
                   <th scope="col">VALOR A SER REDUZIDO</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody id="container-table2">
@@ -362,25 +363,23 @@
                     aria-describedby="inputGroup-sizing-default"
                   />
                 </td>
+                <td>
+                  <button
+                    id="btn-remove-row-table2-id-1"
+                    type="button"
+                    class="btn btn-danger"
+                    data-id="1"
+                  >
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
               </tbody>
             </table>
           </div>
         </div>
         <div class="container-btn">
-          <button
-            id="btn-add-row-table2"
-            type="button"
-            class="btn btn-secondary"
-          >
+          <button id="btn-add-row-table2" type="button" class="btn btn-primary">
             Adicionar
-          </button>
-          <button
-            id="btn-remove-row-table2"
-            type="button"
-            class="btn btn-danger"
-          >
-            <i class="fa-solid fa-trash"></i>
-            Remover
           </button>
         </div>
 
@@ -389,7 +388,7 @@
         <!-- INICIO TABELA 3 -->
         <div id="tabela-3">
           <div class="elementos-macroprocesso">
-            <table class="table">
+            <table class="table" id="tabela3">
               <thead>
                 <tr>
                   <th scope="col">Nº</th>
@@ -406,12 +405,102 @@
                   </th>
                   <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
                   <th scope="col">SALDO LIQUIDADO ATUAL</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody id="container-table3">
+                <tr>
+                  <td><span id="row-1-1">1</span></td>
+                  <td>
+                    <input
+                      id="row-1-2"
+                      type="text"
+                      class="form-control"
+                      name="acao"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-3"
+                      type="text"
+                      class="form-control"
+                      name="produto"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-4"
+                      type="text"
+                      class="form-control"
+                      name="meta"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-5"
+                      type="text"
+                      class="form-control"
+                      name="unidade"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-6"
+                      type="text"
+                      class="form-control"
+                      name="acumula"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-7"
+                      type="text"
+                      class="form-control"
+                      name="custo_estimado"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-8"
+                      type="text"
+                      class="form-control"
+                      name="custo_unitario"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-9"
+                      type="text"
+                      class="form-control"
+                      name="saldo_orcamentario"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-10"
+                      type="text"
+                      class="form-control"
+                      name="saldo_liquidado"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      id="btn-remove-row-table3-id-1"
+                      type="button"
+                      class="btn btn-danger"
+                      data-id="1"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
+        <button id="btn-add-row-table3" class="btn btn-primary" type="button">
+          Adicionar
+        </button>
         <!-- FIM TABELA 3 -->
 
         <!-- INÍCIO TABELA 4 -->
@@ -429,17 +518,115 @@
                   <th scope="col">
                     CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
                   </th>
-                  <th scope="col">¢ SUPLEMENTADO X CUSTO ESTIMADO</th>
+                  <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
                   <th scope="col">% SUPLEMENTADO X SALDO ORÇÃMENTÁRIO</th>
                   <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
                 </tr>
               </thead>
-              <tbody></tbody>
+              <tbody id="container-table4">
+                <tr>
+                  <td><span id="row-1-1">1</span></td>
+                  <td>
+                    <input
+                      id="row-1-2"
+                      type="text"
+                      class="form-control"
+                      name="acao"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-3"
+                      type="text"
+                      class="form-control"
+                      name="produto"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-4"
+                      type="text"
+                      class="form-control"
+                      name="meta_proposta"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-5"
+                      type="text"
+                      class="form-control"
+                      name="alteracao_meta"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-6"
+                      type="text"
+                      class="form-control"
+                      name="custo_estimado_suplementado"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-7"
+                      type="text"
+                      class="form-control"
+                      name="custo_unitario_suplementado"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-8"
+                      type="text"
+                      class="form-control"
+                      name="suplementado_custo_estimado"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-9"
+                      type="text"
+                      class="form-control"
+                      name="suplementado_saldo_orcamentario"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      id="row-1-10"
+                      type="text"
+                      class="form-control"
+                      name="liquidado_saldo_orcamentario"
+                    />
+                  </td>
+                  <td>
+                    <button
+                      id="btn-remove-row-table4-id-1"
+                      type="button"
+                      class="btn btn-danger"
+                      data-id="1"
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
             </table>
           </div>
         </div>
+        <button id="btn-add-row-table4" class="btn btn-primary" type="button">
+          Adicionar
+        </button>
         <!-- FIM TABELA 4 -->
       </form>
+    </div>
+    <div class="d-flex justify-content-center mt-5 mb-5 gap-3">
+      <!-- botao de download -->
+      <button id="btn-download" class="btn btn-primary px-5">Download</button>
+
+      <!-- botao enviar -->
+      <button id="btn-enviar" type="submit" class="btn btn-success px-5">
+        Enviar
+      </button>
     </div>
   </body>
 </html>
