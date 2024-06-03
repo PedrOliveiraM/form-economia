@@ -211,7 +211,9 @@
               <thead>
                 <tr>
                   <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
-                  <th scope="col">VALOR SUP (+) / RED (-)</th>
+                  <th scope="col">VALOR</th>
+                  <th scope="col">REDUZIR</th>
+                  <th scope="col">SUMPLEMENTAR</th>
                   <th scope="col"></th>
                 </tr>
               </thead>
@@ -235,6 +237,23 @@
                       aria-describedby="inputGroup-sizing-default"
                     />
                   </td>
+                  <td>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                    />
+                  </td>
+                  <td>
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="flexRadioDefault"
+                      id="flexRadioDefault1"
+                    />
+                  </td>
+
                   <td>
                     <button
                       id="btn-remove-row-table1-id-1"
@@ -279,100 +298,7 @@
                 </tr>
               </thead>
               <tbody id="container-table2">
-                <td>
-                  <span>1</span>
-                </td>
-                <td>
-                  <input
-                    id="row-1-2"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-3"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-4"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-5"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-6"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-7"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-8"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-9"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <input
-                    id="row-1-10"
-                    type="text"
-                    class="form-control"
-                    aria-label="Default"
-                    aria-describedby="inputGroup-sizing-default"
-                  />
-                </td>
-                <td>
-                  <button
-                    id="btn-remove-row-table2-id-1"
-                    type="button"
-                    class="btn btn-danger"
-                    data-id="1"
-                  >
-                    <i class="fa-solid fa-trash"></i>
-                  </button>
-                </td>
+                <tr></tr>
               </tbody>
             </table>
           </div>
@@ -382,8 +308,21 @@
             Adicionar
           </button>
         </div>
-
         <!-- FIM TABELA 2 -->
+        <div class="row d-flex justify-content-center mb-5">
+          <label for="valor-total" class="fw-bold col-1">Valor Total</label>
+          <div class="col-2 d-flex gap-3">
+            <div class="input-group mb-3">
+              <span class="input-group-text">$</span>
+              <input
+                type="text"
+                class="form-control"
+                name="valor-total"
+                id="input-valor-total-tb2"
+              />
+            </div>
+          </div>
+        </div>
 
         <!-- INICIO TABELA 3 -->
         <div id="tabela-3">
@@ -405,102 +344,52 @@
                   </th>
                   <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
                   <th scope="col">SALDO LIQUIDADO ATUAL</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody id="container-table3">
                 <tr>
-                  <td><span id="row-1-1">1</span></td>
+                  <td><span id="tb3-acao">1</span></td>
+                  <td><span class="input-group-text" id="tb3-acao"></span></td>
                   <td>
-                    <input
-                      id="row-1-2"
-                      type="text"
-                      class="form-control"
-                      name="acao"
-                    />
+                    <span class="input-group-text" id="tb3-produto"></span>
+                  </td>
+                  <td><span class="input-group-text" id="tb3-meta"></span></td>
+                  <td>
+                    <span class="input-group-text" id="tb3-unidade"></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-3"
-                      type="text"
-                      class="form-control"
-                      name="produto"
-                    />
+                    <span class="input-group-text" id="tb3-acumula"></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-4"
-                      type="text"
-                      class="form-control"
-                      name="meta"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb3-custo-estimado"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-5"
-                      type="text"
-                      class="form-control"
-                      name="unidade"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb3-custo-unitario"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-6"
-                      type="text"
-                      class="form-control"
-                      name="acumula"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb3-saldo-orcamentario"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-7"
-                      type="text"
-                      class="form-control"
-                      name="custo_estimado"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      id="row-1-8"
-                      type="text"
-                      class="form-control"
-                      name="custo_unitario"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      id="row-1-9"
-                      type="text"
-                      class="form-control"
-                      name="saldo_orcamentario"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      id="row-1-10"
-                      type="text"
-                      class="form-control"
-                      name="saldo_liquidado"
-                    />
-                  </td>
-                  <td>
-                    <button
-                      id="btn-remove-row-table3-id-1"
-                      type="button"
-                      class="btn btn-danger"
-                      data-id="1"
-                    >
-                      <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <span
+                      class="input-group-text"
+                      id="tb3-saldo-liquidado"
+                    ></span>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <button id="btn-add-row-table3" class="btn btn-primary" type="button">
-          Adicionar
-        </button>
+
         <!-- FIM TABELA 3 -->
 
         <!-- INÍCIO TABELA 4 -->
@@ -527,95 +416,59 @@
                 <tr>
                   <td><span id="row-1-1">1</span></td>
                   <td>
-                    <input
-                      id="row-1-2"
-                      type="text"
-                      class="form-control"
-                      name="acao"
-                    />
+                    <span class="input-group-text" id="tb4-acao"></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-3"
-                      type="text"
-                      class="form-control"
-                      name="produto"
-                    />
+                    <span class="input-group-text" id="tb4-produto"></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-4"
-                      type="text"
-                      class="form-control"
-                      name="meta_proposta"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb4-meta-fisi-proposta"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-5"
-                      type="text"
-                      class="form-control"
-                      name="alteracao_meta"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb4-alte-meta-fisica"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-6"
-                      type="text"
-                      class="form-control"
-                      name="custo_estimado_suplementado"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb4-custo-esti-produto"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-7"
-                      type="text"
-                      class="form-control"
-                      name="custo_unitario_suplementado"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb4-custo-unit-medio"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-8"
-                      type="text"
-                      class="form-control"
-                      name="suplementado_custo_estimado"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb4-suple-custo-estimado"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-9"
-                      type="text"
-                      class="form-control"
-                      name="suplementado_saldo_orcamentario"
-                    />
+                    <span
+                      class="input-group-text"
+                      id="tb4-suple-saldo-orcamentario"
+                    ></span>
                   </td>
                   <td>
-                    <input
-                      id="row-1-10"
-                      type="text"
-                      class="form-control"
-                      name="liquidado_saldo_orcamentario"
-                    />
-                  </td>
-                  <td>
-                    <button
-                      id="btn-remove-row-table4-id-1"
-                      type="button"
-                      class="btn btn-danger"
-                      data-id="1"
-                    >
-                      <i class="fa-solid fa-trash"></i>
-                    </button>
+                    <span
+                      class="input-group-text"
+                      id="tb4-liqui-saldo-orcamentario"
+                    ></span>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
-        <button id="btn-add-row-table4" class="btn btn-primary" type="button">
-          Adicionar
-        </button>
+
         <!-- FIM TABELA 4 -->
       </form>
     </div>
