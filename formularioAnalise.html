@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Formulário para requisição de crédito adicional</title>
 
+    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -211,10 +212,8 @@
               <thead>
                 <tr>
                   <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
+                  <th scope="col">TIPO DE REMANEJAMENTO</th>
                   <th scope="col">VALOR</th>
-                  <th scope="col">REDUZIR</th>
-                  <th scope="col">SUMPLEMENTAR</th>
-                  <th scope="col"></th>
                 </tr>
               </thead>
               <tbody id="container-table1">
@@ -229,31 +228,24 @@
                     />
                   </td>
                   <td>
+                    <select class="form-select" aria-label="tipo de pedido">
+                      <option selected>Selecione</option>
+                      <option value="suplementar">Suplementar</option>
+                      <option value="reduzir">Reduzir</option>
+                      <
+                    </select>
+                  </td>
+                  <td>
                     <input
                       id="row-1-2"
                       type="text"
                       class="form-control"
                       aria-label="Default"
                       aria-describedby="inputGroup-sizing-default"
+                      title="INFORME O VALOR NEGATIVO PARA REDUÇÃO DE CRÉDITO"
+                      placeholder="INFORME O VALOR NEGATIVO PARA REDUÇÃO DE CRÉDITO"
                     />
                   </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                  </td>
-                  <td>
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="flexRadioDefault"
-                      id="flexRadioDefault1"
-                    />
-                  </td>
-
                   <td>
                     <button
                       id="btn-remove-row-table1-id-1"
@@ -300,6 +292,24 @@
               <tbody id="container-table2">
                 <tr></tr>
               </tbody>
+              <tfoot>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>
+                    <label for="valor-total" class="fw-bold">Valor Total</label>
+                  </td>
+                  <td>
+                    <span class="input-group-text" id="valor-total-tb2"></span>
+                  </td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         </div>

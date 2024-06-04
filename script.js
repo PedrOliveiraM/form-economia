@@ -10,23 +10,48 @@ function addRemoveButtonListener(button) {
 }
 
 btnAddRowTable1.addEventListener('click', () => {
-  let colTable = 1;
+  const colTable = contRowTable1;
   const newRow = `
-                <tr>
-                    <td><input id="row-${contRowTable1}-${colTable}" type="text" class="form-control" name="class-orca"></td>
-                    <td><input id="row-${contRowTable1}-${
-    colTable + 1
-  }" type="text" class="form-control" name="valor-sup-red"></td>
-                    <td><button
-                        id="btn-remove-row-table1-id-${contRowTable1}"
-                        type="button"
-                        class="btn btn-danger"
-                        data-id="${contRowTable1}"
-                    >
-                        <i class="fa-solid fa-trash"></i>
-                    </button></td>
-                </tr>
-            `;
+    <tr>
+      <td>
+        <input
+          id="row-${contRowTable1}-1"
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+        />
+      </td>
+      <td>
+        <select class="form-select" aria-label="tipo de pedido" id="combo-${contRowTable1}-2" >
+          <option selected>Selecione</option>
+          <option value="suplementar">Suplementar</option>
+          <option value="reduzir">Reduzir</option>
+        </select>
+      </td>
+      <td>
+        <input
+          id="row-${contRowTable1}-3"
+          type="text"
+          class="form-control"
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          title="INFORME O VALOR NEGATIVO PARA REDUÇÃO DE CRÉDITO"
+          placeholder="INFORME O VALOR NEGATIVO PARA REDUÇÃO DE CRÉDITO"
+        />
+      </td>
+      <td>
+        <button
+          id="btn-remove-row-table1-id-${contRowTable1}"
+          type="button"
+          class="btn btn-danger"
+          data-id="${contRowTable1}"
+        >
+          <i class="fa-solid fa-trash"></i>
+        </button>
+      </td>
+    </tr>
+  `;
   rowtable1.insertAdjacentHTML('beforeend', newRow);
 
   const newRemoveButton = document.getElementById(
@@ -37,11 +62,13 @@ btnAddRowTable1.addEventListener('click', () => {
   contRowTable1++;
 });
 
-// Adiciona o listener ao botão de remover da primeira linha
+// Adiciona o listener ao botão de remover da primeira linha (se existir)
 const initialRemoveButton = document.getElementById(
   'btn-remove-row-table1-id-1'
 );
-addRemoveButtonListener(initialRemoveButton);
+if (initialRemoveButton) {
+  addRemoveButtonListener(initialRemoveButton);
+}
 
 //--------------------------------------------------------------------------------------------
 // Table 2
@@ -67,56 +94,62 @@ function addRemoveButtonListener(button) {
 btnAddRowTable2.addEventListener('click', () => {
   const colTable2 = 1;
   const newRow = `
-                <tr>
-                    <td>
-                        <span id="row-${contRowTable2}-${colTable2}">
-                            ${contRowTable2}
-                        </span>
-                    </td>
-                    <td><input id="row-${contRowTable2}-${
+  <tr>
+      <td>
+          <span id="row-${contRowTable2}-${colTable2}">
+              ${contRowTable2}
+          </span>
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
     colTable2 + 1
-  }" type="text" class="form-control" name="tb1-soliccit-siofi"></td>
-                    <td><input id="row-${contRowTable2}-${
+  }" type="text" class="form-control" name="tb1-soliccit-siofi">
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
     colTable2 + 2
-  }" type="text" class="form-control" name="tb1-cod-acao"></td>
-                    <td><input id="row-${contRowTable2}-${
+  }" type="text" class="form-control" name="tb1-cod-acao">
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
     colTable2 + 3
-  }" type="text" class="form-control" name="tb1-produto"></td>
-                    <td><input id="row-${contRowTable2}-${
+  }" type="text" class="form-control" name="tb1-acao" disabled>
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
     colTable2 + 4
-  }" type="text" class="form-control" name="tb1-iniciativa"></td>
-                    <td><input id="row-${contRowTable2}-${
+  }" type="text" class="form-control" name="tb1-produto" disabled>
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
     colTable2 + 5
-  }" type="text" class="form-control" name="tb1-valor-suplementado"></td>
-                    <td><input id="row-${contRowTable2}-${
+  }" type="text" class="form-control" name="tb1-iniciativa" disabled>
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
     colTable2 + 6
-  }" type="text" class="form-control" name="tb1-origem-recurso"></td>
-
-  <td>
-    <select class="form-select" aria-label="Origem dos Recursos">
-      <option selected>Selecione</option>
-      <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
-      <option value="Excesso de arrecadação">Excesso de arrecadação</option>
-      <option value="Sem indicação de recursos">Sem indicação de recursos</option>
-      <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
-    </select>
-</td>
-
-                    <td><input id="row-${contRowTable2}-${
-    colTable2 + 8
-  }" type="text" class="form-control" name="tb1-valor-reduzido"></td>
-                    <td><input id="row-${contRowTable2}-${
-    colTable2 + 9
-  }" type="text" class="form-control" name="btn-remove"></td>
-                    <td><button
-                            id="btn-remove-row-table2-id-${contRowTable2}"
-                            type="button"
-                            class="btn btn-danger"
-                            data-id="${contRowTable2}"
-                        >
-                            <i class="fa-solid fa-trash"></i>
-                        </button></td>
-                </tr>`;
+  }" type="text" class="form-control" name="tb1-valor-suplementado">
+      </td>
+      <td>
+          <select class="form-select" aria-label="Origem dos Recursos">
+              <option selected>Selecione</option>
+              <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
+              <option value="Excesso de arrecadação">Excesso de arrecadação</option>
+              <option value="Sem indicação de recursos">Sem indicação de recursos</option>
+              <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
+          </select>
+      </td>
+      <td>
+          <input id="row-${contRowTable2}-${
+    colTable2 + 7
+  }" type="text" class="form-control" name="tb1-valor-reduzido">
+      </td>
+      <td>
+          <button id="btn-remove-row-table2-id-${contRowTable2}" type="button" class="btn btn-danger" data-id="${contRowTable2}">
+              <i class="fa-solid fa-trash"></i>
+          </button>
+      </td>
+  </tr>`;
 
   rowtable2.insertAdjacentHTML('beforeend', newRow);
 
