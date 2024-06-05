@@ -154,11 +154,11 @@ btnAddRowTable2.addEventListener('click', () => {
       </td>
       <td>
           <input id="row-${contRowTable2}
-  }" type="text" class="form-control" name="tb2-acao-anulada">
+  }" type="text" class="form-control" name="tb2-acao-anulada" disabled>
       </td>
       <td>
           <input id="row-${contRowTable2}
-  }" type="text" class="form-control" name="tb2-valor-reduzido">
+  }" type="text" class="form-control" name="tb2-valor-reduzido" disabled>
       </td>
       <td>
           <button id="btn-remove-row-table2-id-${contRowTable2}" type="button" class="btn btn-danger" data-id="${contRowTable2}">
