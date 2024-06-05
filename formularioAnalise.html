@@ -98,7 +98,7 @@
           <div class="row">
             <div class="col-3">
               <label for="valor-total-suplementacao" class="fw-bold"
-                >Valor Total Suplementacao</label
+                >Valor Total Suplementaçao</label
               >
             </div>
             <div class="col-5">
@@ -267,7 +267,6 @@
             Adicionar
           </button>
         </div>
-
         <!-- FIM TABELA 1 -->
 
         <!-- INICIO TABELA 2 -->
@@ -305,8 +304,8 @@
                   <td>
                     <span class="input-group-text" id="valor-total-tb2"></span>
                   </td>
-                  <td></td>
-                  <td></td>
+                  <td colspan="2"><span  hidden class="fw-bold text-danger" id="tb-2-aviso">Valor Diferente do Informado !</span></td>
+                  <td><span hidden id="valor-somatorio"></span></td>
                   <td></td>
                 </tr>
               </tfoot>
@@ -319,23 +318,9 @@
           </button>
         </div>
         <!-- FIM TABELA 2 -->
-        <div class="row d-flex justify-content-center mb-5">
-          <label for="valor-total" class="fw-bold col-1">Valor Total</label>
-          <div class="col-2 d-flex gap-3">
-            <div class="input-group mb-3">
-              <span class="input-group-text">$</span>
-              <input
-                type="text"
-                class="form-control"
-                name="valor-total"
-                id="input-valor-total-tb2"
-              />
-            </div>
-          </div>
-        </div>
-
+        
         <!-- INICIO TABELA 3 -->
-        <div id="tabela-3">
+        <div id="tabela-3" class="mt-5">
           <div class="elementos-macroprocesso">
             <table class="table" id="tabela3">
               <thead>
@@ -399,11 +384,10 @@
             </table>
           </div>
         </div>
-
         <!-- FIM TABELA 3 -->
 
         <!-- INÍCIO TABELA 4 -->
-        <div id="tabela-4">
+        <div id="tabela-4" class="mt-5">
           <div class="efeitos-pedido">
             <table class="table">
               <thead>
@@ -478,7 +462,6 @@
             </table>
           </div>
         </div>
-
         <!-- FIM TABELA 4 -->
       </form>
     </div>

@@ -74,6 +74,15 @@ if (initialRemoveButton) {
 // Table 2
 const rowtable2 = document.getElementById('container-table2');
 const btnAddRowTable2 = document.getElementById('btn-add-row-table2');
+const valorTotalTb2 = document.getElementById('valor-total-tb2');
+
+const inputValorTotalSuplementacao = document.getElementById(
+  'input-valor-total-suplementacao'
+);
+inputValorTotalSuplementacao.addEventListener('input', () => {
+  valorTotalTb2.textContent = inputValorTotalSuplementacao.value;
+});
+
 let contRowTable2 = 1; // Começa em 2, pois a primeira linha já existe
 
 listaOrigemDosRecursos = [
@@ -83,6 +92,7 @@ listaOrigemDosRecursos = [
   'Superávit financeiro diretamente arrecadado',
 ];
 
+// Adiciona o listener ao botão de remover da primeira linha (se existir)
 function addRemoveButtonListener(button) {
   button.addEventListener('click', function () {
     const row = this.closest('tr');
@@ -90,48 +100,51 @@ function addRemoveButtonListener(button) {
     updateRowNumbers();
   });
 }
+// Adiciona o listener para escutar e pegar os valores dos inputs
+function addInputValorSuplementadoListener(input) {
+  input.forEach((input) => {
+    input.addEventListener('input', () => {
+      calcularSomatorio();
+      validarSomatorio();
+    });
+  });
+}
 
+// Adiciona uma linha na tabela 2
 btnAddRowTable2.addEventListener('click', () => {
-  const colTable2 = 1;
   const newRow = `
   <tr>
       <td>
-          <span id="row-${contRowTable2}-${colTable2}">
-              ${contRowTable2}
+          <span id="row-${contRowTable2}">
+          ${contRowTable2}
           </span>
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 1
-  }" type="text" class="form-control" name="tb1-soliccit-siofi">
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-soliccit-siofi">
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 2
-  }" type="text" class="form-control" name="tb1-cod-acao">
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-cod-acao">
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 3
-  }" type="text" class="form-control" name="tb1-acao" disabled>
+          <input id="row-${contRowTable2}-
+  }" type="text" class="form-control" name="tb2-acao" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 4
-  }" type="text" class="form-control" name="tb1-produto" disabled>
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-produto" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 5
-  }" type="text" class="form-control" name="tb1-iniciativa" disabled>
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-iniciativa" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 6
-  }" type="text" class="form-control" name="tb1-valor-suplementado">
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-valor-suplementado">
       </td>
       <td>
-          <select class="form-select" aria-label="Origem dos Recursos">
+          <select class="form-select" aria-label="Origem dos Recursos" id="select-origem-recursos-${contRowTable2}" >
               <option selected>Selecione</option>
               <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
               <option value="Excesso de arrecadação">Excesso de arrecadação</option>
@@ -140,9 +153,12 @@ btnAddRowTable2.addEventListener('click', () => {
           </select>
       </td>
       <td>
-          <input id="row-${contRowTable2}-${
-    colTable2 + 7
-  }" type="text" class="form-control" name="tb1-valor-reduzido">
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-acao-anulada">
+      </td>
+      <td>
+          <input id="row-${contRowTable2}
+  }" type="text" class="form-control" name="tb2-valor-reduzido">
       </td>
       <td>
           <button id="btn-remove-row-table2-id-${contRowTable2}" type="button" class="btn btn-danger" data-id="${contRowTable2}">
@@ -156,12 +172,74 @@ btnAddRowTable2.addEventListener('click', () => {
   const newRemoveButton = document.getElementById(
     `btn-remove-row-table2-id-${contRowTable2}`
   );
-  addRemoveButtonListener(newRemoveButton);
+  const inputValorSuplementado = document.querySelectorAll(
+    'input[name="tb2-valor-suplementado"]'
+  );
 
+  const selectElement = document.getElementById(
+    `select-origem-recursos-${contRowTable2}`
+  );
+
+  addRemoveButtonListener(newRemoveButton);
+  addInputValorSuplementadoListener(inputValorSuplementado);
+  addChangeListenerToSelect(selectElement);
   contRowTable2++;
 });
 
 btnAddRowTable2.click();
+
+//***********************************************************************
+// validar COMBOBOX Origem dos Recursos
+function addChangeListenerToSelect(selectElement) {
+  selectElement.addEventListener('change', (event) => {
+    const selectedValue = event.target.value;
+    const row = selectElement.closest('tr');
+    const acaoAnuladaInput = row.querySelector(
+      'input[name="tb2-acao-anulada"]'
+    );
+    const valorReduzidoInput = row.querySelector(
+      'input[name="tb2-valor-reduzido"]'
+    );
+
+    if (selectedValue !== 'Anulação total ou parcial de dotação orçamentária') {
+      acaoAnuladaInput.disabled = true;
+      valorReduzidoInput.disabled = true;
+    } else {
+      acaoAnuladaInput.disabled = false;
+      valorReduzidoInput.disabled = false;
+    }
+  });
+}
+
+// ***********************************************************************
+
+// Validar valor de suplementação com os valores da tabela
+const inputsValorSuplementado = document.querySelectorAll(
+  'input[name="tb2-valor-suplementado"]'
+);
+inputsValorSuplementado.forEach((input) => {
+  input.addEventListener('input', () => {
+    calcularSomatorio();
+  });
+});
+
+function calcularSomatorio() {
+  // Selecionar todos os inputs com o atributo name="tb2-valor-suplementado"
+  const inputs = document.querySelectorAll(
+    'input[name="tb2-valor-suplementado"]'
+  );
+  // Inicializar o somatório
+  let somatorio = 0;
+
+  // Percorrer os inputs e somar os valores
+  inputs.forEach((input) => {
+    // Converter o valor do input para número e adicionar ao somatório
+    const valor = parseFloat(input.value) || 0;
+    somatorio += valor;
+  });
+  // Atualizar o texto do elemento de somatório
+  document.getElementById('valor-somatorio').textContent = somatorio;
+}
 
 // Adiciona o listener ao botão de remover da primeira linha
 const initialRemoveButtonTB2 = document.getElementById(
@@ -174,15 +252,26 @@ function updateRowNumbers() {
   for (let i = 0; i < rows.length; i++) {
     const rowNumCell = rows[i].getElementsByTagName('span')[0];
     if (rowNumCell) {
-      rowNumCell.textContent = i + 1;
+      rowNumCell.textContent = i;
       const button = rows[i].getElementsByTagName('button')[0];
       if (button) {
-        button.setAttribute('data-id', i + 1);
-        button.id = `btn-remove-row-table2-id-${i + 1}`;
+        button.setAttribute('data-id', i );
+        button.id = `btn-remove-row-table2-id-${i }`;
       }
     }
   }
   contRowTable2 = rows.length + 1;
+}
+
+const tb2Aviso = document.getElementById('tb-2-aviso');
+const valorSomatorio = document.getElementById('valor-somatorio');
+
+function validarSomatorio() {
+  if (valorSomatorio.textContent !== valorTotalTb2.textContent) {
+    tb2Aviso.removeAttribute('hidden');
+  } else {
+    tb2Aviso.setAttribute('hidden', true);
+  }
 }
 
 //--------------------------------------------------------------------------------------------
