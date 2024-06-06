@@ -1,3 +1,14 @@
+import {numeroParaExtenso,valorMonetarioParaExtenso} from "./numeroExtenso.js";
+const inputValorTotalSuplementacao = document.getElementById('input-valor-total-suplementacao');
+const inputValorTotalSuplementacaoExtenso = document.getElementById('input-valor-total-suplementacao-extenso');
+
+inputValorTotalSuplementacao.addEventListener('change', () => {
+  console.log('inputValorTotalSuplementacao', inputValorTotalSuplementacao.value);
+    const valor = inputValorTotalSuplementacao.value;
+    const valorPorExtenso = valorMonetarioParaExtenso(parseFloat(valor));
+    inputValorTotalSuplementacaoExtenso.value = valorPorExtenso;
+});
+
 // limite de caracteres dos inputs
 const valueMax = 1000;
 const inputs = [
@@ -263,39 +274,33 @@ const tabela3 = document.getElementById('tabela-3');
 const tabela5 = document.getElementById('tabela-5');
 const tabelaConfPPA = document.getElementById('tabela-config-ppa');
 const tabelaConfLOA = document.getElementById('tabela-config-loa');
-tabela1.setAttribute('hidden', 'true');
-tabela2.setAttribute('hidden', 'true');
-tabela3.setAttribute('hidden', 'true');
-tabela5.setAttribute('hidden', 'true');
-tabelaConfPPA.setAttribute('hidden', 'true');
-tabelaConfLOA.setAttribute('hidden', 'true');
+
+tabela1.setAttribute('hidden', 'true'); // class
+tabela2.setAttribute('hidden', 'true'); // PROPOSIÇÃO DE CRIAÇÃO
+tabela3.setAttribute('hidden', 'true'); //metricas
+tabelaConfPPA.setAttribute('hidden', 'true'); // PPA
+tabelaConfLOA.setAttribute('hidden', 'true'); // LOA
+tabela5.setAttribute('hidden', 'true'); //efeitos
+
+selectOrigemRecurso.addEventListener('change', function () {
+  const selectedOption = this.options[this.selectedIndex].text;
+  if (selectedOption.includes('Anulação')) {
+    tabela1.removeAttribute('hidden');
+    tabela5.removeAttribute('hidden');
+  }
+  return;
+});
 
 selectMotivo.addEventListener('change', function () {
   const selectedOption = this.options[this.selectedIndex].text;
-  const selectedOptionOrigem =
-    selectOrigemRecurso.options[selectOrigemRecurso.selectedIndex].text;
 
-  if (
-    selectedOption.includes('Criação') &&
-    selectedOptionOrigem.includes('Anulação')
-  ) {
-    // Mostrar somente a tabela 1 e 5
-    tabela1.removeAttribute('hidden');
-    tabela5.removeAttribute('hidden');
-  } else if (selectedOption.includes('Criação')) {
-    // Mostrar somente a tabela 3
-    tabela1.removeAttribute('hidden');
-  } else if (selectedOption.includes('Alteração')) {
-    // Mostrar somente a tabela 3
-    tabela3.removeAttribute('hidden');
+  if (selectedOption.includes('Criação')) {
+    tabela2.removeAttribute('hidden'); // PROPOSIÇÃO DE CRIAÇÃO
+    tabela3.removeAttribute('hidden'); //metricas
+    tabela5.removeAttribute('hidden'); //efeitos
+  } else {
     tabelaConfPPA.removeAttribute('hidden');
     tabelaConfLOA.removeAttribute('hidden');
-  } else if (selectedOption.includes('Exclusão')) {
-    // Mostrar somente a tabela 5
-    tabela1.setAttribute('hidden', 'true');
-    tabela2.setAttribute('hidden', 'true');
-    tabela3.setAttribute('hidden', 'true');
-    tabela5.removeAttribute('hidden');
   }
 });
 

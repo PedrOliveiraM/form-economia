@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script  src="./script.js" defer></script>
+
     <title>Formulário para requisição de crédito adicional</title>
 
     <link rel="stylesheet" href="style.css" />
@@ -35,8 +38,6 @@
       crossorigin="anonymous"
     />
     <!-- FIM TESTE BOOT ONLINE -->
-
-    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="container">
@@ -52,9 +53,7 @@
                 name="sigla-orgao"
                 aria-label="Selecione o órgão"
                 id="select-sigla-orgao"
-              >
-                <option selected>AGEHAB</option>
-              </select>
+              ></select>
             </div>
             <div class="col-10">
               <input
@@ -132,9 +131,7 @@
                 name="fonte-select"
                 aria-label="selecione a fonte"
                 id="select-fonte"
-              >
-                <option selected>15.010.001</option>
-              </select>
+              ></select>
             </div>
             <div class="col-10">
               <input
@@ -304,7 +301,11 @@
                   <td>
                     <span class="input-group-text" id="valor-total-tb2"></span>
                   </td>
-                  <td colspan="2"><span  hidden class="fw-bold text-danger" id="tb-2-aviso">Valor Diferente do Informado !</span></td>
+                  <td colspan="2">
+                    <span hidden class="fw-bold text-danger" id="tb-2-aviso"
+                      >Valor Diferente do Informado !</span
+                    >
+                  </td>
                   <td><span hidden id="valor-somatorio"></span></td>
                   <td></td>
                 </tr>
@@ -318,7 +319,7 @@
           </button>
         </div>
         <!-- FIM TABELA 2 -->
-        
+
         <!-- INICIO TABELA 3 -->
         <div id="tabela-3" class="mt-5">
           <div class="elementos-macroprocesso">
@@ -474,5 +475,10 @@
         Enviar
       </button>
     </div>
+
+
+
+    
+
   </body>
 </html>
