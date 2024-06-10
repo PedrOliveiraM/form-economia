@@ -1,6 +1,3 @@
-// problema no modulo
-
-
 const inputValorTotalSuplementacao = document.getElementById(
   'input-valor-total-suplementacao'
 );
@@ -8,14 +5,15 @@ const inputValorTotalSuplementacaoExtenso = document.getElementById(
   'input-valor-total-suplementacao-extenso'
 );
 
+/*// problema no modulo
 inputValorTotalSuplementacao.addEventListener('change', () => {
-  numeroParaExtenso(1000)
+  numeroParaExtenso(1000);
   const valor = inputValorTotalSuplementacao.value;
   const valorPorExtenso = valorMonetarioParaExtenso(parseFloat(valor));
   alert(valorPorExtenso);
   inputValorTotalSuplementacaoExtenso.value = valor;
 });
-
+*/
 //lista de orgaos
 const lista_orgao = [
   { sigla: 'ABC', nome_completo: '1261 - AGÊNCIA BRASIL CENTRAL' },
@@ -584,32 +582,32 @@ btnAddRowTable2.addEventListener('click', () => {
   const newRow = `
   <tr>
       <td>
-          <span id="row-${contRowTable2}">
+          <span id="num-solic-${contRowTable2}">
           ${contRowTable2}
           </span>
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="num-solic-${contRowTable2}
   }" type="text" class="form-control" name="tb2-soliccit-siofi">
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="cod-acao-${contRowTable2}
   }" type="text" class="form-control" name="tb2-cod-acao">
       </td>
       <td>
-          <input id="row-${contRowTable2}-
+          <input id="nome-acao-${contRowTable2}-
   }" type="text" class="form-control" name="tb2-acao" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="nome-produto-${contRowTable2}
   }" type="text" class="form-control" name="tb2-produto" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="nome-iniciativa-${contRowTable2}
   }" type="text" class="form-control" name="tb2-iniciativa" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="nome-valor-suplementado-${contRowTable2}
   }" type="text" class="form-control" name="tb2-valor-suplementado">
       </td>
       <td>
@@ -622,11 +620,11 @@ btnAddRowTable2.addEventListener('click', () => {
           </select>
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="nome-acao-anulada-${contRowTable2}
   }" type="text" class="form-control" name="tb2-acao-anulada" disabled>
       </td>
       <td>
-          <input id="row-${contRowTable2}
+          <input id="valor-reduzido-${contRowTable2}
   }" type="text" class="form-control" name="tb2-valor-reduzido" disabled>
       </td>
       <td>
@@ -657,8 +655,27 @@ btnAddRowTable2.addEventListener('click', () => {
 
 btnAddRowTable2.click();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //***********************************************************************
 // validar COMBOBOX Origem dos Recursos
+acaoAnuladaInput.disabled = true;
+valorReduzidoInput.disabled = true;
 function addChangeListenerToSelect(selectElement) {
   selectElement.addEventListener('change', (event) => {
     const selectedValue = event.target.value;

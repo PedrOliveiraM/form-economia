@@ -51,7 +51,7 @@ function numeroParaExtenso(numero) {
   if (numero === 0) return 'zero';
 
   let extenso = '';
-
+    
   if (numero >= 1000000) {
     let milhoes = Math.floor(numero / 1000000);
     extenso +=

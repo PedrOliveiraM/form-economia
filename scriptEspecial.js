@@ -1,12 +1,22 @@
-import {numeroParaExtenso,valorMonetarioParaExtenso} from "./numeroExtenso.js";
-const inputValorTotalSuplementacao = document.getElementById('input-valor-total-suplementacao');
-const inputValorTotalSuplementacaoExtenso = document.getElementById('input-valor-total-suplementacao-extenso');
+import {
+  numeroParaExtenso,
+  valorMonetarioParaExtenso,
+} from './numeroExtenso.js';
+const inputValorTotalSuplementacao = document.getElementById(
+  'input-valor-total-suplementacao'
+);
+const inputValorTotalSuplementacaoExtenso = document.getElementById(
+  'input-valor-total-suplementacao-extenso'
+);
 
 inputValorTotalSuplementacao.addEventListener('change', () => {
-  console.log('inputValorTotalSuplementacao', inputValorTotalSuplementacao.value);
-    const valor = inputValorTotalSuplementacao.value;
-    const valorPorExtenso = valorMonetarioParaExtenso(parseFloat(valor));
-    inputValorTotalSuplementacaoExtenso.value = valorPorExtenso;
+  console.log(
+    'inputValorTotalSuplementacao',
+    inputValorTotalSuplementacao.value
+  );
+  const valor = inputValorTotalSuplementacao.value;
+  const valorPorExtenso = valorMonetarioParaExtenso(parseFloat(valor));
+  inputValorTotalSuplementacaoExtenso.value = valorPorExtenso;
 });
 
 // limite de caracteres dos inputs

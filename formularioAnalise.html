@@ -4,11 +4,14 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script  src="./script.js" defer></script>
+    <script src="./jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="./DataTables/datatables.min.css" />
+    <script src="./DataTables/datatables.min.js"></script>
+
+    <!-- <script src="./script.js" defer></script> -->
 
     <title>Formulário para requisição de crédito adicional</title>
 
-    <link rel="stylesheet" href="style.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -18,11 +21,13 @@
     />
 
     <!-- <link rel="stylesheet" href="./jquery-ui-1.13.3/jquery-ui.min.css" /> -->
-    <link
+    <!-- <link
       rel="stylesheet"
       href="./bootstrap-5.3.3/bootstrap-5.3.3-dist/css/bootstrap-grid.min.css"
-    />
-    <script src="./bootstrap-5.3.3/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+    /> -->
+
+    <!-- <script src="./bootstrap-5.3.3/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+ -->
 
     <!-- TESTANDO BOOT ONLINE -->
     <script
@@ -269,7 +274,7 @@
         <!-- INICIO TABELA 2 -->
         <div id="tabela-2">
           <div class="detalhamento-pedido">
-            <table class="table">
+            <table class="table" id="tabela2">
               <thead>
                 <tr>
                   <th scope="col">Nº</th>
@@ -285,9 +290,7 @@
                   <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody id="container-table2">
-                <tr></tr>
-              </tbody>
+
               <tfoot>
                 <tr>
                   <td></td>
@@ -475,10 +478,217 @@
         Enviar
       </button>
     </div>
-
-
-
-    
-
   </body>
+
+  <!--
+    
+  <script src="./script.js"></script>
+   -->
+  <script>
+    const unidades = [
+      '',
+      'um',
+      'dois',
+      'três',
+      'quatro',
+      'cinco',
+      'seis',
+      'sete',
+      'oito',
+      'nove',
+    ];
+    const especiais = [
+      'dez',
+      'onze',
+      'doze',
+      'treze',
+      'quatorze',
+      'quinze',
+      'dezesseis',
+      'dezessete',
+      'dezoito',
+      'dezenove',
+    ];
+    const dezenas = [
+      '',
+      '',
+      'vinte',
+      'trinta',
+      'quarenta',
+      'cinquenta',
+      'sessenta',
+      'setenta',
+      'oitenta',
+      'noventa',
+    ];
+    const centenas = [
+      '',
+      'cem',
+      'duzentos',
+      'trezentos',
+      'quatrocentos',
+      'quinhentos',
+      'seiscentos',
+      'setecentos',
+      'oitocentos',
+      'novecentos',
+    ];
+    function numeroParaExtenso(numero) {
+      if (numero === 0) return 'zero';
+
+      let extenso = '';
+
+      if (numero >= 1000000) {
+        let milhoes = Math.floor(numero / 1000000);
+        extenso +=
+          milhoes === 1 ? 'um milhão' : numeroParaExtenso(milhoes) + ' milhões';
+        numero %= 1000000;
+        if (numero > 0) extenso += ' e ';
+      }
+
+      if (numero >= 1000) {
+        let milhares = Math.floor(numero / 1000);
+        extenso +=
+          milhares === 1 ? 'mil' : numeroParaExtenso(milhares) + ' mil';
+        numero %= 1000;
+        if (numero > 0) extenso += ' e ';
+      }
+
+      if (numero >= 100) {
+        let centena = Math.floor(numero / 100);
+        if (centena === 1 && numero % 100 !== 0) {
+          extenso += 'cento';
+        } else {
+          extenso += centenas[centena];
+        }
+        numero %= 100;
+        if (numero > 0) extenso += ' e ';
+      }
+
+      if (numero >= 20) {
+        let dezena = Math.floor(numero / 10);
+        extenso += dezenas[dezena];
+        numero %= 10;
+        if (numero > 0) extenso += ' e ';
+      }
+
+      if (numero >= 10) {
+        extenso += especiais[numero - 10];
+        numero = 0;
+      }
+
+      if (numero > 0) {
+        extenso += unidades[numero];
+      }
+
+      return extenso;
+    }
+    function valorMonetarioParaExtenso(valor) {
+      // Separa a parte inteira da parte decimal
+      let [reais, centavos] = valor.toFixed(2).split('.').map(Number);
+
+      let extensoReais =
+        numeroParaExtenso(reais) + (reais === 1 ? ' real' : ' reais');
+      let extensoCentavos =
+        centavos > 0
+          ? numeroParaExtenso(centavos) +
+            (centavos === 1 ? ' centavo' : ' centavos')
+          : '';
+
+      if (centavos > 0) {
+        return `${extensoReais} e ${extensoCentavos}`;
+      } else {
+        return extensoReais;
+      }
+    }
+
+    $('#input-valor-total-suplementacao').on('focusout', function () {
+      var str = $('#input-valor-total-suplementacao').val();
+      var extenso = valorMonetarioParaExtenso(parseFloat(str));
+      $('#input-valor-total-suplementacao-extenso').val(extenso);
+    });
+
+    $(function () {
+      console.log('antes da tabela');
+      var tabela2 = $('#tabela2').DataTable({
+        data: [],
+
+        columns: [
+          { title: 'Nº' },
+          { title: 'Nº SOLICCIT. SIOFI' },
+          { title: 'COD. AÇÃO' },
+          { title: 'AÇÃO' },
+          { title: 'PRODUTO' },
+          { title: 'INICIATIVA' },
+          { title: 'VALOR A SER SUPLEMENTADO' },
+          { title: 'ORIGEM DO RECURSO' },
+          { title: 'AÇÃO A SER ANULADA' },
+          { title: 'VALOR A SER REDUZIDO' },
+          { title: 'botao' },
+        ],
+      });
+
+      console.log('depois da tabela');
+      $('#btn-add-row-table2').on('click', function () {
+        tabela2.row
+          .add([
+            '',
+            '<input class="form-control" type="text" id="num-soli">',
+            '<input class="form-control" type="text" id="cod-acao">',
+            '<input class="form-control" type="text" id="acao" disabled>',
+            '<input class="form-control" type="text" id="produto" disabled>',
+            '<input class="form-control" type="text" id="iniciativa" disabled>',
+            '<input class="form-control" type="text" id="valor-suplementado">',
+
+            `<select class="form-select origem-recurso" name="origem dos recursos">
+                <option selected>Selecione</option>
+                <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
+                <option value="Excesso de arrecadação">Excesso de arrecadação</option>
+                <option value="Sem indicação de recursos">Sem indicação de recursos</option>
+                <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
+            </select>`,
+
+            '<input class="form-control" type="text" id="acao-anulada" disabled>',
+            '<input class="form-control" type="text" id="valor-reduzir" disabled>',
+            '<button type="button" class="btn btn-danger btn-remover">Remover</button>',
+          ])
+          .draw();
+
+        attachEvents();
+        $('#tabela2 tbody').on('click', '.btn-remover', function () {
+          tabela2.row($(this).closest('tr')).remove().draw();
+        });
+
+        // Função para atualizar os eventos dos elementos novos
+        function attachEvents() {
+          // Evento para remover linha
+          $('.btn-remover')
+            .off('click')
+            .on('click', function () {
+              tabela2.row($(this).closest('tr')).remove().draw();
+            });
+
+          // Evento para verificar mudanças no select
+          $('.origem-recurso')
+            .off('change')
+            .on('change', function () {
+              var $row = $(this).closest('tr');
+              if (
+                $(this).val() ===
+                'Anulação total ou parcial de dotação orçamentária'
+              ) {
+                $row.find('#acao-anulada').removeAttr('disabled');
+                $row.find('#valor-reduzir').removeAttr('disabled');
+              } else {
+                $row.find('#acao-anulada').attr('disabled', 'disabled');
+                $row.find('#valor-reduzir').attr('disabled', 'disabled');
+              }
+            });
+        }
+
+        // Inicializa eventos para elementos existentes
+        attachEvents();
+      });
+    });
+  </script>
 </html>
