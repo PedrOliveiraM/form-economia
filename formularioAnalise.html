@@ -216,50 +216,10 @@
                   <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
                   <th scope="col">TIPO DE REMANEJAMENTO</th>
                   <th scope="col">VALOR</th>
+                  <th scope="col"></th>
                 </tr>
               </thead>
-              <tbody id="container-table1">
-                <tr>
-                  <td>
-                    <input
-                      id="row-1-1"
-                      type="text"
-                      class="form-control"
-                      aria-label="Default"
-                      aria-describedby="inputGroup-sizing-default"
-                    />
-                  </td>
-                  <td>
-                    <select class="form-select" aria-label="tipo de pedido">
-                      <option selected>Selecione</option>
-                      <option value="suplementar">Suplementar</option>
-                      <option value="reduzir">Reduzir</option>
-                      <
-                    </select>
-                  </td>
-                  <td>
-                    <input
-                      id="row-1-2"
-                      type="text"
-                      class="form-control"
-                      aria-label="Default"
-                      aria-describedby="inputGroup-sizing-default"
-                      title="INFORME O VALOR NEGATIVO PARA REDUÇÃO DE CRÉDITO"
-                      placeholder="INFORME O VALOR NEGATIVO PARA REDUÇÃO DE CRÉDITO"
-                    />
-                  </td>
-                  <td>
-                    <button
-                      id="btn-remove-row-table1-id-1"
-                      type="button"
-                      class="btn btn-danger"
-                      data-id="1"
-                    >
-                      <i class="fa-solid fa-trash"></i>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
+              <tbody id="container-table1"></tbody>
             </table>
           </div>
         </div>
@@ -485,91 +445,474 @@
   <script src="./script.js"></script>
    -->
   <script>
+    // JSON para PPA
+    const lista_ppa = {
+      2470: {
+        nome: "AMPLIAÇÃO DA DIVULGAÇÃO DE INFORMAÇÕES CULTURAIS E INSTITUCIONAIS DO ESTADO DE GOIÁS",
+        produto:
+          "18295 - COMUNICAÇÃO PÚBLICA PARA TRANSPARÊNCIA E EFETIVIDADE FORTALECIDA",
+        iniciativa:
+          "AMPLIAR A DIVULGAÇÃO DE INFORMAÇÕES CULTURAIS E INSTITUCIONAIS DO ESTADO DE GOIÁS",
+      },
+      3150: {
+        nome: "PROMOÇÃO DA INCLUSÃO DIGITAL NO ESTADO DE GOIÁS",
+        produto: "19384 - INFRAESTRUTURA DE TELECOMUNICAÇÕES EXPANDIDA",
+        iniciativa: "ESTABELECER CENTROS DE INCLUSÃO DIGITAL NAS COMUNIDADES",
+      },
+      4123: {
+        nome: "FORTALECIMENTO DA SEGURANÇA PÚBLICA EM GOIÁS",
+        produto: "20567 - MELHORIA DOS SERVIÇOS DE SEGURANÇA",
+        iniciativa: "IMPLEMENTAR TECNOLOGIAS AVANÇADAS NO COMBATE AO CRIME",
+      },
+      5221: {
+        nome: "MELHORIA DA SAÚDE PÚBLICA NO ESTADO DE GOIÁS",
+        produto: "21789 - ATENDIMENTO HOSPITALAR AMPLIADO",
+        iniciativa: "AUMENTAR A CAPACIDADE DOS HOSPITAIS PÚBLICOS",
+      },
+      6340: {
+        nome: "DESENVOLVIMENTO DO TURISMO NO ESTADO DE GOIÁS",
+        produto: "22990 - PROMOÇÃO TURÍSTICA INTENSIFICADA",
+        iniciativa: "CRIAR ROTEIROS TURÍSTICOS INOVADORES E SUSTENTÁVEIS",
+      },
+      1234: {
+        nome: "nome",
+        produto: "produto",
+        iniciativa: "iniciativa",
+      },
+    };
+
+    // COMBO BOX ORGAO {
+    const lista_orgao = [
+      { sigla: "ABC", nome_completo: "1261 - AGÊNCIA BRASIL CENTRAL" },
+      {
+        sigla: "AGEHAB",
+        nome_completo: "4362 - AGÊNCIA GOIANA DE HABITAÇÃO S/A",
+      },
+      {
+        sigla: "AGR",
+        nome_completo:
+          "1863 - AGÊNCIA GOIANA DE REGULAÇÃO, CONTROLE E FISCALIZAÇÃO DE SERVIÇOS PÚBLICOS",
+      },
+      {
+        sigla: "AGRODEFESA",
+        nome_completo: "3261 - AGÊNCIA GOIANA DE DEFESA AGROPECUÁRIA",
+      },
+      {
+        sigla: "ALEGO",
+        nome_completo: "100 - ASSEMBLEIA LEGISLATIVA DO ESTADO DE GOIÁS",
+      },
+      { sigla: "CBM", nome_completo: "2903 - CORPO DE BOMBEIROS MILITAR" },
+      {
+        sigla: "CEASA",
+        nome_completo: "3290 - CENTRAIS DE ABASTECIMENTO DE GOIÁS S/A",
+      },
+      {
+        sigla: "CELGPAR",
+        nome_completo: "4092 - COMPANHIA CELG DE PARTICIPAÇÃO",
+      },
+      { sigla: "CGE", nome_completo: "1500 - CONTROLADORIA-GERAL DO ESTADO" },
+      {
+        sigla: "CODEGO",
+        nome_completo: "3391 - COMPANHIA DE DESENVOLVIMENTO ECONÔMICO DE GOIÁS",
+      },
+      {
+        sigla: "DETRAN",
+        nome_completo: "2961 - DEPARTAMENTO ESTADUAL DE TRÂNSITO",
+      },
+      {
+        sigla: "DGAP",
+        nome_completo: "2906 - DIRETORIA GERAL DE ADMINISTRAÇÃO PENITENCIÁRIA",
+      },
+      {
+        sigla: "DPE",
+        nome_completo: "800 - DEFENSORIA PÚBLICA DO ESTADO DE GOIÁS",
+      },
+      {
+        sigla: "ECONOMIA",
+        nome_completo: "1700 - SECRETARIA DE ESTADO DA ECONOMIA",
+      },
+      {
+        sigla: "EMATER",
+        nome_completo:
+          "3262 - AGÊNCIA GOIANA DE ASSISTÊNCIA TÉCNICA, EXTENSÃO RURAL E PESQUISA AGROPECUÁRIA",
+      },
+      {
+        sigla: "FAPEG",
+        nome_completo:
+          "3161 - FUNDAÇÃO DE AMPARO À PESQUISA DO ESTADO DE GOIÁS",
+      },
+      {
+        sigla: "FIRMINÓPOLIS",
+        nome_completo: "4096 - FIRMINOPOLIS TRANSMISSAO S.A.",
+      },
+      {
+        sigla: "GOIASFOMENTO",
+        nome_completo: "3390 - AGÊNCIA DE FOMENTO DE GOIÁS S/A",
+      },
+      {
+        sigla: "GOIASGÁS",
+        nome_completo: "4090 - AGÊNCIA GOIANA DE GÁS CANALIZADO S/A",
+      },
+      {
+        sigla: "GOIASPARCERIAS",
+        nome_completo:
+          "3392 - COMPANHIA DE INVESTIMENTO E PARCERIAS DO ESTADO DE GOIÁS",
+      },
+      { sigla: "GOIASPREV", nome_completo: "1762 - GOIÁS PREVIDÊNCIA" },
+      { sigla: "GOIASTELECOM", nome_completo: "GOIÁS TELECOMUNICAÇÕES S/A" },
+      {
+        sigla: "GOIÁSTURISMO",
+        nome_completo: "4261 - GOIÁS TURISMO - AGÊNCIA ESTADUAL DE TURISMO",
+      },
+      {
+        sigla: "GOINFRA",
+        nome_completo: "4361 - AGÊNCIA GOIANA DE INFRAESTRUTURA E TRANSPORTES",
+      },
+      {
+        sigla: "IQUEGO",
+        nome_completo: "3190 - INDUSTRIA QUIMICA DO ESTADO DE GOIAS S.A.",
+      },
+      {
+        sigla: "JUCEG",
+        nome_completo: "3362 - JUNTA COMERCIAL DO ESTADO DE GOIÁS",
+      },
+      {
+        sigla: "LAGO AZUL",
+        nome_completo: "4095 - LAGO AZUL TRANSMISSAO S.A.",
+      },
+      {
+        sigla: "METROBUS",
+        nome_completo: "4093 - METROBUS TRANSPORTE COLETIVO S/A",
+      },
+      { sigla: "MPGO", nome_completo: "700 - MINISTÉRIO PÚBLICO" },
+      { sigla: "PC", nome_completo: "2904 - POLÍCIA CIVIL" },
+      { sigla: "PGE", nome_completo: "1400 - PROCURADORIA-GERAL DO ESTADO" },
+      { sigla: "PM", nome_completo: "2902 - POLÍCIA MILITAR" },
+      {
+        sigla: "RETOMADA",
+        nome_completo: "4200 - SECRETARIA DE ESTADO DA RETOMADA",
+      },
+      { sigla: "SANEAGO", nome_completo: "2192 - SANEAMENTO DE GOIÁS S/A" },
+      {
+        sigla: "SEAD",
+        nome_completo: "1800 - SECRETARIA DE ESTADO DA ADMINISTRAÇÃO",
+      },
+      {
+        sigla: "SEAPA",
+        nome_completo:
+          "3200 - SECRETARIA DE ESTADO DE AGRICULTURA, PECUÁRIA E ABASTECIMENTO",
+      },
+      {
+        sigla: "SECOM",
+        nome_completo: "1200 - SECRETARIA DE ESTADO DE COMUNICAÇÃO",
+      },
+      {
+        sigla: "SECTI",
+        nome_completo:
+          "3100 - SECRETARIA DE ESTADO DE CIÊNCIA, TECNOLOGIA E INOVAÇÃO",
+      },
+      {
+        sigla: "SECULT",
+        nome_completo: "2500 - SECRETARIA DE ESTADO DE CULTURA",
+      },
+      {
+        sigla: "SEDF",
+        nome_completo:
+          "4400 - SECRETARIA DE ESTADO DO ENTORNO DO DISTRITO FEDERAL",
+      },
+      {
+        sigla: "SEDS",
+        nome_completo: "3000 - SECRETARIA DE ESTADO DE DESENVOLVIMENTO SOCIAL",
+      },
+      {
+        sigla: "SEDUC",
+        nome_completo: "2400 - SECRETARIA DE ESTADO DA EDUCAÇÃO",
+      },
+      {
+        sigla: "SEEL",
+        nome_completo: "2600 - SECRETARIA DE ESTADO DE ESPORTE E LAZER",
+      },
+      {
+        sigla: "SEINFRA",
+        nome_completo: "4300 - SECRETARIA DE ESTADO DA INFRAESTRUTURA",
+      },
+      {
+        sigla: "SEMAD",
+        nome_completo:
+          "2100 - SECRETARIA DE ESTADO DE MEIO AMBIENTE E DESENVOLVIMENTO SUSTENTÁVEL",
+      },
+      {
+        sigla: "SERINT",
+        nome_completo: "1900 - SECRETARIA DE ESTADO DE RELAÇÕES INSTITUCIONAIS",
+      },
+      { sigla: "SES", nome_completo: "2800 - SECRETARIA DA SAÚDE" },
+      { sigla: "SGG", nome_completo: "4000 - SECRETARIA-GERAL DE GOVERNO" },
+      {
+        sigla: "SIC",
+        nome_completo:
+          "3300 - SECRETARIA DE ESTADO DE INDÚSTRIA, COMÉRCIO E SERVIÇOS",
+      },
+      {
+        sigla: "SSP",
+        nome_completo: "2900 - SECRETARIA DE ESTADO DE SEGURANÇA PÚBLICA",
+      },
+      {
+        sigla: "TCE",
+        nome_completo: "200 - TRIBUNAL DE CONTAS DO ESTADO DE GOIÁS",
+      },
+      {
+        sigla: "TCM",
+        nome_completo: "300 - TRIBUNAL DE CONTAS DOS MUNICÍPIOS",
+      },
+      {
+        sigla: "TJGO",
+        nome_completo: "400 - TRIBUNAL DE JUSTIÇA DO ESTADO DE GOIÁS",
+      },
+      { sigla: "UEG", nome_completo: "4062 - UNIVERSIDADE ESTADUAL DE GOIÁS" },
+      { sigla: "VICE GOVERNADORIA", nome_completo: "1300 - VICE-GOVERNADORIA" },
+    ];
+    $(document).ready(function () {
+      const select = $("#select-sigla-orgao");
+      select.append(new Option("Selecione", ""));
+      lista_orgao.forEach((orgao) => {
+        select.append(new Option(orgao.sigla, orgao.sigla));
+      });
+
+      $("#select-sigla-orgao").on("change", function () {
+        const sigla = $(this).val(); // pegar o valor do select
+        const orgao = lista_orgao.find(function (orgao) {
+          if (orgao.sigla === sigla) return orgao;
+        });
+        $("#input-orgao-selecionado").val(orgao.nome_completo);
+      });
+    });
+    // COMBO BOX ORGAO }
+
+    // COMBO BOX FONTE {
+    // 1 lista
+    const lista_fonte = {
+      15000100: "RECURSOS NÃO VINCULADOS DE IMPOSTOS - RECEITAS ORDINÁRIAS",
+      15010001:
+        "OUTROS RECURSOS NÃO VINCULADOS - DIVIDENDOS E JUROS SOBRE CAPITAL PRÓPRIO CELGPAR",
+      15010100: "OUTROS RECURSOS NÃO VINCULADOS - RECEITAS ORDINÁRIAS E DRE",
+      15010123:
+        "OUTROS RECURSOS NÃO VINCULADOS - TRANSFERÊNCIA DE INSTITUIÇÕES PRIVADAS PARA ASSISTÊNCIA FINANCEIRA AO TRANSPORTE COLETIVO, EC Nº 123/2022",
+      15010129:
+        "OUTROS RECURSOS NÃO VINCULADOS - CONCESSÕES, PERMISSÕES E DELEGAÇÕES",
+      15010136: "OUTROS RECURSOS NÃO VINCULADOS - AMORTIZAÇÕES",
+      15010220:
+        "OUTROS RECURSOS NÃO VINCULADOS - DIRETAMENTE ARRECADADOS PRÓPRIOS",
+      15020001: "RECURSOS NÃO VINCULADOS DA COMPENSAÇÃO DE IMPOSTOS",
+      15400108:
+        "TRANSFERÊNCIAS DO FUNDEB - IMPOSTOS E TRANSFERÊNCIAS DE IMPOSTOS",
+      15430000: "TRANSFERÊNCIAS DO FUNDEB - COMPLEMENTAÇÃO DA UNIÃO - VAAR",
+      15430108: "TRANSFERÊNCIAS DO FUNDEB - COMPLEMENTAÇÃO DA UNIÃO - VAAR",
+      15440000: "RECURSOS DE PRECATÓRIOS DO FUNDEF",
+      15500116: "TRANSFERÊNCIA DO SALÁRIO-EDUCAÇÃO - COTA ESTADUAL",
+      15510000:
+        "TRANSFERÊNCIAS DE RECURSOS DO FNDE REFERENTES AO PROGRAMA DINHEIRO DIRETO NA ESCOLA (PDDE)",
+      15520109:
+        "TRANSFERÊNCIAS DE RECURSOS DO FNDE REFERENTES AO PROGRAMA NACIONAL DE ALIMENTAÇÃO ESCOLAR (PNAE)",
+      15690115: "OUTRAS TRANSFERÊNCIAS DE RECURSOS DO FNDE",
+      15700260:
+        "TRANSFERÊNCIAS DO GOVERNO FEDERAL REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À EDUCAÇÃO",
+      15720261:
+        "TRANSFERÊNCIAS DE MUNICÍPIOS REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À EDUCAÇÃO",
+      15740000: "OPERAÇÕES DE CRÉDITO VINCULADAS À EDUCAÇÃO",
+      15750262:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À EDUCAÇÃO",
+      15990000: "OUTROS RECURSOS VINCULADOS À EDUCAÇÃO",
+      15990158: "OUTROS RECURSOS VINCULADOS À EDUCAÇÃO - EDUCAÇÃO INFANTIL",
+      16000001:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP2 - EMENDA PROGRAMAÇÃO",
+      16000002:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP6 - EMENDA INDIVIDUAL",
+      16000003:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP7 - EMENDA DE BANCADA",
+      16000004:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP8 - EMENDA DE COMISSÃO",
+      16000232:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO DAS AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE",
+      16010233:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE ESTRUTURAÇÃO DA REDE DE SERVIÇOS PÚBLICOS DE SAÚDE",
+      16020238:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DO SUS - BL. DE MAN. DAS ASPS - RECURSOS DESTINADOS AO ENFRENTAMENTO DA COVID-19 NO BOJO DA AÇÃO 21C0",
+      16030239:
+        "TRANSFERÊNCIAS FUNDO A FUNDO DO SUS - BL. DE ESTR. DA REDE DE SERV. PÚB. DE SAÚDE - REC. DEST. AO ENFRENTAMENTO DA COVID-19 NO BOJO DA AÇÃO 21C0",
+      16040000:
+        "TRANSFERÊNCIAS PROVENIENTES DO GOVERNO FEDERAL DESTINADAS AO VENCIMENTO DOS AGENTES COMUNITÁRIOS DE SAÚDE E DOS AGENTES DE COMBATE ÀS ENDEMIAS",
+      16050001:
+        "ASSISTÊNCIA FINANCEIRA DA UNIÃO DESTINADA À COMPLEMENTAÇÃO AO PAGAMENTO DOS PISOS SALARIAIS PARA PROFISSIONAIS DA ENFERMAGEM",
+      16310270:
+        "TRANSFERÊNCIAS DO GOVERNO FEDERAL REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À SAÚDE",
+      16317872:
+        "TRANSFERÊNCIAS DO GOVERNO FEDERAL REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À SAÚDE - CONVÊNIO Nº 787297/2013, MS/IQUEGO",
+      16340000: "OPERAÇÕES DE CRÉDITO VINCULADAS À SAÚDE",
+      16360272:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À SAÚDE",
+      16600234:
+        "TRANSFERÊNCIA DE RECURSOS DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL - FNAS - CORRENTES",
+      16600235:
+        "TRANSFERÊNCIA DE RECURSOS DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL - FNAS - CAPITAL",
+      16650274:
+        "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À ASSISTÊNCIA SOCIAL - COM ÓRGÃOS FEDERAIS",
+      16650276:
+        "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À ASSISTÊNCIA SOCIAL - OUTRAS ENTIDADES",
+      17000280:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DA UNIÃO - ADMINISTRAÇÃO DIRETA",
+      17000290:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DA UNIÃO - ADMINISTRAÇÃO INDIRETA",
+      17020291:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DOS MUNICÍPIOS - ADMINSITRAÇÃO INDIRETA",
+      17030282:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO DIRETA",
+      17030284:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO DIRETA COM ENTES EXTERNOS",
+      17040283:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO INDIRETA",
+      17040285:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO INDIRETA COM ENTES EXTERNOS",
+      17060289:
+        "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS AO SANEAMENTO",
+      17290287:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À ADMINISTRAÇÃO GERAL",
+      17290288:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À CULTURA",
+      17400306:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES DA UNIÃO - ADMINISTRAÇÃO INDIRETA - GERAIS",
+      17430310:
+        "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES DOS MUNICÍPIOS - ADMINISTRAÇÃO DIRETA",
+      17600298:
+        "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERes VINCULADOS A TRANSPORTE",
+      17990000: "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES",
+      18000112:
+        "TRANSFERÊNCIAS ESPECIAIS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS INDIVIDUAIS",
+      18000210:
+        "TRANSFERÊNCIAS ESPECIAIS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE BANCADA",
+      18000212:
+        "TRANSFERÊNCIAS ESPECIAIS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO",
+      18100100:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS INDIVIDUAIS - EXCETO SAÚDE",
+      18100213:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE BANCADA - EXCETO SAÚDE",
+      18100215:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO - EXCETO SAÚDE",
+      18110212:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO - GERAIS",
+      18200102:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS INDIVIDUAIS - SAÚDE",
+      18200214:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE BANCADA - SAÚDE",
+      18200216:
+        "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO - SAÚDE",
+      19000000: "RECURSOS VINCULADOS - ORÇAMENTO ESTADUAL DE CONTINGÊNCIA",
+    };
+    const listaDasFontes = Object.keys(lista_fonte);
+    // 2 funcao ready
+    $(document).ready(function () {
+      // 3 pegar o id
+      const selectFonte = $("#select-fonte");
+      selectFonte.append(new Option("Selecione", ""));
+      // 4 percorrer
+      listaDasFontes.forEach(function (fonte) {
+        // 5 inserir
+        selectFonte.append(new Option(`${fonte}`, `${fonte}`));
+      });
+      // evento change
+      $("#select-fonte").on("change", function () {
+        const numeroFonte = $(this).val(); // pegar o valor do select
+        const fonte = lista_fonte[numeroFonte];
+        $("#input-fonte-selecionada").val(fonte);
+      });
+    });
+
+    // COMBO BOX FONTE }
+
     const unidades = [
-      '',
-      'um',
-      'dois',
-      'três',
-      'quatro',
-      'cinco',
-      'seis',
-      'sete',
-      'oito',
-      'nove',
+      "",
+      "um",
+      "dois",
+      "três",
+      "quatro",
+      "cinco",
+      "seis",
+      "sete",
+      "oito",
+      "nove",
     ];
     const especiais = [
-      'dez',
-      'onze',
-      'doze',
-      'treze',
-      'quatorze',
-      'quinze',
-      'dezesseis',
-      'dezessete',
-      'dezoito',
-      'dezenove',
+      "dez",
+      "onze",
+      "doze",
+      "treze",
+      "quatorze",
+      "quinze",
+      "dezesseis",
+      "dezessete",
+      "dezoito",
+      "dezenove",
     ];
     const dezenas = [
-      '',
-      '',
-      'vinte',
-      'trinta',
-      'quarenta',
-      'cinquenta',
-      'sessenta',
-      'setenta',
-      'oitenta',
-      'noventa',
+      "",
+      "",
+      "vinte",
+      "trinta",
+      "quarenta",
+      "cinquenta",
+      "sessenta",
+      "setenta",
+      "oitenta",
+      "noventa",
     ];
     const centenas = [
-      '',
-      'cem',
-      'duzentos',
-      'trezentos',
-      'quatrocentos',
-      'quinhentos',
-      'seiscentos',
-      'setecentos',
-      'oitocentos',
-      'novecentos',
+      "",
+      "cem",
+      "duzentos",
+      "trezentos",
+      "quatrocentos",
+      "quinhentos",
+      "seiscentos",
+      "setecentos",
+      "oitocentos",
+      "novecentos",
     ];
     function numeroParaExtenso(numero) {
-      if (numero === 0) return 'zero';
+      if (numero === 0) return "zero";
 
-      let extenso = '';
+      let extenso = "";
 
       if (numero >= 1000000) {
         let milhoes = Math.floor(numero / 1000000);
         extenso +=
-          milhoes === 1 ? 'um milhão' : numeroParaExtenso(milhoes) + ' milhões';
+          milhoes === 1 ? "um milhão" : numeroParaExtenso(milhoes) + " milhões";
         numero %= 1000000;
-        if (numero > 0) extenso += ' e ';
+        if (numero > 0) extenso += " e ";
       }
 
       if (numero >= 1000) {
         let milhares = Math.floor(numero / 1000);
         extenso +=
-          milhares === 1 ? 'mil' : numeroParaExtenso(milhares) + ' mil';
+          milhares === 1 ? "mil" : numeroParaExtenso(milhares) + " mil";
         numero %= 1000;
-        if (numero > 0) extenso += ' e ';
+        if (numero > 0) extenso += " e ";
       }
 
       if (numero >= 100) {
         let centena = Math.floor(numero / 100);
         if (centena === 1 && numero % 100 !== 0) {
-          extenso += 'cento';
+          extenso += "cento";
         } else {
           extenso += centenas[centena];
         }
         numero %= 100;
-        if (numero > 0) extenso += ' e ';
+        if (numero > 0) extenso += " e ";
       }
 
       if (numero >= 20) {
         let dezena = Math.floor(numero / 10);
         extenso += dezenas[dezena];
         numero %= 10;
-        if (numero > 0) extenso += ' e ';
+        if (numero > 0) extenso += " e ";
       }
 
       if (numero >= 10) {
@@ -585,15 +928,15 @@
     }
     function valorMonetarioParaExtenso(valor) {
       // Separa a parte inteira da parte decimal
-      let [reais, centavos] = valor.toFixed(2).split('.').map(Number);
+      let [reais, centavos] = valor.toFixed(2).split(".").map(Number);
 
       let extensoReais =
-        numeroParaExtenso(reais) + (reais === 1 ? ' real' : ' reais');
+        numeroParaExtenso(reais) + (reais === 1 ? " real" : " reais");
       let extensoCentavos =
         centavos > 0
           ? numeroParaExtenso(centavos) +
-            (centavos === 1 ? ' centavo' : ' centavos')
-          : '';
+            (centavos === 1 ? " centavo" : " centavos")
+          : "";
 
       if (centavos > 0) {
         return `${extensoReais} e ${extensoCentavos}`;
@@ -602,39 +945,76 @@
       }
     }
 
-    $('#input-valor-total-suplementacao').on('focusout', function () {
-      var str = $('#input-valor-total-suplementacao').val();
+    $("#input-valor-total-suplementacao").on("focusout", function () {
+      var str = $("#input-valor-total-suplementacao").val();
       var extenso = valorMonetarioParaExtenso(parseFloat(str));
-      $('#input-valor-total-suplementacao-extenso').val(extenso);
+      $("#input-valor-total-suplementacao-extenso").val(extenso);
+    });
+    // TABELA 1 {
+    $(function () {
+      console.log("antes da tabela1");
+      var tabela1 = $("#tabela1").DataTable({
+        data: [],
+        columns: [
+          { title: "CLASSIFICAÇÃO ORÇAMENTÁRIA" },
+          { title: "TIPO DE REMANEJAMENTO" },
+          { title: "VALOR" },
+          { title: "" },
+        ],
+      });
+      console.log("depois da tabela1");
+
+      $("#btn-add-row-table1").on("click", function () {
+        tabela1.row
+          .add([
+            '<input class="form-control" type="text" id="class-orcamentaria">',
+            `<select class="form-select tipo-remanejamento" name="tipo de remanejamento">
+                    <option selected>Selecione</option>
+                    <option value="suplementar">Suplementar</option>
+                    <option value="reduzir">Reduzir</option>
+                </select>`,
+            '<input class="form-control" type="text" id="valor">',
+            '<button type="button" class="btn btn-danger btn-remover">Remover</button>',
+          ])
+          .draw();
+      });
+
+      // Evento para remover uma linha ao clicar no botão "Remover"
+      $("#tabela1 tbody").on("click", ".btn-remover", function () {
+        tabela1.row($(this).closest("tr")).remove().draw();
+      });
     });
 
+    // FIM DA TABELA 1 }
+
+    // TABELA 2 {
     $(function () {
-      console.log('antes da tabela');
-      var tabela2 = $('#tabela2').DataTable({
+      console.log("antes da tabela");
+      var tabela2 = $("#tabela2").DataTable({
         data: [],
 
         columns: [
-          { title: 'Nº' },
-          { title: 'Nº SOLICCIT. SIOFI' },
-          { title: 'COD. AÇÃO' },
-          { title: 'AÇÃO' },
-          { title: 'PRODUTO' },
-          { title: 'INICIATIVA' },
-          { title: 'VALOR A SER SUPLEMENTADO' },
-          { title: 'ORIGEM DO RECURSO' },
-          { title: 'AÇÃO A SER ANULADA' },
-          { title: 'VALOR A SER REDUZIDO' },
-          { title: 'botao' },
+          { title: "" },
+          { title: "Nº SOLICCIT. SIOFI" },
+          { title: "COD. AÇÃO" },
+          { title: "AÇÃO" },
+          { title: "PRODUTO" },
+          { title: "INICIATIVA" },
+          { title: "VALOR A SER SUPLEMENTADO" },
+          { title: "ORIGEM DO RECURSO" },
+          { title: "AÇÃO A SER ANULADA" },
+          { title: "VALOR A SER REDUZIDO" },
+          { title: "" },
         ],
       });
 
-      console.log('depois da tabela');
-      $('#btn-add-row-table2').on('click', function () {
+      console.log("depois da tabela");
+      $("#btn-add-row-table2").on("click", function () {
         tabela2.row
           .add([
-            '',
+            "",
             '<input class="form-control" type="text" id="num-soli">',
-            '<input class="form-control" type="text" id="cod-acao">',
+            '<input class="form-control cod-acao" type="text" id="cod-acao">',
             '<input class="form-control" type="text" id="acao" disabled>',
             '<input class="form-control" type="text" id="produto" disabled>',
             '<input class="form-control" type="text" id="iniciativa" disabled>',
@@ -655,40 +1035,60 @@
           .draw();
 
         attachEvents();
-        $('#tabela2 tbody').on('click', '.btn-remover', function () {
-          tabela2.row($(this).closest('tr')).remove().draw();
+        $("#tabela2 tbody").on("click", ".btn-remover", function () {
+          tabela2.row($(this).closest("tr")).remove().draw();
         });
 
         // Função para atualizar os eventos dos elementos novos
         function attachEvents() {
           // Evento para remover linha
-          $('.btn-remover')
-            .off('click')
-            .on('click', function () {
-              tabela2.row($(this).closest('tr')).remove().draw();
+          $(".btn-remover")
+            .off("click")
+            .on("click", function () {
+              tabela2.row($(this).closest("tr")).remove().draw();
             });
 
           // Evento para verificar mudanças no select
-          $('.origem-recurso')
-            .off('change')
-            .on('change', function () {
-              var $row = $(this).closest('tr');
+          $(".origem-recurso")
+            .off("change")
+            .on("change", function () {
+              var $row = $(this).closest("tr");
               if (
                 $(this).val() ===
-                'Anulação total ou parcial de dotação orçamentária'
+                "Anulação total ou parcial de dotação orçamentária"
               ) {
-                $row.find('#acao-anulada').removeAttr('disabled');
-                $row.find('#valor-reduzir').removeAttr('disabled');
+                $row.find("#acao-anulada").removeAttr("disabled");
+                $row.find("#valor-reduzir").removeAttr("disabled");
               } else {
-                $row.find('#acao-anulada').attr('disabled', 'disabled');
-                $row.find('#valor-reduzir').attr('disabled', 'disabled');
+                $row.find("#acao-anulada").attr("disabled", "disabled");
+                $row.find("#valor-reduzir").attr("disabled", "disabled");
               }
             });
-        }
 
+          //evento para preencher as colunas ação | produto | iniciativa
+          $(".cod-acao").on("change", function () {
+            var $row = $(this).closest("tr");
+            var codAcao = $(this).val();
+
+            console.log("Cod Ação: ", codAcao);
+            console.log("JSON PPA-produto: ", lista_ppa[codAcao]);
+            if (lista_ppa[codAcao]) {
+              $row.find("#acao").val(lista_ppa[codAcao].nome);
+              $row.find("#produto").val(lista_ppa[codAcao].produto);
+              $row.find("#iniciativa").val(lista_ppa[codAcao].iniciativa);
+            } else {
+              $row.find("#acao").val("");
+              $row.find("#produto").val("");
+              $row.find("#iniciativa").val("");
+            }
+          });
+        }
         // Inicializa eventos para elementos existentes
         attachEvents();
       });
+      // FIM TABELA 2 }
+
+      // preencher os campos Açao | produto | iniciativa ==> apartir do cod ação
     });
   </script>
 </html>
