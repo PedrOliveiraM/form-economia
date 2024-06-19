@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+      <div id="apresentacao" class="d-flex flex-column gap-2 mt-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-2 d-flex .justify-content-center align-items-center gap-3"
+          >
+            <label class="fw-bold" for="sigla-orgao"
+              ><strong>Órgão:</strong></label
+            >
+            <p>`${sigla}`</p>
+          </div>
+          <div class="col-10">
+            <p>`${nome orgao selecionado}`</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <label for="responsavel-pelas-informacoes" class="fw-bold"
+              ><strong>Responsável Pelas Informações</strong></label
+            >
+          </div>
+          <div class="col-5">
+            <p>`${Responsável Pelas Informações}`</p>
+          </div>
+
+          <div class="col-4 d-flex align-items-center gap-3">
+            <label for="whatsapp" class="fw-bold"
+              ><strong>Whatsapp</strong></label
+            >
+            <p>`${Whatsapp}`</p>
+          </div>
+        </div>
+        <!-- nova linha -->
+        <div class="row">
+          <div class="col-3">
+            <label for="valor-total-suplementacao" class="fw-bold"
+              ><strong>Valor Total Suplementaçao</strong></label
+            >
+          </div>
+          <div class="col-5">
+            <p>`${input-valor-total-suplementacao}`</p>
+          </div>
+          <div class="col-4">
+            <p>`${input-valor-total-suplementacao por extenso}`</p>
+          </div>
+        </div>
+
+        <div class="row d-flex align-items-center">
+          <div
+            class="col-2 d-flex justify-content-center align-items-center gap-3"
+          >
+            <label for="fonte" class="fw-bold"><strong>Fonte:</strong></label>
+            <p>`${Fonte}`</p>
+          </div>
+          <div class="col-10">
+            <p>`${Fonte selecionado}`</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="detalhes_credito">
+        <div id="objeto">
+          <div class="row">
+            <div class="col-12">
+              <label for="objeto" class="fw-bold"><strong>Objeto</strong></label>
+            </div>
+          </div>
+          <div class="row">
+            <p>`${objeto}`</p>
+          </div>
+        </div>
+        <!-- JUSTIFICATIVA -->
+        <div id="justificativa">
+          <div class="row">
+            <div class="col-12">
+              <label for="justificativa" class="fw-bold"><strong>Justificativa</strong></label>
+            </div>
+          </div>
+          <div class="row">
+            <p>`${justificativa}`</p> 
+          </div>
+        </div>
+        <!-- IMPACTOS -->
+        <div id="impacto">
+          <div class="row">
+            <div class="col-12">
+              <label for="impacto" class="fw-bold"><strong>Impacto</strong></label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <p>`${Impacto}`</p>
+          </div>
+        </div>
+      </div>
+  </body>
+</html>
