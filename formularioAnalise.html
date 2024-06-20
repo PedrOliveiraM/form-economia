@@ -58,6 +58,7 @@
   </head>
   <body>
     <div class="container">
+      <h1 class="mt-5 text-center">Nota Técnica da Economia</h1>
       <form id="formulario">
         <div id="apresentacao" class="d-flex flex-column gap-2 mt-5">
           <div class="row d-flex align-items-center">
@@ -219,234 +220,159 @@
           </div>
         </div>
 
-        <!-- INICIO TABELA 1 -->
-        <div id="tabela-1">
-          <div class="ind-class-orca">
-            <table class="table" id="tabela1">
-              <thead>
-                <tr>
-                  <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
-                  <th scope="col">TIPO DE REMANEJAMENTO</th>
-                  <th scope="col">VALOR</th>
-                  <th scope="col"></th>
-                </tr>
-              </thead>
-              <tbody id="container-table1"></tbody>
-            </table>
+        <div class="container-tab1 p-2 bg-body-tertiary mt-5 mb-5rounded">
+          <h3 class="font-bold text-center mt-5">
+            TABELA DE INDICAÇÃO DAS CLASSIFICAÇÕES ORÇAMENTÁRIAS IMPACTADAS PELA
+            SUPLEMENTAÇÃO
+          </h3>
+          <!-- INICIO TABELA 1 -->
+          <div id="tabela-1" class="">
+            <div class="ind-class-orca">
+              <table class="table" id="tabela1">
+                <thead>
+                  <tr>
+                    <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
+                    <th scope="col">TIPO DE REMANEJAMENTO</th>
+                    <th scope="col">VALOR</th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody id="container-table1"></tbody>
+              </table>
+            </div>
           </div>
-        </div>
-
-        <div class="container-btn">
-          <button id="btn-add-row-table1" type="button" class="btn btn-primary">
-            Adicionar
-          </button>
+          <div class="container-btn">
+            <button
+              id="btn-add-row-table1"
+              type="button"
+              class="btn btn-primary"
+            >
+              Adicionar
+            </button>
+          </div>
         </div>
         <!-- FIM TABELA 1 -->
 
         <!-- INICIO TABELA 2 -->
-        <div id="tabela-2">
-          <div class="detalhamento-pedido">
-            <table class="table" id="tabela2">
-              <thead>
-                <tr>
-                  <!-- Tirar aki  <th scope="col">Nº</th>-->
-                  <th class="w-5" scope="col">Nº SOLICCIT. SIOFI</th>
-                  <th class="w-10" scope="col">COD. AÇÃO</th>
-                  <th class="w-25" scope="col">AÇÃO</th>
-                  <th class="w-25" scope="col">PRODUTO</th>
-                  <th class="w-25" scope="col">INICIATIVA</th>
-                  <th class="w-10" scope="col">VALOR A SER SUPLEMENTADO</th>
-                  <th class="w-25" scope="col">ORIGEM DO RECURSO</th>
-                  <th class="w-15" scope="col">AÇÃO A SER ANULADA</th>
-                  <th class="w-15" scope="col">VALOR A SER REDUZIDO</th>
-                  <th class="w-10" scope="col"></th>
-                </tr>
-              </thead>
-
-              <tfoot>
-                <tr>
-                  <!-- tirar <td></td>  -->
-
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td>
-                    <label for="valor-total" class="fw-bold">Valor Total</label>
-                  </td>
-                  <td>
-                    <span class="input-group-text" id="valor-total-tb2"></span>
-                  </td>
-                  <td colspan="2">
-                    <span hidden class="fw-bold text-danger" id="tb-2-aviso"
-                      >Valor Diferente do Informado !</span
-                    >
-                  </td>
-                  <td><span hidden id="valor-somatorio"></span></td>
-                  <td></td>
-                </tr>
-              </tfoot>
-            </table>
+        <div class="container-tab2 p-2 bg-body-tertiary mt-5 mb-5 rounded">
+          <h3 class="font-bold text-center">
+            TABELA DE DETALHAMENTO DO PEDIDO DE SUPLEMENTAÇÃO
+          </h3>
+          <div id="tabela-2" class="">
+            <div class="detalhamento-pedido">
+              <table class="table" id="tabela2">
+                <thead>
+                  <tr>
+                    <!-- Tirar aki  <th scope="col">Nº</th>-->
+                    <th class="w-5" scope="col">Nº SOLICCIT. SIOFI</th>
+                    <th class="w-10" scope="col">COD. AÇÃO</th>
+                    <th class="w-25" scope="col">AÇÃO</th>
+                    <th class="w-25" scope="col">PRODUTO</th>
+                    <th class="w-25" scope="col">INICIATIVA</th>
+                    <th class="w-10" scope="col">VALOR A SER SUPLEMENTADO</th>
+                    <th class="w-25" scope="col">ORIGEM DO RECURSO</th>
+                    <th class="w-15" scope="col">AÇÃO A SER ANULADA</th>
+                    <th class="w-15" scope="col">VALOR A SER REDUZIDO</th>
+                    <th class="w-10" scope="col"></th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <!-- tirar <td></td>  -->
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                      <label for="valor-total" class="fw-bold"
+                        >Valor Total</label
+                      >
+                    </td>
+                    <td>
+                      <span
+                        class="input-group-text"
+                        id="valor-total-tb2"
+                      ></span>
+                    </td>
+                    <td colspan="2">
+                      <span hidden class="fw-bold text-danger" id="tb-2-aviso"
+                        >Valor Diferente do Informado !</span
+                      >
+                    </td>
+                    <td><span hidden id="valor-somatorio"></span></td>
+                    <td></td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
           </div>
-        </div>
-        <div class="container-btn">
-          <button id="btn-add-row-table2" type="button" class="btn btn-primary">
-            Adicionar
-          </button>
+          <div class="container-btn">
+            <button
+              id="btn-add-row-table2"
+              type="button"
+              class="btn btn-primary"
+            >
+              Adicionar
+            </button>
+          </div>
         </div>
         <!-- FIM TABela 2 -->
 
-        <!-- INICIO TABELA 3 -->
-        <div id="tabela-3" class="mt-5">
-          <div class="elementos-macroprocesso">
-            <table class="table" id="tabela3">
-              <thead>
-                <tr>
-                  <th scope="col">Nº</th>
-                  <th scope="col">AÇÃO</th>
-                  <th scope="col">PRODUTO</th>
-                  <th scope="col">META FÍSICA ATUAL</th>
-                  <th scope="col">UNIDADE DE MEDIDA</th>
-                  <th scope="col">ACUMU-LÁ?</th>
-                  <th scope="col">
-                    CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO
-                  </th>
-                  <th scope="col">
-                    CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO
-                  </th>
-                  <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
-                  <th scope="col">SALDO LIQUIDADO ATUAL</th>
-                </tr>
-              </thead>
-              <tbody id="container-table3">
-                <tr>
-                  <td><span id="tb3-acao">1</span></td>
-                  <td><span class="input-group-text" id="tb3-acao"></span></td>
-                  <td>
-                    <span class="input-group-text" id="tb3-produto"></span>
-                  </td>
-                  <td><span class="input-group-text" id="tb3-meta"></span></td>
-                  <td>
-                    <span class="input-group-text" id="tb3-unidade"></span>
-                  </td>
-                  <td>
-                    <span class="input-group-text" id="tb3-acumula"></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb3-custo-estimado"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb3-custo-unitario"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb3-saldo-orcamentario"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb3-saldo-liquidado"
-                    ></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+        <div
+          class="quadro-detalhamento p-2 bg-body-tertiary mt-5 mb-5 rounded d-flex justify-content-center flex-column"
+        >
+          <!-- TODO: AREA DE DETALAHAMENTO  -->
+          <div class="d-flex justify-content-center align-items-center gap-5">
+            <h3 class="font-bold text-center">
+              QUADRO DE DETALHAMENTO DA SUPLEMENTAÇÃO
+            </h3>
           </div>
-        </div>
-        <!-- FIM TABELA 3 -->
 
-        <!-- INÍCIO TABELA 4 -->
-        <div id="tabela-4" class="mt-5">
-          <div class="efeitos-pedido">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Nº</th>
-                  <th scope="col">AÇÃO</th>
-                  <th scope="col">PRODUTO</th>
-                  <th scope="col">META FÍSICA PROPOSTA</th>
-                  <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
-                  <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
-                  <th scope="col">
-                    CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
-                  </th>
-                  <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
-                  <th scope="col">% SUPLEMENTADO X SALDO ORÇÃMENTÁRIO</th>
-                  <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
-                </tr>
-              </thead>
-              <tbody id="container-table4">
-                <tr>
-                  <td><span id="row-1-1">1</span></td>
-                  <td>
-                    <span class="input-group-text" id="tb4-acao"></span>
-                  </td>
-                  <td>
-                    <span class="input-group-text" id="tb4-produto"></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-meta-fisi-proposta"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-alte-meta-fisica"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-custo-esti-produto"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-custo-unit-medio"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-suple-custo-estimado"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-suple-saldo-orcamentario"
-                    ></span>
-                  </td>
-                  <td>
-                    <span
-                      class="input-group-text"
-                      id="tb4-liqui-saldo-orcamentario"
-                    ></span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <!-- INICIO TABELA 3 -->
+          <div id="quadro-1">
+            <div class="detalhes">
+              <table class="table" id="quadro1">
+                <thead>
+                  <tr>
+                    <th scope="col">Nº</th>
+                    <th scope="col">AÇÃO</th>
+                    <th scope="col">PRODUTO</th>
+                    <th scope="col">META FÍSICA ATUAL</th>
+                    <th scope="col">ACUMU-LÁ?</th>
+                    <th scope="col">UNIDADE DE MEDIDA</th>
+                    <th scope="col">
+                      CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO
+                    </th>
+                    <th scope="col">
+                      CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO
+                    </th>
+                    <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
+                    <th scope="col">SALDO LIQUIDADO ATUAL</th>
+                  </tr>
+                </thead>
+                <tbody id="container-quadro1"></tbody>
+              </table>
+            </div>
           </div>
+          <!-- INÍCIO TABELA 4 -->
+          <div id="quadro-2">
+            <div class="efeitos-pedido">
+              <table class="table" id="quadro2">
+                <thead>
+                </thead>
+                <tbody id="container-quadro2"></tbody>
+              </table>
+            </div>
+          </div>
+          <!-- FIM TABELA 4 -->
         </div>
-        <!-- FIM TABELA 4 -->
       </form>
     </div>
-    <div class="d-flex justify-content-center mt-5 mb-5 gap-3">
-      <!-- botao de download -->
-      <button id="btn-download" class="btn btn-primary px-5">Download</button>
 
-      <!-- botao enviar -->
+    <div class="d-flex justify-content-center mt-5 mb-5 gap-3">
+      <button id="btn-gerar" class="btn btn-secondary px-5">
+        GERAR QUADRO
+      </button>
       <button id="btn-preencher" class="btn btn-success px-5">PREENCHER</button>
       <button id="btn-gerar-pdf" class="btn btn-warning px-5">GERAR PDF</button>
     </div>
@@ -470,18 +396,27 @@
         "17700 - SOLUÇÃO DE TI",
         "10013 - APERFEIÇOAMENTO DA GESTÃO ORGANIZACIONAL FOCADA EM TECNOLOGIA DA INFORMAÇÃO",
         "TCE",
+        "UNIDADE FÍSICA",
+        "150",
+        "150000",
       ],
       3148: [
         "3148 - CONSTRUÇÃO DA SEDE DA ESCOLA DE CONTAS DO TCE-GO",
         "18269 - SEDE DA ESCOLA DE CONTAS DO TCE-GO",
         "10053 - CONSTRUÇÃO DA SEDE DA ESCOLA DE CONTAS DO TCE-GO",
         "TCE",
+        "UNIDADE FÍSICA",
+        "50",
+        "10000000",
       ],
       2002: [
         "2002 - DESENVOLVIMENTO DE COMPETÊNCIAS DE MEMBROS, SERVIDORES, JURISDICIONADOS E CONTROLADORES",
         "18280 - ATIVIDADE DE CAPACITAÇÃO",
         "10219 - PROMOÇÃO E DIFUSÃO DA CAPACITAÇÃO E DO CONHECIMENTO",
         "TCE",
+        "PESSOAS",
+        "200",
+        "250000",
       ],
       2008: [
         "2008 - AUXÍLIO E FISCALIZAÇÃO JUNTO AO PODER PÚBLICO MUNICIPAL",
@@ -3620,8 +3555,9 @@
         let strExtenso = valorMonetarioParaExtenso(numericValue);
         $("#input-valor-total-suplementacao-extenso").val(strExtenso);
       });
-      // TABELA 1 {
+      //TABELA 5 {
 
+      // TABELA 1 {
       var tabela1 = $("#tabela1").DataTable({
         data: [],
         columns: [
@@ -3639,10 +3575,10 @@
           .add([
             `<input class="form-control class-orcamentaria" name="tb1-class-orcamentaria-${timestampNow}" type="text" id="class-orcamentaria-${timestampNow}">`,
             `<select class="form-select tipo-remanejamento" name="tb1-tipo-remanejamento-${timestampNow}" id="tipo-remanejamento-${timestampNow}">
-                                  <option selected>Selecione</option>
-                                  <option value="suplementar">Suplementar</option>
-                                  <option value="reduzir">Reduzir</option>
-                              </select>`,
+                                      <option selected>Selecione</option>
+                                      <option value="suplementar">Suplementar</option>
+                                      <option value="reduzir">Reduzir</option>
+                                  </select>`,
             `<input class="form-control valor" name="tb1-valor-${timestampNow}"" type="text" id="valor-${timestampNow}">`,
             `<button type="button" class="btn btn-danger btn-remover">Remover</button>`,
           ])
@@ -3656,6 +3592,38 @@
 
       // FIM DA TABELA 1 }
       //--------------------------------------------------------------------------------------
+
+      //TODO: QUADROS
+      var quadro1 = $("#quadro1").DataTable({
+          data: [],
+          columns: [
+            { title: "Nº" },
+            { title: "AÇÃO" },
+            { title: "PRODUTO" },
+            { title: "META FÍSICA ATUAL" },
+            { title: "ACUMU-LÁ?" },
+            { title: "UNIDADE DE MEDIDA" },
+            { title: "CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO" },
+            { title: "CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO" },
+            { title: "SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL" },
+            { title: "SALDO LIQUIDADO ATUAL" },
+          ],
+        });
+      var quadro2 = $("#quadro2").DataTable({
+        data: [],
+        columns: [
+          { title: "Nº" },
+          { title: "AÇÃO" },
+          { title: "META FÍSICA PROPOSTA" },
+          { title: "% ALTERAÇÃO DA META FÍSICA" },
+          { title: "CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO" },
+          { title: "CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO" },
+          { title: "% SUPLEMENTADO X CUSTO ESTIMADO" },
+          { title: "% SUPLEMENTADO X SALDO ORÇAMENTÁRIO" },
+          { title: "% LIQUIDADO X SALDO ORÇAMENTÁRIO" },
+        ],
+      });
+
       // TABELA 2 {
 
       var tabela2 = $("#tabela2").DataTable({
@@ -3688,12 +3656,12 @@
             `<input class="form-control valor-suplementado" name="tb-valor-suplementado-${timestampNow}" type="text" id="valor-suplementado-${timestampNow}">`,
 
             `<select class="form-select origem-recurso" name="tb-origem-recursos-${timestampNow}" id="origem-recursos-${timestampNow}" >
-                              <option selected>Selecione</option>
-                              <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
-                              <option value="Excesso de arrecadação">Excesso de arrecadação</option>
-                              <option value="Sem indicação de recursos">Sem indicação de recursos</option>
-                              <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
-                          </select>`,
+                                  <option selected>Selecione</option>
+                                  <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
+                                  <option value="Excesso de arrecadação">Excesso de arrecadação</option>
+                                  <option value="Sem indicação de recursos">Sem indicação de recursos</option>
+                                  <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
+                              </select>`,
 
             `<input class="form-control acao-anulada" name="tb-acao-anulada-${timestampNow}" type="text" id="acao-anulada-${timestampNow}" readonly>`,
             `<input class="form-control valor-reduzir" name="tb-valor-reduzir-${timestampNow}" type="text" id="valor-reduzir-${timestampNow}" readonly>`,
@@ -3704,6 +3672,14 @@
         attachEvents();
         $("#tabela2 tbody").on("click", ".btn-remover", function () {
           tabela2.row($(this).closest("tr")).remove().draw();
+        });
+
+        // TODO: QUADROS 1 & 2
+
+        // TODO: TABELA 3
+        // ****************** ADICIONAR LINHA TABELA 3 ******************
+        $("#btn-gerar").on("click", function () {
+          console.log("teste botao gerar");
         });
 
         // Função para atualizar os eventos dos elementos novos
@@ -3821,13 +3797,13 @@
         console.log("VALOR DO SOMATORIO", somatorioTB2);
         // Verificação adicional para garantir que os valores sejam números
         /*
-        if (isNaN(valorPedido)) {
-          console.error("valorPedido não é um número válido.");
-        }
-        if (isNaN(somatorioTB2)) {
-          console.error("somatorioTB2 não é um número válido.");
-        }
-*/
+            if (isNaN(valorPedido)) {
+              console.error("valorPedido não é um número válido.");
+            }
+            if (isNaN(somatorioTB2)) {
+              console.error("somatorioTB2 não é um número válido.");
+            }
+    */
         if (somatorioTB2 != valorPedido) {
           console.log("Os valores são diferentes. Exibindo aviso.");
           $("#tb-2-aviso").removeAttr("hidden");
@@ -3838,199 +3814,6 @@
       }
 
       //**************************** Botao DOWNLOAD *****************************//
-
-      $("#btn-download").on("click", function (event) {
-        event.preventDefault();
-        const form = $("form").serializeArray();
-        //console.log("MEU FORMULARIO:",form);
-        let formJSON = {
-          apresentacao: {
-            orgao: "",
-            nomeOrgao: "",
-            responsavel: "",
-            whatsapp: "",
-            valorTotalSuplementacao: "",
-            valorTotalSuplementacaoExtenso: "",
-            numeroFonte: "",
-            fonte: "",
-            objeto: "",
-            justificativa: "",
-            impacto: "",
-          },
-          tabela1: [
-            {
-              classificacao: [],
-              tipo: [],
-              valor: [],
-            },
-          ],
-          tabela2: [
-            {
-              num_solicitacao: [],
-              cod_acao: [],
-              acao: [],
-              produto: [],
-              iniciativa: [],
-              valor_suplementado: [],
-              origem_recurso: [],
-              acao_anulada: [],
-              valor_reduzir: [],
-            },
-          ],
-        };
-
-        let cont = 11;
-
-        form.forEach(function (input) {
-          const chave = input.name;
-          const valor = input.value;
-
-          formJSON.apresentacao.orgao = form[0].value;
-          formJSON.apresentacao.nomeOrgao = form[1].value;
-          formJSON.apresentacao.responsavel = form[2].value;
-          formJSON.apresentacao.whatsapp = form[3].value;
-          formJSON.apresentacao.valorTotalSuplementacao = form[4].value;
-          formJSON.apresentacao.valorTotalSuplementacaoExtenso = form[5].value;
-          formJSON.apresentacao.numeroFonte = form[6].value;
-          formJSON.apresentacao.fonte = form[7].value;
-          formJSON.apresentacao.objeto = form[8].value;
-          formJSON.apresentacao.justificativa = form[9].value;
-          formJSON.apresentacao.impacto = form[10].value;
-
-          // Expressões regulares para identificar os campos
-          let regexClass = /tb1-class-orcamentaria-(\d+)/;
-          let regexTipo = /tb1-tipo-remanejamento-(\d+)/;
-          let regexValor = /tb1-valor-(\d+)/;
-          let regexNumSolid = /tb-num-soli-(\d+)/;
-          let regexCodAcao = /cod-acao-(\d+)/;
-          let regexAcao = /tb-acao-(\d+)/;
-          let regexProduto = /tb-produto-(\d+)/;
-          let regexIniciativa = /tb-iniciativa-(\d+)/;
-          let regexValorSuplementado = /tb-valor-suplementado-(\d+)/;
-          let regexOrigemRecurso = /tb-origem-recursos-(\d+)/;
-          let regexAcaoAnulada = /tb-acao-anulada-(\d+)/;
-          let regexValorReduzir = /tb-valor-reduzir-(\d+)/;
-
-          // Display in console
-          //console.log(`Name: ${chave},Value: ${valor}`);
-
-          // TODO:  TABELA 1 - CLASSIFICAÇÃO ORÇAMENTÁRIA
-          if (regexClass.test(chave))
-            formJSON.tabela1[0].classificacao.push(valor);
-          if (regexTipo.test(chave)) formJSON.tabela1[0].tipo.push(valor);
-          if (regexValor.test(chave)) formJSON.tabela1[0].valor.push(valor);
-          // TODO: TABELA 2 - SOLICITAÇÃO DE REMANEJAMENTO
-          if (regexNumSolid.test(chave))
-            formJSON.tabela2[0].num_solicitacao.push(valor);
-          if (regexCodAcao.test(chave))
-            formJSON.tabela2[0].cod_acao.push(valor);
-          if (regexAcao.test(chave)) formJSON.tabela2[0].acao.push(valor);
-          if (regexProduto.test(chave)) formJSON.tabela2[0].produto.push(valor);
-          if (regexIniciativa.test(chave))
-            formJSON.tabela2[0].iniciativa.push(valor);
-          if (regexValorSuplementado.test(chave))
-            formJSON.tabela2[0].valor_suplementado.push(valor);
-          if (regexOrigemRecurso.test(chave))
-            formJSON.tabela2[0].origem_recurso.push(valor);
-          if (regexAcaoAnulada.test(chave))
-            formJSON.tabela2[0].acao_anulada.push(valor);
-          if (regexValorReduzir.test(chave))
-            formJSON.tabela2[0].valor_reduzir.push(valor);
-        });
-        console.log("json preenchido: ", formJSON);
-
-        // TODO: GERAR PDF
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF();
-        let y = 20;
-        const pageHeight = doc.internal.pageSize.height;
-
-        for (let chave in formJSON.apresentacao) {
-          if (formJSON.apresentacao.hasOwnProperty(chave)) {
-            let textoChave = chave + ": ";
-            let textoValor = formJSON.apresentacao[chave];
-            let splitText = doc.splitTextToSize(textoValor, 150); // Ajusta a largura do texto
-
-            doc.setFont("helvetica", "bold");
-            doc.text(textoChave, 9, y);
-
-            doc.setFont("helvetica", "normal");
-            doc.text(splitText, 15 + doc.getTextWidth(textoChave), y);
-
-            y += splitText.length * 10; // Ajusta a posição Y para a próxima linha
-            if (y + 10 > pageHeight) {
-              // Verifica se a próxima linha excederá a página
-              doc.addPage();
-              y = 15; // Reseta a posição Y para a nova página
-            }
-          }
-        }
-
-        doc.setFont("helvetica", "bold");
-        doc.text("TABELA 1 - CLASSIFICAÇÃO ORÇAMENTÁRIA", 35, y);
-        // TABELA 1
-        if (formJSON.tabela1 && formJSON.tabela1.length > 0) {
-          y += 5; // Espaçamento entre o texto e a tabela
-          if (y + 10 > pageHeight) {
-            // Verifica se a tabela excederá a página
-            doc.addPage();
-            y = 10;
-          }
-          doc.autoTable({
-            head: [
-              ["CLASSIFICAÇÃO ORÇAMENTÁRIA", "TIPO DE REMANEJAMENTO", "VALOR"],
-            ],
-            body: formJSON.tabela1[0].classificacao.map((_, index) => [
-              formJSON.tabela1[0].classificacao[index],
-              formJSON.tabela1[0].tipo[index],
-              formJSON.tabela1[0].valor[index],
-            ]),
-            startY: y + 10, // Posição inicial da tabela
-          });
-          y = doc.lastAutoTable.finalY + 10; // Atualiza Y após a tabela
-        }
-        // TABELA 2
-        if (formJSON.tabela2 && formJSON.tabela2.length > 0) {
-          y += 10; // Espaçamento entre as tabelas
-          if (y + 10 > pageHeight) {
-            // Verifica se a tabela excederá a página
-            doc.addPage();
-            y = 10;
-          }
-          doc.autoTable({
-            head: [
-              [
-                "Nº SOLICITAÇÃO SIOFI",
-                "COD. AÇÃO",
-                "AÇÃO",
-                "PRODUTO",
-                "INICIATIVA",
-                "VALOR A SER SUPLEMENTADO",
-                "ORIGEM DO RECURSO",
-                "AÇÃO A SER ANULADA",
-                "VALOR A SER REDUZIDO",
-              ],
-            ],
-            body: formJSON.tabela2[0].num_solicitacao.map((_, index) => [
-              formJSON.tabela2[0].num_solicitacao[index],
-              formJSON.tabela2[0].cod_acao[index],
-              formJSON.tabela2[0].acao[index],
-              formJSON.tabela2[0].produto[index],
-              formJSON.tabela2[0].iniciativa[index],
-              formJSON.tabela2[0].valor_suplementado[index],
-              formJSON.tabela2[0].origem_recurso[index],
-              formJSON.tabela2[0].acao_anulada[index],
-              formJSON.tabela2[0].valor_reduzir[index],
-            ]),
-            startY: y + 10, // Posição inicial da tabela
-          });
-          y = doc.lastAutoTable.finalY + 10; // Atualiza Y após a tabela
-        }
-
-        // Save or open the PDF
-        const pdfURL = doc.output("bloburl");
-        window.open(pdfURL);
-      });
 
       // TODO: PARTE DE PREECHER AUTOMATICAMENTE
       $("#btn-preencher").on("click", function () {
@@ -4169,150 +3952,201 @@
         const tabela1 = formJSON.tabela1;
         const tabela2 = formJSON.tabela2;
         // Abrir uma nova janela
+        //FIXME:
         const win = window.open("", "_blank");
         win.document.write(`
-      <!DOCTYPE html>
-      <html lang="en">
-        <head>
-          <meta charset="UTF-8">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>PDF Content</title>
-          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-        </head>
-        <body>
-          <div id="apresentacao" class="container my-5">
-            <div class="row mb-3">
-              <div class="col-2 d-flex justify-content-end align-items-center">
-                <label class="fw-bold" for="sigla-orgao"><strong>Órgão:</strong></label>
-              </div>
-              <div class="col-10">
-                <p>${json.nomeOrgao}</p>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-3">
-                <label for="responsavel-pelas-informacoes" class="fw-bold"><strong>Responsável Pelas Informações:</strong></label>
-              </div>
-              <div class="col-5">
-                <p>${json.responsavel}</p>
-              </div>
-              <div class="col-4 d-flex align-items-center gap-3">
-                <label for="whatsapp" class="fw-bold"><strong>Whatsapp:</strong></label>
-                <p>${json.whatsapp}</p>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-3">
-                <label for="valor-total-suplementacao" class="fw-bold"><strong>Valor Total Suplementação:</strong></label>
-              </div>
-              <div class="col-5">
-                <p>${json.valorTotalSuplementacao}</p>
-              </div>
-              <div class="col-4">
-                <p>${json.valorTotalSuplementacaoExtenso}</p>
-              </div>
-            </div>
-            <div class="row mb-3">
-              <div class="col-2 d-flex justify-content-end align-items-center">
-                <label for="fonte" class="fw-bold"><strong>Fonte:</strong></label>
-              </div>
-              <div class="col-10">
-                <p>${json.fonte}</p>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>PDF Content</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <style>
+        .content-container {
+          margin-left: 20px;
+          margin-right: 20px;
+        }
+        .label-col, .content-col {
+          text-align: start;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="contain">
+        <div class="d-flex gap-5">
+          <div class="d-flex gap-2">
+            <label class="fw-bold" for="sigla-orgao"><strong>Sigla:</strong></label>
+            <p>${json.orgao}</p>
+          </div>
+
+          <div class="d-flex gap-2 ml-5">
+            <label class="fw-bold" for="sigla-orgao"><strong>Órgão:</strong></label>
+            <p>${json.nomeOrgao}</p>
+          </div>
+        </div>
+
+        <div class="d-flex gap-5">
+          <div class="d-flex gap-2">
+            <label class="fw-bold" for="sigla-orgao"><strong>Responsável:</strong></label>
+            <p>${json.responsavel}</p>
+          </div>
+
+          <div class="d-flex gap-2 ml-5">
+            <label class="fw-bold" for="sigla-orgao"><strong>Whatsapp:</strong></label>
+            <p>${json.whatsapp}</p>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-12 label-col d-flex gap-2">
+            <label for="valor-total-suplementacao" class="fw-bold"><strong>Valor Total Suplementação:</strong></label>
+            <p>${
+              json.valorTotalSuplementacao
+            } - ${json.valorTotalSuplementacaoExtenso}</p>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <div class="col-12 label-col">
+            <label for="fonte" class="fw-bold"><strong>Fonte:</strong></label>
+          </div>
+          <div class="col-12 content-col">
+            <p>${json.numeroFonte} - ${json.fonte}</p>
+          </div>
+        </div>
+
+        <div id="detalhes_credito" class="mb-5">
+          <div id="objeto" class="mb-4">
+            <div class="row">
+              <div class="col-12 text-start">
+                <label for="objeto" class="fw-bold"><strong>Objeto:</strong></label>
+                <p>${json.objeto}</p>
               </div>
             </div>
           </div>
 
-          <div id="detalhes_credito" class="container mb-5">
-            <div id="objeto" class="mb-4">
-              <div class="row">
-                <div class="col-12">
-                  <label for="objeto" class="fw-bold"><strong>Objeto:</strong></label>
-                  <p>${json.objeto}</p>
-                </div>
-              </div>
-            </div>
-
-            <div id="justificativa" class="mb-4">
-              <div class="row">
-                <div class="col-12">
-                  <label for="justificativa" class="fw-bold"><strong>Justificativa:</strong></label>
-                  <p>${json.justificativa}</p>
-                </div>
-              </div>
-            </div>
-
-            <div id="impacto" class="mb-4">
-              <div class="row">
-                <div class="col-12">
-                  <label for="impacto" class="fw-bold"><strong>Impacto:</strong></label>
-                  <p>${json.impacto}</p>
-                </div>
+          <div id="justificativa" class="mb-4">
+            <div class="row">
+              <div class="col-12 text-start">
+                <label for="justificativa" class="fw-bold"><strong>Justificativa:</strong></label>
+                <p>${json.justificativa}</p>
               </div>
             </div>
           </div>
 
-          <h2 class="mt-5 mb-3">Tabela 1 - Classificação Orçamentária</h2>
-          <table class="table table-bordered">
-            <thead>
+          <div id="impacto" class="mb-4">
+            <div class="row">
+              <div class="col-12 text-start">
+                <label for="impacto" class="fw-bold"><strong>Impacto:</strong></label>
+                <p>${json.impacto}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h2 class="mt-5 mb-3 text-start">Tabela 1 - Classificação Orçamentária</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
+              <th>TIPO DE REMANEJAMENTO</th>
+              <th class="col-3">VALOR</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tabela1[0].classificacao
+              .map(
+                (classif, index) => `
               <tr>
-                <th>CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
-                <th>TIPO DE REMANEJAMENTO</th>
-                <th>VALOR</th>
+                <td>${classif}</td>
+                <td>${tabela1[0].tipo[index]}</td>
+                <td>R$ ${tabela1[0].valor[index]}</td>
               </tr>
-            </thead>
-            <tbody>
-              ${tabela1[0].classificacao
-                .map(
-                  (classif, index) => `
-                <tr>
-                  <td>${classif}</td>
-                  <td>${tabela1[0].tipo[index]}</td>
-                  <td>R$ ${tabela1[0].valor[index]}</td>
-                </tr>
-              `
-                )
-                .join("")}
-            </tbody>
-          </table>
-          <h2 class="mt-5 mb-3">Tabela 2 - Detalhamento da Classificação Orçamentária</h2>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Nº SOLICITAÇÃO SIOFI</th>
-          <th>COD. AÇÃO</th>
-          <th>AÇÃO</th>
-          <th>PRODUTO</th>
-          <th>INICIATIVA</th>
-          <th>VALOR A SER SUPLEMENTADO</th>
-          <th>ORIGEM DO RECURSO</th>
-          <th>AÇÃO A SER ANULADA</th>
-          <th>VALOR A SER REDUZIDO</th>
-        </tr>
-      </thead>
-      <tbody>
-        ${tabela2[0].num_solicitacao
-          .map(
-            (classif, index) => `
-                <tr>
-                  <td>${classif}</td>
-                  <td>${tabela2[0].cod_acao[index]}</td>
-                  <td>${tabela2[0].acao[index]}</td>
-                  <td>${tabela2[0].produto[index]}</td>
-                  <td>${tabela2[0].iniciativa[index]}</td>
-                  <td>${tabela2[0].valor_suplementado[index]}</td>
-                  <td>${tabela2[0].origem_recurso[index]}</td>
-                  <td>${tabela2[0].acao_anulada[index]}</td>
-                  <td>${tabela2[0].valor_reduzir[index]}</td>
-                </tr>
-              `
-          )
-          .join("")}
-      </tbody>
-    </table>
-        </body>
-      </html>
-    `);
+            `
+              )
+              .join("")}
+          </tbody>
+        </table>
 
+        <h2 class="mt-5 mb-3 text-start">Tabela 2 - Detalhamento da Classificação Orçamentária</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nº SOLICITAÇÃO SIOFI</th>
+              <th>COD. AÇÃO</th>
+              <th>AÇÃO</th>
+              <th>PRODUTO</th>
+              <th>INICIATIVA</th>
+              <th>VALOR A SER SUPLEMENTADO</th>
+              <th>ORIGEM DO RECURSO</th>
+              <th>AÇÃO A SER ANULADA</th>
+              <th>VALOR A SER REDUZIDO</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${tabela2[0].num_solicitacao
+              .map(
+                (classif, index) => `
+              <tr>
+                <td>${classif}</td>
+                <td>${tabela2[0].cod_acao[index]}</td>
+                <td>${tabela2[0].acao[index]}</td>
+                <td>${tabela2[0].produto[index]}</td>
+                <td>${tabela2[0].iniciativa[index]}</td>
+                <td>${tabela2[0].valor_suplementado[index]}</td>
+                <td>${tabela2[0].origem_recurso[index]}</td>
+                <td>${tabela2[0].acao_anulada[index]}</td>
+                <td>${tabela2[0].valor_reduzir[index]}</td>
+              </tr>
+            `
+              )
+              .join("")}
+          </tbody>
+        </table>
+
+        <h2 class="mt-5 mb-3 text-start">Tabela 2 - Detalhamento da Classificação Orçamentária</h2>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Nº</th>
+              <th>AÇÃO</th>
+              <th>PRODUTO</th>
+              <th>META FÍSICA ATUAL</th>
+              <th>UNIDADE DE MEDIDA</th>
+              <th>ACUMULA</th>
+              <th>CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO</th>
+              <th>CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO</th>
+              <th>SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
+              <th>SALDO LIQUIDADO ATUAL</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${listaDetalhamento[0].numero
+              .map(
+                (classif, index) => `
+              <tr>
+                <td>${classif}</td>
+                <td>${listaDetalhamento[0].acao[index]}</td>
+                <td>${listaDetalhamento[0].produto[index]}</td>
+                <td>${listaDetalhamento[0].metaFisicaAtual[index]}</td>
+                <td>${listaDetalhamento[0].unidadeMedida[index]}</td>
+                <td>${listaDetalhamento[0].acumula[index]}</td>
+                <td>${listaDetalhamento[0].custoEstimadoAno[index]}</td>
+                <td>${listaDetalhamento[0].custoUnitarioMedioAno[index]}</td>
+                <td>${listaDetalhamento[0].saldoOrcamentarioAtual[index]}</td>
+                <td>${listaDetalhamento[0].saldoLiquidadoAtual[index]}</td>
+              </tr>
+            `
+              )
+              .join("")}
+          </tbody>
+        </table>
+      </div>
+    </body>
+    </html>
+    `);
+        //FIXME:
         // Fechar o corpo do HTML
         win.document.close();
         setTimeout(() => {
@@ -4320,6 +4154,77 @@
         }, 1000);
       });
     });
+
+    //FIXME:
+    const listaDetalhamento = [
+      {
+        // TABELA 3
+        numero: "",
+        acao: "",
+        produto: "",
+        metaFisicaAtual: "",
+        unidadeMedida: "",
+        acumula: "",
+        custoEstimadoAno: "",
+        custoUnitarioMedioAno: "",
+        saldoOrcamentarioAtual: "",
+        saldoLiquidadoAtual: "",
+        // TABELA 4
+        metaFisicaProposta: "",
+        alteracaoMetaFisica: "",
+        custoEstimado: "",
+        custoUnitarioMedio: "",
+        suplementadoCustoEstimado: "",
+        suplementadoSaldoOrcamentario: "",
+        liquidadoSaldoOrcamentario: "",
+      },
+      // Adicione mais objetos conforme necessário
+    ];
+
+    //TODO: PREENCHER AUTOMATICAMENTE AS TABELAS DE DETALHAMENTO
+    /*
+    function preencherQuadros(dados) {
+      const tbody = document.getElementById("container-quadro1");
+      tbody.innerHTML = "";
+      dados.forEach((item) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+      <td>${item.numero}</td>
+      <td>${item.acao}</td>
+      <td>${item.produto}</td>
+      <td>${item.metaFisicaAtual}</td>
+      <td>${item.unidadeMedida}</td>
+      <td>${item.acumula}</td>
+      <td>${item.custoEstimadoAno}</td>
+      <td>${item.custoUnitarioMedioAno}</td>
+      <td>${item.saldoOrcamentarioAtual}</td>
+      <td>${item.saldoLiquidadoAtual}</td>
+    `;
+        tbody.appendChild(tr);
+
+        // PARTE DA TABELA 4
+        const tbody = document.getElementById("container-quadro2");
+        tbody.innerHTML = "";
+        dados.forEach((item) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+      <td>${item.numero}</td>
+      <td>${item.acao}</td>
+      <td>${item.produto}</td>
+      <td>${item.metaFisicaProposta}</td>
+      <td>${item.alteracaoMetaFisica}</td>
+      <td>${item.custoEstimado}</td>
+      <td>${item.custoUnitarioMedio}</td>
+      <td>${item.suplementadoCustoEstimado}</td>
+      <td>${item.suplementadoSaldoOrcamentario}</td>
+      <td>${item.liquidadoSaldoOrcamentario}</td>
+    `;
+          tbody.appendChild(tr);
+        });
+      });
+    }
+    */
+    // Função para atualizar os eventos dos elementos novos
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
