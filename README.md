@@ -2,6 +2,9 @@
 
 Este projeto tem como objetivo desenvolver uma página web para automatizar e gerar relatórios, visando acelerar e aprimorar a recepção de respostas dos órgãos competentes. Com isso, espera-se melhorar o controle e reduzir o tempo necessário para realizar todas as tarefas manualmente.
 
+## Tecnologias
+![Tecnologias](https://skillicons.dev/icons?i=html,css,js,bootstrap,jquery)
+
 ## Índice
 
 - [Sobre](#sobre)
@@ -21,9 +24,6 @@ Com isso poupariamos tempo dos órgãos com o preenchimento e digitação de doc
 - Calculos automáticos.
 - Preenchimento automatizado pelo código da ação.
 - Geração de pdf formato no padrão exigido.
-
-## Tecnologias
-![Tecnologias](https://skillicons.dev/icons?i=html,css,js,bootstrap,jquery)
 
 ## Instalação
 
