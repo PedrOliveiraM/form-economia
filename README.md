@@ -1,4 +1,5 @@
-# Formulário Nota Técnica SCPMA
+# Formulário Nota Técnica SCPMA ![Em Andamento](https://img.shields.io/badge/status-em%20andamento-blue) `Em Andamento`
+
 
 Este projeto tem como objetivo desenvolver uma página web para automatizar e gerar relatórios, visando acelerar e aprimorar a recepção de respostas dos órgãos competentes. Com isso, espera-se melhorar o controle e reduzir o tempo necessário para realizar todas as tarefas manualmente.
 
