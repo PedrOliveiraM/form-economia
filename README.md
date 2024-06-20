@@ -23,7 +23,7 @@ Com isso poupariamos tempo dos órgãos com o preenchimento e digitação de doc
 - Geração de pdf formato no padrão exigido.
 
 ## Tecnologias
-https://skillicons.dev/icons?i=html,css,js,bootstrap,jquery
+![Tecnologias utilizadas]((https://skillicons.dev/icons?i=html,css,js,bootstrap,jquery))
 
 ## Instalação
 
