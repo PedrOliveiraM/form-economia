@@ -40,6 +40,10 @@ Será utilziado pelos órgãos disponibilizados no sistema interno.
 ![Texto Alternativo](img4.png)
 ![Texto Alternativo](img3.png)
 
+## Contato
+
+Pedro Oliveira  - @pedro.liveiram - pedropucmont@gmail.com
+Linkedin [linkedin](https://www.linkedin.com/in/pedro-oliveira-m/)
 
 
 
