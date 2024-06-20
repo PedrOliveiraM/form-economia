@@ -42,9 +42,8 @@ Será utilziado pelos órgãos disponibilizados no sistema interno.
 
 ## Contato
 
-Pedro Oliveira  - @pedro.liveiram - pedropucmont@gmail.com
-Linkedin [linkedin](https://www.linkedin.com/in/pedro-oliveira-m/)
-
+Pedro Oliveira - [@pedro.liveiram](https://instagram.com/pedro.liveiram) - pedropucmont@gmail.com  
+[LinkedIn](https://www.linkedin.com/in/pedro-oliveira-m/)
 
 
 
