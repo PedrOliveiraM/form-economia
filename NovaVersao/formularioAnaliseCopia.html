@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <script src="../jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../DataTables/datatables.min.css" />
+    <script src="../DataTables/datatables.min.js"></script>
+
+    <!-- TOASTI FY -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+      defer
+    ></script>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.0.8/css/dataTables.dataTables.css"
+    />
+
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.js"></script>
+
+    <title>Formulário Clean</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="bg-warning text-center p-5 rounded">Nota Técnica Clean</h1>
+      <form id="formulario">
+        <div id="apresentacao" class="d-flex flex-column gap-2 mt-5">
+          <div class="row d-flex align-items-center">
+            <div
+              class="col-2 d-flex .justify-content-center align-items-center gap-3"
+            >
+              <label class="fw-bold" for="sigla-orgao">Órgão:</label>
+              <select
+                class="form-select"
+                name="Órgão"
+                aria-label="orgao"
+                id="select-sigla-orgao"
+              ></select>
+            </div>
+            <div class="col-10">
+              <input
+                type="text"
+                class="form-control"
+                name="Nome do Órgão"
+                id="nomeOrgao"
+                placeholder="Nome do Órgão selecionado"
+                readonly
+              />
+            </div>
+          </div>
+          <div class="row">
+            <!--  NOVA LINHA -->
+            <div class="col-3">
+              <label for="responsavel-pelas-informacoes" class="fw-bold"
+                >Responsável Pelas Informações</label
+              >
+            </div>
+            <div class="col-5">
+              <input
+                type="text"
+                class="form-control"
+                name="responsavel"
+                id="input-responsavel-pelas-informacoes"
+                placeholder="Digite o nome do responsável"
+              />
+            </div>
+            <div class="col-4 d-flex align-items-center gap-3">
+              <label for="whatsapp" class="fw-bold">Whatsapp</label>
+              <input
+                type="text"
+                class="form-control"
+                name="whatsapp"
+                id="input-whatsapp"
+                placeholder="xx x xxxx-xxxx"
+              />
+            </div>
+          </div>
+          <!-- nova linha -->
+          <div class="row">
+            <div class="col-3">
+              <label for="valor-total-suplementacao" class="fw-bold"
+                >Valor Total Suplementaçao</label
+              >
+            </div>
+            <div class="col-5">
+              <input
+                type="text"
+                class="form-control"
+                name="valorTotalSuplementacao"
+                id="input-valor-total-suplementacao"
+                placeholder="Digite o valor total da suplementação"
+              />
+            </div>
+            <div class="col-4">
+              <input
+                type="text"
+                class="form-control"
+                name="valorTotalSuplementacaoExtenso"
+                id="input-valor-total-suplementacao-extenso"
+                placeholder="Valor por Extenso"
+                readonly
+              />
+            </div>
+          </div>
+
+          <div class="row d-flex align-items-center">
+            <div
+              class="col-2 d-flex justify-content-center align-items-center gap-3"
+            >
+              <label for="fonte" class="fw-bold">Fonte:</label>
+              <select
+                class="form-select"
+                name="numeroFonte"
+                aria-label="selecione a fonte"
+                id="select-fonte"
+              ></select>
+            </div>
+            <div class="col-10">
+              <input
+                type="text"
+                class="form-control"
+                name="fonte"
+                id="input-fonte-selecionada"
+                placeholder="Nome da Fonte"
+                readonly
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Novo Container Objeto -->
+        <div id="detalhes_credito">
+          <div id="objeto">
+            <div class="row">
+              <div class="col-12">
+                <label for="objeto" class="fw-bold">Objeto</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="objeto"
+                  id="text-area-objeto"
+                  placeholder="Informe o objeto"
+                  maxlength="3000"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- JUSTIFICATIVA -->
+          <div id="justificativa">
+            <div class="row">
+              <div class="col-12">
+                <label for="justificativa" class="fw-bold">Justificativa</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="justificativa"
+                  id="input-justificativa"
+                  placeholder="Informe a justificativa"
+                  maxlength="3000"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <!-- IMPACTOS -->
+          <div id="impacto">
+            <div class="row">
+              <div class="col-12">
+                <label for="impacto" class="fw-bold">Impacto</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <textarea
+                  class="form-control"
+                  name="impacto"
+                  id="text-area-impacto"
+                  placeholder="Informe o impacto do não atendimento do pedido"
+                  maxlength="3000"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!--------------------------------- TODO: TABELAS ----------------------------->
+
+        <div class="container-tab1 p-2 bg-body-tertiary mt-5 mb-5 rounded">
+          <h3 class="font-bold text-center mt-5">
+            TABELA DE INDICAÇÃO DAS CLASSIFICAÇÕES ORÇAMENTÁRIAS IMPACTADAS PELA
+            SUPLEMENTAÇÃO
+          </h3>
+
+          <table class="table" id="tabela1">
+            <thead>
+              <tr>
+                <th scope="col">CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
+                <th scope="col">TIPO DE REMANEJAMENTO</th>
+                <th scope="col">VALOR</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="container-table1"></tbody>
+          </table>
+          <div class="container-btn">
+            <button
+              id="btn-add-row-table1"
+              type="button"
+              class="btn btn-primary"
+            >
+              Adicionar
+            </button>
+          </div>
+        </div>
+        <!-- FIM TABELA 1 -->
+
+        <!-- INICIO TABELA 2 -->
+        <div class="container-tab2 p-2 bg-body-tertiary mt-5 mb-5 rounded">
+          <h3 class="font-bold text-center">
+            TABELA DE DETALHAMENTO DO PEDIDO DE SUPLEMENTAÇÃO
+          </h3>
+          <table class="table" id="tabela2">
+            <thead>
+              <tr>
+                <!-- Tirar aki  <th scope="col">Nº</th>-->
+                <th class="w-5" scope="col">Nº SOLICCIT. SIOFI</th>
+                <th class="w-10" scope="col">COD. AÇÃO</th>
+                <th class="w-25" scope="col">AÇÃO</th>
+                <th class="w-25" scope="col">PRODUTO</th>
+                <th class="w-25" scope="col">INICIATIVA</th>
+                <th class="w-10" scope="col">VALOR A SER SUPLEMENTADO</th>
+                <th class="w-25" scope="col">ORIGEM DO RECURSO</th>
+                <th class="w-15" scope="col">AÇÃO A SER ANULADA</th>
+                <th class="w-15" scope="col">VALOR A SER REDUZIDO</th>
+                <th class="w-10" scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="container-table2"></tbody>
+            <tfoot>
+              <tr>
+                <!-- tirar <td></td>  -->
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <label for="valor-total" class="fw-bold">Valor Total</label>
+                </td>
+                <td>
+                  <span class="input-group-text" id="valor-total-tb2">
+                    <label id="area-valor-tb2"></label>
+                  </span>
+                </td>
+                <td colspan="2">
+                  <span hidden class="fw-bold text-danger" id="tb-2-aviso"
+                    >Valor Diferente do Informado !</span
+                  >
+                </td>
+                <td><span hidden id="valor-somatorio"></span></td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+          <div class="container-btn">
+            <button
+              id="btn-add-row-table2"
+              type="button"
+              class="btn btn-primary"
+            >
+              Adicionar
+            </button>
+          </div>
+        </div>
+        <!-- FIM TABela 2 -->
+
+        <div
+          class="quadro-detalhamento p-2 bg-body-tertiary mt-5 mb-5 rounded d-flex justify-content-center flex-column"
+        >
+          <!-- TODO: AREA DE DETALAHAMENTO  -->
+          <div class="d-flex justify-content-center align-items-center gap-5">
+            <h3 class="font-bold text-center">
+              QUADRO DE DETALHAMENTO DA SUPLEMENTAÇÃO
+            </h3>
+          </div>
+
+          <!-- INICIO TABELA 3 -->
+          <table class="table" id="tabela3">
+            <thead>
+              <tr>
+                <th scope="col">AÇÃO</th>
+                <th scope="col">PRODUTO</th>
+                <th scope="col">META FÍSICA ATUAL</th>
+                <th scope="col">ACUMU-LÁ?</th>
+                <th scope="col">UNIDADE DE MEDIDA</th>
+                <th scope="col">CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO</th>
+                <th scope="col">
+                  CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO
+                </th>
+                <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
+                <th scope="col">SALDO LIQUIDADO ATUAL</th>
+              </tr>
+            </thead>
+            <tbody id="container-table3"></tbody>
+          </table>
+          <!-- INÍCIO TABELA 4 -->
+          <table class="table" id="tabela4">
+            <thead>
+              <tr>
+                <th scope="col">AÇÃO</th>
+                <th scope="col">PRODUTO</th>
+                <th scope="col">META FÍSICA PROPOSTA</th>
+                <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
+                <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
+                <th scope="col">CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO</th>
+                <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
+                <th scope="col">% SUPLEMENTADO X SALDO ORÇAMENTÁRIO</th>
+                <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
+              </tr>
+            </thead>
+            <tbody id="container-table4"></tbody>
+          </table>
+          <!-- FIM TABELA 4 -->
+        </div>
+      </form>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5 mb-5 gap-3">
+      <button id="btn-gerar" class="btn btn-secondary px-5">
+        GERAR QUADRO
+      </button>
+      <button id="btn-gerar-pdf" class="btn btn-warning px-5">GERAR PDF</button>
+    </div>
+  </body>
+
+  <!-- Código -->
+
+  <script>
+    $(document).ready(function () {
+      const unidades = [
+        "",
+        "um",
+        "dois",
+        "três",
+        "quatro",
+        "cinco",
+        "seis",
+        "sete",
+        "oito",
+        "nove",
+      ];
+      const especiais = [
+        "dez",
+        "onze",
+        "doze",
+        "treze",
+        "quatorze",
+        "quinze",
+        "dezesseis",
+        "dezessete",
+        "dezoito",
+        "dezenove",
+      ];
+      const dezenas = [
+        "",
+        "",
+        "vinte",
+        "trinta",
+        "quarenta",
+        "cinquenta",
+        "sessenta",
+        "setenta",
+        "oitenta",
+        "noventa",
+      ];
+      const centenas = [
+        "",
+        "cem",
+        "duzentos",
+        "trezentos",
+        "quatrocentos",
+        "quinhentos",
+        "seiscentos",
+        "setecentos",
+        "oitocentos",
+        "novecentos",
+      ];
+
+      function numeroParaExtenso(numero) {
+        if (numero === 0) return "zero";
+
+        let extenso = "";
+
+        if (numero >= 1000000) {
+          let milhoes = Math.floor(numero / 1000000);
+          extenso +=
+            milhoes === 1
+              ? "um milhão"
+              : numeroParaExtenso(milhoes) + " milhões";
+          numero %= 1000000;
+          if (numero > 0) extenso += " e ";
+        }
+
+        if (numero >= 1000) {
+          let milhares = Math.floor(numero / 1000);
+          extenso +=
+            milhares === 1 ? "mil" : numeroParaExtenso(milhares) + " mil";
+          numero %= 1000;
+          if (numero > 0) extenso += " e ";
+        }
+
+        if (numero >= 100) {
+          let centena = Math.floor(numero / 100);
+          if (centena === 1 && numero % 100 !== 0) {
+            extenso += "cento";
+          } else {
+            extenso += centenas[centena];
+          }
+          numero %= 100;
+          if (numero > 0) extenso += " e ";
+        }
+
+        if (numero >= 20) {
+          let dezena = Math.floor(numero / 10);
+          extenso += dezenas[dezena];
+          numero %= 10;
+          if (numero > 0) extenso += " e ";
+        }
+
+        if (numero >= 10) {
+          extenso += especiais[numero - 10];
+          numero = 0;
+        }
+
+        if (numero > 0) {
+          extenso += unidades[numero];
+        }
+
+        return extenso;
+      }
+
+      function valorMonetarioParaExtenso(valor) {
+        // Separa a parte inteira da parte decimal
+        let [reais, centavos] = valor.toFixed(2).split(".").map(Number);
+
+        let extensoReais =
+          numeroParaExtenso(reais) + (reais === 1 ? " real" : " reais");
+        let extensoCentavos =
+          centavos > 0
+            ? numeroParaExtenso(centavos) +
+              (centavos === 1 ? " centavo" : " centavos")
+            : "";
+
+        if (centavos > 0) {
+          return `${extensoReais} e ${extensoCentavos}`;
+        } else {
+          return extensoReais;
+        }
+      }
+      const lista_ppa = {
+        2325: [
+          "2325 - GESTÃO DA ESTRUTURA DE TECNOLOGIA DA INFORMAÇÃO", // nome da ação
+          "17700 - SOLUÇÃO DE TI", // nome do produto
+          "10013 - APERFEIÇOAMENTO DA GESTÃO ORGANIZACIONAL FOCADA EM TECNOLOGIA DA  INFORMAÇÃO", //nome da iniciativa
+          "TCE", // sigla
+          "UNIDADE FÍSICA", // unidade de medida
+          "150", // meta fisica 2024
+          "150000", // financeiro 2024
+          "100000", // saldo liquidao
+        ],
+        3148: [
+          "3148 - CONSTRUÇÃO DA SEDE DA ESCOLA DE CONTAS DO TCE-GO",
+          "18269 - SEDE DA ESCOLA DE CONTAS DO TCE-GO",
+          "10053 - CONSTRUÇÃO DA SEDE DA ESCOLA DE CONTAS DO TCE-GO",
+          "TCE",
+          "UNIDADE FÍSICA",
+          "50",
+          "10000000",
+          "50000000",
+        ],
+        2002: [
+          "2002 - DESENVOLVIMENTO DE COMPETÊNCIAS DE MEMBROS, SERVIDORES, JURISDICIONADOS E CONTROLADORES",
+          "18280 - ATIVIDADE DE CAPACITAÇÃO",
+          "10219 - PROMOÇÃO E DIFUSÃO DA CAPACITAÇÃO E DO CONHECIMENTO",
+          "TCE",
+          "PESSOAS",
+          "200",
+          "250000",
+          "50000",
+        ],
+      };
+      console.log("Script.js carregado");
+      // TODO: Siglas dos Orgãos
+      const lista_orgao = [
+        { sigla: "ABC", nome_completo: "1261 - AGÊNCIA BRASIL CENTRAL" },
+        {
+          sigla: "AGEHAB",
+          nome_completo: "4362 - AGÊNCIA GOIANA DE HABITAÇÃO S/A",
+        },
+        {
+          sigla: "AGR",
+          nome_completo:
+            "1863 - AGÊNCIA GOIANA DE REGULAÇÃO, CONTROLE E FISCALIZAÇÃO DE SERVIÇOS PÚBLICOS",
+        },
+        {
+          sigla: "AGRODEFESA",
+          nome_completo: "3261 - AGÊNCIA GOIANA DE DEFESA AGROPECUÁRIA",
+        },
+        {
+          sigla: "ALEGO",
+          nome_completo: "100 - ASSEMBLEIA LEGISLATIVA DO ESTADO DE GOIÁS",
+        },
+        { sigla: "CBM", nome_completo: "2903 - CORPO DE BOMBEIROS MILITAR" },
+        {
+          sigla: "CEASA",
+          nome_completo: "3290 - CENTRAIS DE ABASTECIMENTO DE GOIÁS S/A",
+        },
+        {
+          sigla: "CELGPAR",
+          nome_completo: "4092 - COMPANHIA CELG DE PARTICIPAÇÃO",
+        },
+        { sigla: "CGE", nome_completo: "1500 - CONTROLADORIA-GERAL DO ESTADO" },
+        {
+          sigla: "CODEGO",
+          nome_completo:
+            "3391 - COMPANHIA DE DESENVOLVIMENTO ECONÔMICO DE GOIÁS",
+        },
+        {
+          sigla: "DETRAN",
+          nome_completo: "2961 - DEPARTAMENTO ESTADUAL DE TRÂNSITO",
+        },
+        {
+          sigla: "DGAP",
+          nome_completo:
+            "2906 - DIRETORIA GERAL DE ADMINISTRAÇÃO PENITENCIÁRIA",
+        },
+        {
+          sigla: "DPE",
+          nome_completo: "800 - DEFENSORIA PÚBLICA DO ESTADO DE GOIÁS",
+        },
+        {
+          sigla: "ECONOMIA",
+          nome_completo: "1700 - SECRETARIA DE ESTADO DA ECONOMIA",
+        },
+        {
+          sigla: "EMATER",
+          nome_completo:
+            "3262 - AGÊNCIA GOIANA DE ASSISTÊNCIA TÉCNICA, EXTENSÃO RURAL E PESQUISA AGROPECUÁRIA",
+        },
+        {
+          sigla: "FAPEG",
+          nome_completo:
+            "3161 - FUNDAÇÃO DE AMPARO À PESQUISA DO ESTADO DE GOIÁS",
+        },
+        {
+          sigla: "FIRMINÓPOLIS",
+          nome_completo: "4096 - FIRMINOPOLIS TRANSMISSAO S.A.",
+        },
+        {
+          sigla: "GOIASFOMENTO",
+          nome_completo: "3390 - AGÊNCIA DE FOMENTO DE GOIÁS S/A",
+        },
+        {
+          sigla: "GOIASGÁS",
+          nome_completo: "4090 - AGÊNCIA GOIANA DE GÁS CANALIZADO S/A",
+        },
+        {
+          sigla: "GOIASPARCERIAS",
+          nome_completo:
+            "3392 - COMPANHIA DE INVESTIMENTO E PARCERIAS DO ESTADO DE GOIÁS",
+        },
+        { sigla: "GOIASPREV", nome_completo: "1762 - GOIÁS PREVIDÊNCIA" },
+        { sigla: "GOIASTELECOM", nome_completo: "GOIÁS TELECOMUNICAÇÕES S/A" },
+        {
+          sigla: "GOIÁSTURISMO",
+          nome_completo: "4261 - GOIÁS TURISMO - AGÊNCIA ESTADUAL DE TURISMO",
+        },
+        {
+          sigla: "GOINFRA",
+          nome_completo:
+            "4361 - AGÊNCIA GOIANA DE INFRAESTRUTURA E TRANSPORTES",
+        },
+        {
+          sigla: "IQUEGO",
+          nome_completo: "3190 - INDUSTRIA QUIMICA DO ESTADO DE GOIAS S.A.",
+        },
+        {
+          sigla: "JUCEG",
+          nome_completo: "3362 - JUNTA COMERCIAL DO ESTADO DE GOIÁS",
+        },
+        {
+          sigla: "LAGO AZUL",
+          nome_completo: "4095 - LAGO AZUL TRANSMISSAO S.A.",
+        },
+        {
+          sigla: "METROBUS",
+          nome_completo: "4093 - METROBUS TRANSPORTE COLETIVO S/A",
+        },
+        { sigla: "MPGO", nome_completo: "700 - MINISTÉRIO PÚBLICO" },
+        { sigla: "PC", nome_completo: "2904 - POLÍCIA CIVIL" },
+        { sigla: "PGE", nome_completo: "1400 - PROCURADORIA-GERAL DO ESTADO" },
+        { sigla: "PM", nome_completo: "2902 - POLÍCIA MILITAR" },
+        {
+          sigla: "RETOMADA",
+          nome_completo: "4200 - SECRETARIA DE ESTADO DA RETOMADA",
+        },
+        { sigla: "SANEAGO", nome_completo: "2192 - SANEAMENTO DE GOIÁS S/A" },
+        {
+          sigla: "SEAD",
+          nome_completo: "1800 - SECRETARIA DE ESTADO DA ADMINISTRAÇÃO",
+        },
+        {
+          sigla: "SEAPA",
+          nome_completo:
+            "3200 - SECRETARIA DE ESTADO DE AGRICULTURA, PECUÁRIA E ABASTECIMENTO",
+        },
+        {
+          sigla: "SECOM",
+          nome_completo: "1200 - SECRETARIA DE ESTADO DE COMUNICAÇÃO",
+        },
+        {
+          sigla: "SECTI",
+          nome_completo:
+            "3100 - SECRETARIA DE ESTADO DE CIÊNCIA, TECNOLOGIA E INOVAÇÃO",
+        },
+        {
+          sigla: "SECULT",
+          nome_completo: "2500 - SECRETARIA DE ESTADO DE CULTURA",
+        },
+        {
+          sigla: "SEDF",
+          nome_completo:
+            "4400 - SECRETARIA DE ESTADO DO ENTORNO DO DISTRITO FEDERAL",
+        },
+        {
+          sigla: "SEDS",
+          nome_completo:
+            "3000 - SECRETARIA DE ESTADO DE DESENVOLVIMENTO SOCIAL",
+        },
+        {
+          sigla: "SEDUC",
+          nome_completo: "2400 - SECRETARIA DE ESTADO DA EDUCAÇÃO",
+        },
+        {
+          sigla: "SEEL",
+          nome_completo: "2600 - SECRETARIA DE ESTADO DE ESPORTE E LAZER",
+        },
+        {
+          sigla: "SEINFRA",
+          nome_completo: "4300 - SECRETARIA DE ESTADO DA INFRAESTRUTURA",
+        },
+        {
+          sigla: "SEMAD",
+          nome_completo:
+            "2100 - SECRETARIA DE ESTADO DE MEIO AMBIENTE E DESENVOLVIMENTO SUSTENTÁVEL",
+        },
+        {
+          sigla: "SERINT",
+          nome_completo:
+            "1900 - SECRETARIA DE ESTADO DE RELAÇÕES INSTITUCIONAIS",
+        },
+        { sigla: "SES", nome_completo: "2800 - SECRETARIA DA SAÚDE" },
+        { sigla: "SGG", nome_completo: "4000 - SECRETARIA-GERAL DE GOVERNO" },
+        {
+          sigla: "SIC",
+          nome_completo:
+            "3300 - SECRETARIA DE ESTADO DE INDÚSTRIA, COMÉRCIO E SERVIÇOS",
+        },
+        {
+          sigla: "SSP",
+          nome_completo: "2900 - SECRETARIA DE ESTADO DE SEGURANÇA PÚBLICA",
+        },
+        {
+          sigla: "TCE",
+          nome_completo: "200 - TRIBUNAL DE CONTAS DO ESTADO DE GOIÁS",
+        },
+        {
+          sigla: "TCM",
+          nome_completo: "300 - TRIBUNAL DE CONTAS DOS MUNICÍPIOS",
+        },
+        {
+          sigla: "TJGO",
+          nome_completo: "400 - TRIBUNAL DE JUSTIÇA DO ESTADO DE GOIÁS",
+        },
+        {
+          sigla: "UEG",
+          nome_completo: "4062 - UNIVERSIDADE ESTADUAL DE GOIÁS",
+        },
+        {
+          sigla: "VICE GOVERNADORIA",
+          nome_completo: "1300 - VICE-GOVERNADORIA",
+        },
+      ];
+      const select = $("#select-sigla-orgao");
+      select.append(new Option("Selecione", ""));
+      lista_orgao.forEach((orgao) => {
+        select.append(new Option(orgao.sigla, orgao.sigla));
+      });
+
+      $("#select-sigla-orgao").on("change", function () {
+        const sigla = $(this).val(); // pegar o valor do select
+        console.log(sigla);
+        const orgao = lista_orgao.find(function (orgao) {
+          if (orgao.sigla === sigla) return orgao;
+        });
+        console.log(orgao);
+        $("#nomeOrgao").val(orgao.nome_completo);
+      });
+
+      // TODO: lista das fontes
+      const lista_fonte = {
+        15000100: "RECURSOS NÃO VINCULADOS DE IMPOSTOS - RECEITAS ORDINÁRIAS",
+        15010001:
+          "OUTROS RECURSOS NÃO VINCULADOS - DIVIDENDOS E JUROS SOBRE CAPITAL PRÓPRIO CELGPAR",
+        15010100: "OUTROS RECURSOS NÃO VINCULADOS - RECEITAS ORDINÁRIAS E DRE",
+        15010123:
+          "OUTROS RECURSOS NÃO VINCULADOS - TRANSFERÊNCIA DE INSTITUIÇÕES PRIVADAS PARA ASSISTÊNCIA FINANCEIRA AO TRANSPORTE COLETIVO, EC Nº 123/2022",
+        15010129:
+          "OUTROS RECURSOS NÃO VINCULADOS - CONCESSÕES, PERMISSÕES E DELEGAÇÕES",
+        15010136: "OUTROS RECURSOS NÃO VINCULADOS - AMORTIZAÇÕES",
+        15010220:
+          "OUTROS RECURSOS NÃO VINCULADOS - DIRETAMENTE ARRECADADOS PRÓPRIOS",
+        15020001: "RECURSOS NÃO VINCULADOS DA COMPENSAÇÃO DE IMPOSTOS",
+        15400108:
+          "TRANSFERÊNCIAS DO FUNDEB - IMPOSTOS E TRANSFERÊNCIAS DE IMPOSTOS",
+        15430000: "TRANSFERÊNCIAS DO FUNDEB - COMPLEMENTAÇÃO DA UNIÃO - VAAR",
+        15430108: "TRANSFERÊNCIAS DO FUNDEB - COMPLEMENTAÇÃO DA UNIÃO - VAAR",
+        15440000: "RECURSOS DE PRECATÓRIOS DO FUNDEF",
+        15500116: "TRANSFERÊNCIA DO SALÁRIO-EDUCAÇÃO - COTA ESTADUAL",
+        15510000:
+          "TRANSFERÊNCIAS DE RECURSOS DO FNDE REFERENTES AO PROGRAMA DINHEIRO DIRETO NA ESCOLA (PDDE)",
+        15520109:
+          "TRANSFERÊNCIAS DE RECURSOS DO FNDE REFERENTES AO PROGRAMA NACIONAL DE ALIMENTAÇÃO ESCOLAR (PNAE)",
+        15690115: "OUTRAS TRANSFERÊNCIAS DE RECURSOS DO FNDE",
+        15700260:
+          "TRANSFERÊNCIAS DO GOVERNO FEDERAL REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À EDUCAÇÃO",
+        15720261:
+          "TRANSFERÊNCIAS DE MUNICÍPIOS REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À EDUCAÇÃO",
+        15740000: "OPERAÇÕES DE CRÉDITO VINCULADAS À EDUCAÇÃO",
+        15750262:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À EDUCAÇÃO",
+        15990000: "OUTROS RECURSOS VINCULADOS À EDUCAÇÃO",
+        15990158: "OUTROS RECURSOS VINCULADOS À EDUCAÇÃO - EDUCAÇÃO INFANTIL",
+        16000001:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP2 - EMENDA PROGRAMAÇÃO",
+        16000002:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP6 - EMENDA INDIVIDUAL",
+        16000003:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP7 - EMENDA DE BANCADA",
+        16000004:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO ASPS - EC RP8 - EMENDA DE COMISSÃO",
+        16000232:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE MANUTENÇÃO DAS AÇÕES E SERVIÇOS PÚBLICOS DE SAÚDE",
+        16010233:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DE RECURSOS DO SUS PROVENIENTES DO GOVERNO FEDERAL - BLOCO DE ESTRUTURAÇÃO DA REDE DE SERVIÇOS PÚBLICOS DE SAÚDE",
+        16020238:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DO SUS - BL. DE MAN. DAS ASPS - RECURSOS DESTINADOS AO ENFRENTAMENTO DA COVID-19 NO BOJO DA AÇÃO 21C0",
+        16030239:
+          "TRANSFERÊNCIAS FUNDO A FUNDO DO SUS - BL. DE ESTR. DA REDE DE SERV. PÚB. DE SAÚDE - REC. DEST. AO ENFRENTAMENTO DA COVID-19 NO BOJO DA AÇÃO 21C0",
+        16040000:
+          "TRANSFERÊNCIAS PROVENIENTES DO GOVERNO FEDERAL DESTINADAS AO VENCIMENTO DOS AGENTES COMUNITÁRIOS DE SAÚDE E DOS AGENTES DE COMBATE ÀS ENDEMIAS",
+        16050001:
+          "ASSISTÊNCIA FINANCEIRA DA UNIÃO DESTINADA À COMPLEMENTAÇÃO AO PAGAMENTO DOS PISOS SALARIAIS PARA PROFISSIONAIS DA ENFERMAGEM",
+        16310270:
+          "TRANSFERÊNCIAS DO GOVERNO FEDERAL REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À SAÚDE",
+        16317872:
+          "TRANSFERÊNCIAS DO GOVERNO FEDERAL REFERENTES A CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À SAÚDE - CONVÊNIO Nº 787297/2013, MS/IQUEGO",
+        16340000: "OPERAÇÕES DE CRÉDITO VINCULADAS À SAÚDE",
+        16360272:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À SAÚDE",
+        16600234:
+          "TRANSFERÊNCIA DE RECURSOS DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL - FNAS - CORRENTES",
+        16600235:
+          "TRANSFERÊNCIA DE RECURSOS DO FUNDO NACIONAL DE ASSISTÊNCIA SOCIAL - FNAS - CAPITAL",
+        16650274:
+          "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À ASSISTÊNCIA SOCIAL - COM ÓRGÃOS FEDERAIS",
+        16650276:
+          "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À ASSISTÊNCIA SOCIAL - OUTRAS ENTIDADES",
+        17000280:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DA UNIÃO - ADMINISTRAÇÃO DIRETA",
+        17000290:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DA UNIÃO - ADMINISTRAÇÃO INDIRETA",
+        17020291:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DOS MUNICÍPIOS - ADMINSITRAÇÃO INDIRETA",
+        17030282:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO DIRETA",
+        17030284:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO DIRETA COM ENTES EXTERNOS",
+        17040283:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO INDIRETA",
+        17040285:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS OU INSTRUMENTOS CONGÊNERES DE OUTRAS ENTIDADES - ADMINISTRAÇÃO INDIRETA COM ENTES EXTERNOS",
+        17060289:
+          "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS AO SANEAMENTO",
+        17290287:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À ADMINISTRAÇÃO GERAL",
+        17290288:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES VINCULADOS À CULTURA",
+        17400306:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES DA UNIÃO - ADMINISTRAÇÃO INDIRETA - GERAIS",
+        17430310:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES DOS MUNICÍPIOS - ADMINISTRAÇÃO DIRETA",
+        17600298:
+          "TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERes VINCULADOS A TRANSPORTE",
+        17990000:
+          "OUTRAS TRANSFERÊNCIAS DE CONVÊNIOS E INSTRUMENTOS CONGÊNERES",
+        18000112:
+          "TRANSFERÊNCIAS ESPECIAIS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS INDIVIDUAIS",
+        18000210:
+          "TRANSFERÊNCIAS ESPECIAIS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE BANCADA",
+        18000212:
+          "TRANSFERÊNCIAS ESPECIAIS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO",
+        18100100:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS INDIVIDUAIS - EXCETO SAÚDE",
+        18100213:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE BANCADA - EXCETO SAÚDE",
+        18100215:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO - EXCETO SAÚDE",
+        18110212:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO - GERAIS",
+        18200102:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS INDIVIDUAIS - SAÚDE",
+        18200214:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE BANCADA - SAÚDE",
+        18200216:
+          "TRANSFERÊNCIAS COMUNS DA UNIÃO RECEBIDAS MEDIANTE EMENDAS DE COMISSÃO - SAÚDE",
+        19000000: "RECURSOS VINCULADOS - ORÇAMENTO ESTADUAL DE CONTINGÊNCIA",
+      };
+      const listaDasFontes = Object.keys(lista_fonte);
+      const selectFonte = $("#select-fonte");
+      selectFonte.append(new Option("Selecione", ""));
+      listaDasFontes.forEach(function (fonte) {
+        selectFonte.append(new Option(`${fonte}`, `${fonte}`));
+      });
+      $("#select-fonte").on("change", function () {
+        const numeroFonte = $(this).val(); // pegar o valor do select
+        const fonte = lista_fonte[numeroFonte];
+        $("#input-fonte-selecionada").val(fonte);
+      });
+
+      //READY: FORMATAÇÃO DE VALORES
+      const formatarMoeda = (value) => {
+        const numeros = value.replace(/[^\d]/g, "");
+        const valores = parseFloat(numeros) / 100;
+        // Formata o valor para moeda BRL
+        return new Intl.NumberFormat("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        }).format(valores);
+      };
+      const converterNumero = (valor) => {
+        let valorLimpo = valor.replace(/[^\d,]/g, "");
+        valorLimpo = valorLimpo.replace(",", ".");
+        return parseFloat(valorLimpo);
+      };
+
+      $("#input-valor-total-suplementacao").on("input", function () {
+        const valor = $(this).val();
+        const valorFormatado = formatarMoeda(valor);
+        $(this).val(valorFormatado);
+        console.log(valorFormatado); //FIXME:
+      });
+      $("#input-valor-total-suplementacao").on("focusout", function () {
+        const valor = $(this).val();
+        const valorFormatado = formatarMoeda(valor);
+        $("#area-valor-tb2").text(`${valorFormatado}`);
+        const valorConvertido = converterNumero(valor);
+        console.log(valorConvertido); //FIXME:
+        $("#input-valor-total-suplementacao-extenso").val(
+          valorMonetarioParaExtenso(valorConvertido)
+        );
+      });
+
+      $("#input-whatsapp").inputmask("99 9 9999-9999");
+
+      // READY: Criação das tabelas
+      let tabela1 = new DataTable("#tabela1");
+      let tabela2 = new DataTable("#tabela2");
+      let tabela3 = new DataTable("#tabela3");
+      let tabela4 = new DataTable("#tabela4");
+
+      // READY: Função para adicionar linha na tabela 1
+      $("#btn-add-row-table1").click(function () {
+        const timestampNow = Date.now();
+        tabela1.row
+          .add([
+            `<input class="form-control class-orcamentaria" name="tb1-class-orcamentaria-${timestampNow}" type="text" id="class-orcamentaria-${timestampNow}">`,
+
+            `<select class="form-select tipo-remanejamento" name="tb1-tipo-remanejamento-${timestampNow}" id="tipo-remanejamento-${timestampNow}">
+              <option selected>Selecione</option>
+              <option value="suplementar">Suplementar</option>
+              <option value="reduzir">Reduzir</option>
+            </select>`,
+
+            `<input class="form-control valor" name="tb1-valor-${timestampNow}"" type="text" id="valor-${timestampNow}">`,
+
+            `<button type="button" class="btn btn-danger btn-remover">Remover</button>`,
+          ])
+          .draw();
+      });
+      // READY: Função para remover linha na tabela 1
+      $("#tabela1 tbody").on("click", ".btn-remover", function () {
+        tabela1.row($(this).closest("tr")).remove().draw();
+      });
+
+      $("#tabela1 tbody").on("input", ".valor", function () {
+        const valor = $(this).val();
+        const valorFormatado = formatarMoeda(valor);
+        $(this).val(valorFormatado);
+      });
+
+      // READY: Função para adicionar linha na tabela 2
+      $("#btn-add-row-table2").on("click", function () {
+        const timestampNow = Date.now();
+        tabela2.row
+          .add([
+            `<input class="form-control num-solid" name="tb-num-soli-${timestampNow}"          type="text" id="num-soli-${timestampNow}">`,
+
+            `<input class="form-control cod-acao"  name="tb-cod-acao-${timestampNow}" type="text" id="cod-acao-${timestampNow}">`,
+
+            `<input class="bg-body-secondary form-control acao"  name="tb-acao-${timestampNow}" type="text" id="acao-${timestampNow}" readonly>`,
+
+            `<input class="bg-body-secondary form-control produto"   name="tb-produto-${timestampNow}" type="text" id="produto-${timestampNow}" readonly>`,
+
+            `<input class="bg-body-secondary form-control iniciativa" name="tb-iniciativa-${timestampNow}" type="text" id="iniciativa-${timestampNow}" readonly>`,
+
+            `<input class="form-control valor-suplementado" name="tb-valor-suplementado-${timestampNow}" type="text" id="valor-suplementado-${timestampNow}">`,
+
+            `<select class="form-select origem-recurso" name="tb-origem-recursos-${timestampNow}" id="origem-recursos-${timestampNow}" >
+              <option selected>Selecione</option>
+              <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
+              <option value="Excesso de arrecadação">Excesso de arrecadação</option>
+              <option value="Sem indicação de recursos">Sem indicação de recursos</option>
+              <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
+            </select>`,
+
+            `<input class="bg-body-secondary form-control acao-anulada" name="tb-acao-anulada-${timestampNow}" type="text" id="acao-anulada-${timestampNow}" readonly>`,
+
+            `<input class="bg-body-secondary form-control valor-reduzir" name="tb-valor-reduzir-${timestampNow}" type="text" id="valor-reduzir-${timestampNow}" readonly>`,
+
+            `<button type="button" class="btn btn-danger btn-remover">Remover</button>`,
+          ])
+          .draw();
+      });
+      // READY: Função para remover linha na tabela 2
+      $("#tabela2 tbody").on("click", ".btn-remover", function () {
+        let codAcao = $(this).closest("tr").find(".cod-acao").val();
+        tabela2.row($(this).closest("tr")).remove().draw();
+        removeRowTable3(codAcao);
+      });
+      // READY: Função para formatar valor suplementado na tabela 2
+      $("#tabela2 tbody").on("input", ".valor-suplementado", function () {
+        const valor = $(this).val();
+        const valorFormatado = formatarMoeda(valor);
+        $(this).val(valorFormatado);
+      });
+
+      $("#tabela2 tbody").on("focusout", ".valor-suplementado", function () {
+        let $row = $(this).closest("tr");
+        let codAcao = $row.find(".cod-acao").val();
+        let saldoOrcamentarioAtual = $row.find(".valor-suplementado").val();
+        addRowTable3(codAcao, saldoOrcamentarioAtual);
+      });
+
+      // READY: Função para formatar valor a reduzir na tabela 2
+      $("#tabela2 tbody").on("input", ".valor-reduzir", function () {
+        const valor = $(this).val();
+        const valorFormatado = formatarMoeda(valor);
+        $(this).val(valorFormatado);
+      });
+
+      // READY: Função para habilitar campos Ação e valor reduzir na tabela 2
+      $("#tabela2 tbody").on("change", ".origem-recurso", function () {
+        let $row = $(this).closest("tr");
+        let codAcao = $row.find(".cod-acao").val();
+        let saldoOrcamentarioAtual = $row.find(".valor-suplementado").val();
+        if (
+          $(this).val() == "Anulação total ou parcial de dotação orçamentária"
+        ) {
+          $row
+            .find(".acao-anulada")
+            .removeAttr("readonly")
+            .removeClass("bg-body-secondary");
+          $row
+            .find(".valor-reduzir")
+            .removeAttr("readonly")
+            .removeClass("bg-body-secondary");
+        } else {
+          $row
+            .find(".acao-anulada")
+            .val("")
+            .attr("readonly", "readonly")
+            .addClass("bg-body-secondary");
+          $row
+            .find(".valor-reduzir")
+            .val("")
+            .attr("readonly", "readonly")
+            .addClass("bg-body-secondary");
+        }
+
+        addRowTable3(codAcao, saldoOrcamentarioAtual);
+      });
+      // READY: Função para preencher automatico os campos ação, produto e iniciativa pelo codigo da ação
+      $("#tabela2 tbody").on("change", ".cod-acao", function () {
+        let $row = $(this).closest("tr");
+        let codAcao = $(this).val();
+        let siglaInformada = $("#select-sigla-orgao").val();
+
+        if (siglaInformada !== lista_ppa[codAcao][3]) {
+          Toastify({
+            text: "A ação informada não pertence a este Órgão !",
+            duration: 2000,
+            newWindow: true,
+            close: true,
+            gravity: "top", // `top` or `bottom`
+            position: "center", // `left`, `center` or `right`
+            stopOnFocus: true, // Prevents dismissing of toast on hover
+            style: {
+              background: "red",
+            },
+          }).showToast();
+          $row.find(".cod-acao").val("");
+          $row.find(".acao").val("");
+          $row.find(".produto").val("");
+          $row.find(".iniciativa").val("");
+          return;
+        } else {
+          $row.find(".acao").val(lista_ppa[codAcao][0]);
+          $row.find(".produto").val(lista_ppa[codAcao][1]);
+          $row.find(".iniciativa").val(lista_ppa[codAcao][2]);
+        }
+      });
+
+      //READY: Função para preencher automatico os campos ação anulada e valor a reduzir
+      $("#tabela2 tbody").on("focusout", function () {
+        validar();
+      });
+
+      //READY: Validar valor informado com os distribuidos
+      function validar() {
+        const valorTotal = converterNumero(
+          $("#input-valor-total-suplementacao").val()
+        );
+        let somatorio = 0;
+        $("#tabela2 tbody tr").each(function () {
+          const valor = converterNumero(
+            $(this).find(".valor-suplementado").val()
+          );
+          somatorio += valor;
+        });
+
+        if (valorTotal !== somatorio) {
+          let elemento = $("#tb-2-aviso");
+          if (valorTotal > somatorio) {
+            let valor = somatorio - valorTotal;
+            let novoTexto = `Valor Diferente do Informado ! Faltam R$ ${valor}`;
+            elemento.text(novoTexto);
+          } else {
+            let valor = somatorio - valorTotal;
+            let novoTexto = `Valor Diferente do Informado ! Ultrapassou R$ ${valor}`;
+            elemento.text(novoTexto);
+          }
+          $("#tb-2-aviso").removeAttr("hidden");
+        } else {
+          $("#tb-2-aviso").attr("hidden", "hidden");
+        }
+      }
+      // TODO: adicionar as linhas na tabela 3 e 4 de acordo com o preenchimento da tabela 2
+      // TODO: FUNÇÃO ADD LINHA TB3
+      function addRowTable3(codAcao, saldoOrcamentarioAtual) {
+        const timestampNow = Date.now();
+        let custoUnitarioMedio = lista_ppa[codAcao][6] / lista_ppa[codAcao][5];
+
+        // Verifica se a linha já existe
+        let existingRow = null;
+        tabela3.rows().every(function () {
+          const rowData = this.data();
+          if ($(rowData[0]).val() == lista_ppa[codAcao][0]) {
+            existingRow = this;
+          }
+        });
+
+        // Se a linha já existe, remove-a
+        if (existingRow) {
+          existingRow.remove().draw();
+        }
+
+        tabela3.row
+          .add([
+            `<input class="form-control acao bg-body-secondary" name="tb3-acao-${timestampNow}" type="text" id="tb3-cod-acao-${timestampNow}" value="${lista_ppa[codAcao][0]}" readonly>`,
+
+            `<input class="form-control produto bg-body-secondary" name="tb3-produto-${timestampNow}" type="text" id="tb3-produto-${timestampNow}" value="${lista_ppa[codAcao][1]}"readonly>`,
+
+            `<input class="form-control meta-fisica-atual bg-body-secondary" name="tb3-meta-fisica-atual-${timestampNow}" type="text" id="tb3-meta-fisica-atual-${timestampNow}" value="${lista_ppa[codAcao][5]}" readonly>`,
+
+            `<select class="form-select acumula " name="tb3-acumula-${timestampNow}" id="tb3-acumula-${timestampNow}">
+              <option selected>Selecione</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>`,
+
+            `<input class="form-control unidade-medida bg-body-secondary" name="tb3-unidade-medida-${timestampNow}" type="text" id="tb3-unidade-medida-${timestampNow}" value="${lista_ppa[codAcao][4]}" readonly>`,
+
+            `<input class="form-control custo-estimado-ppa bg-body-secondary" name="tb3-custo-estimado-ppa-${timestampNow}" type="text" id="tb3-custo-estimado-ppa-${timestampNow}" value="${formatarMoeda(
+              lista_ppa[codAcao][6]
+            )}" readonly>`,
+
+            `<input class="form-control custo-unitario-medio-estimado bg-body-secondary" name="tb3-custo-unitario-medio-estimado-${timestampNow}" type="text" id="tb3-custo-unitario-medio-estimado-${timestampNow}" value="${formatarMoeda(
+              custoUnitarioMedio.toString()
+            )}" readonly>`,
+
+            `<input class="form-control saldo-orcamentario-autorizado-atual bg-body-secondary" name="tb3-saldo-orcamentario-autorizado-atual-${timestampNow}" type="text" id="tb3-saldo-orcamentario-autorizado-atual-${timestampNow}" value="${saldoOrcamentarioAtual}" readonly">`,
+
+            `<input class="form-control saldo-liquidado-atual bg-body-secondary" name="tb3-saldo-liquidado-atual-${timestampNow}" type="text" id="tb3-saldo-liquidado-atual-${timestampNow}" value="${formatarMoeda(
+              lista_ppa[codAcao][7].toString()
+            )}" readonly>`,
+          ])
+          .draw();
+
+        addRowTable4(codAcao);
+      }
+
+      //READY: Remover a linha da tabela
+      function removeRowTable3(codAcao) {
+        tabela3.rows().every(function () {
+          const rowData = this.data();
+          if ($(rowData[0]).val() == lista_ppa[codAcao][0]) {
+            this.remove().draw();
+            return false; // Para parar a iteração uma vez que a linha é encontrada e removida
+          }
+        });
+      }
+
+      //  TODO: FUNÇÃO ADD LINHA TB4
+      function addRowTable4(codAcao) {
+        const timestampNow = Date.now();
+        // Verifica se a linha já existe
+        let existingRow = null;
+        tabela4.rows().every(function () {
+          const rowData = this.data();
+          if ($(rowData[0]).val() == lista_ppa[codAcao][0]) {
+            existingRow = this;
+          }
+        });
+
+        // Se a linha já existe, remove-a
+        if (existingRow) {
+          existingRow.remove().draw();
+        }
+
+        tabela4.row
+          .add([
+            `<input class="form-control acao bg-body-secondary" name="tb4-acao-${timestampNow}" type="text" id="tb3-cod-acao-${timestampNow}" value="${lista_ppa[codAcao][0]}" readonly>`,
+
+            `<input class="form-control produto bg-body-secondary" name="tb4-produto-${timestampNow}" type="text" id="tb3-produto-${timestampNow}" value="${lista_ppa[codAcao][1]}"readonly>`,
+
+            `<input class="form-control meta-fisica-proposta" name="tb4-meta-fisica-proposta-${timestampNow}" type="text" id="tb3-meta-fisica-proposta-${timestampNow}">`,
+
+            `<input class="form-control alteracao-meta-fisica bg-body-secondary" name="tb4-alteracao-meta-fisica-${timestampNow}" type="text" id="tb4-alteracao-meta-fisica-${timestampNow}" readonly>`,
+
+            `<input class="form-control custo-estimado-suplementado bg-body-secondary" name="tb4-custo-estimado-suplementado-${timestampNow}" type="text" id="tb4-custo-estimado-suplementado-${timestampNow}" readonly>`,
+
+            `<input class="form-control custo-unitario-medio bg-body-secondary" name="tb4-custo-unitario-medio-${timestampNow}" type="text" id="tb4-custo-unitario-medio-${timestampNow}" readonly>`,
+
+            `<input class="form-control suplementado-estimado bg-body-secondary" name="tb4-suplementado-estimado-${timestampNow}" type="text" id="tb4-suplementado-estimado-${timestampNow}" readonly>`,
+
+            `<input class="form-control suplementado-orcamentario bg-body-secondary" name="tb4-suplementado-orcamentario-${timestampNow}" type="text" id="tb4-suplementado-orcamentario-${timestampNow}" readonly>`,
+
+            `<input class="form-control liquidado-orcamentario bg-body-secondary" name="tb4-liquidado-orcamentario-${timestampNow}" type="text" id="tb4-liquidado-orcamentario-${timestampNow}" readonly>`,
+          ])
+          .draw();
+      }
+
+      // BUG: CALCULOS DA TABELA 4
+      $("#tabela4 tbody").on("change", ".meta-fisica-proposta", function () {
+        // Captura a linha atual onde ocorreu a mudança
+        let linha = $(this).closest("tr");
+
+        // Captura o valor da ação na tabela4
+        let acaoTb4 = linha.find(".acao").text(); // Use .text() se .acao for um elemento de texto
+
+        // Captura o valor da meta-fisica-proposta na tabela4
+        let metaProposta = linha.find(".meta-fisica-proposta").val();
+
+        console.log("ACAO TB4:", acaoTb4);
+        console.log("META PROPOSTA:", metaProposta);
+
+        // Encontra o input com a classe .meta-fisica-atual na tabela3 usando a acaoTb4
+        var metaAntiga = $("#tabela3 tbody")
+          .find(".acao:contains('" + acaoTb4 + "')") // Adicione aspas simples dentro de contains para garantir que o texto seja tratado corretamente
+          .closest("tr")
+          .find(".meta-fisica-atual")
+          .val(); // Obter o valor do atributo 'value'
+
+        console.log(
+          "AÇÃO = ",
+          acaoTb4,
+          "Meta Atual: ",
+          metaAntiga,
+          "Meta Proposta: ",
+          metaProposta
+        );
+      });
+
+      // NOTE:FIM DA FUNÇÃO READY @
+    });
+    /*<th scope="col">Nº</th>
+                <th scope="col">AÇÃO</th>
+                <th scope="col">PRODUTO</th>
+                <th scope="col">META FÍSICA ATUAL</th>
+                <th scope="col">ACUMU-LÁ?</th>
+                <th scope="col">UNIDADE DE MEDIDA</th>
+                <th scope="col">CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO</th>
+                <th scope="col">
+                  CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO
+                </th>
+                <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
+                <th scope="col">SALDO LIQUIDADO ATUAL</th>*/
+  </script>
+
+  <!-- BIBLIOTECAS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
+</html>

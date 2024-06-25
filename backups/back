@@ -1,0 +1,44 @@
+//TODO: PREENCHER AUTOMATICAMENTE AS TABELAS DE DETALHAMENTO
+    /*
+    function preencherQuadros(dados) {
+      const tbody = document.getElementById("container-quadro1");
+      tbody.innerHTML = "";
+      dados.forEach((item) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+      <td>${item.numero}</td>
+      <td>${item.acao}</td>
+      <td>${item.produto}</td>
+      <td>${item.metaFisicaAtual}</td>
+      <td>${item.unidadeMedida}</td>
+      <td>${item.acumula}</td>
+      <td>${item.custoEstimadoAno}</td>
+      <td>${item.custoUnitarioMedioAno}</td>
+      <td>${item.saldoOrcamentarioAtual}</td>
+      <td>${item.saldoLiquidadoAtual}</td>
+    `;
+        tbody.appendChild(tr);
+
+        // PARTE DA TABELA 4
+        const tbody = document.getElementById("container-quadro2");
+        tbody.innerHTML = "";
+        dados.forEach((item) => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+      <td>${item.numero}</td>
+      <td>${item.acao}</td>
+      <td>${item.produto}</td>
+      <td>${item.metaFisicaProposta}</td>
+      <td>${item.alteracaoMetaFisica}</td>
+      <td>${item.custoEstimado}</td>
+      <td>${item.custoUnitarioMedio}</td>
+      <td>${item.suplementadoCustoEstimado}</td>
+      <td>${item.suplementadoSaldoOrcamentario}</td>
+      <td>${item.liquidadoSaldoOrcamentario}</td>
+    `;
+          tbody.appendChild(tr);
+        });
+      });
+    }
+    */
+    // Função para atualizar os eventos dos elementos novos
