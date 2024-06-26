@@ -256,13 +256,14 @@
             <thead>
               <tr>
                 <!-- Tirar aki  <th scope="col">Nº</th>-->
-                <th class="w-5" scope="col">Nº SOLICCIT. SIOFI</th>
+                <th class="w-20" scope="col">ID</th>
+                <th class="w-2" scope="col">SOLICCIT. SIOFI</th>
                 <th class="w-10" scope="col">COD. AÇÃO</th>
-                <th class="w-25" scope="col">AÇÃO</th>
+                <th class="w-20" scope="col">AÇÃO</th>
                 <th class="w-25" scope="col">PRODUTO</th>
                 <th class="w-25" scope="col">INICIATIVA</th>
                 <th class="w-10" scope="col">VALOR A SER SUPLEMENTADO</th>
-                <th class="w-25" scope="col">ORIGEM DO RECURSO</th>
+                <th class="w-20" scope="col">ORIGEM DO RECURSO</th>
                 <th class="w-15" scope="col">AÇÃO A SER ANULADA</th>
                 <th class="w-15" scope="col">VALOR A SER REDUZIDO</th>
                 <th class="w-10" scope="col"></th>
@@ -320,6 +321,7 @@
           <table class="table" id="tabela3">
             <thead>
               <tr>
+                <th scope="col">ID</th>
                 <th scope="col">AÇÃO</th>
                 <th scope="col">PRODUTO</th>
                 <th scope="col">META FÍSICA ATUAL</th>
@@ -335,32 +337,35 @@
             </thead>
             <tbody id="container-table3"></tbody>
           </table>
-          <!-- INÍCIO TABELA 4 -->
-          <table class="table" id="tabela4">
-            <thead>
-              <tr>
-                <th scope="col">AÇÃO</th>
-                <th scope="col">PRODUTO</th>
-                <th scope="col">META FÍSICA PROPOSTA</th>
-                <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
-                <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
-                <th scope="col">CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO</th>
-                <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
-                <th scope="col">% SUPLEMENTADO X SALDO ORÇAMENTÁRIO</th>
-                <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
-              </tr>
-            </thead>
-            <tbody id="container-table4"></tbody>
-          </table>
+          <!-- INÍCIO TABELA 4 -->7
+          <div style="width: 1280px">
+            <table class="table" id="tabela4">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">AÇÃO</th>
+                  <th scope="col">PRODUTO</th>
+                  <th scope="col">META FÍSICA PROPOSTA</th>
+                  <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
+                  <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
+                  <th scope="col">
+                    CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
+                  </th>
+                  <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
+                  <th scope="col">% SUPLEMENTADO X SALDO ORÇAMENTÁRIO</th>
+                  <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
+                </tr>
+              </thead>
+              <tbody id="container-table4"></tbody>
+            </table>
+          </div>
+
           <!-- FIM TABELA 4 -->
         </div>
       </form>
     </div>
 
     <div class="d-flex justify-content-center mt-5 mb-5 gap-3">
-      <button id="btn-gerar" class="btn btn-secondary px-5">
-        GERAR QUADRO
-      </button>
       <button id="btn-gerar-pdf" class="btn btn-warning px-5">GERAR PDF</button>
     </div>
   </body>
@@ -901,6 +906,7 @@
         $("#input-valor-total-suplementacao-extenso").val(
           valorMonetarioParaExtenso(valorConvertido)
         );
+        validar();
       });
 
       $("#input-whatsapp").inputmask("99 9 9999-9999");
@@ -944,8 +950,12 @@
       // READY: Função para adicionar linha na tabela 2
       $("#btn-add-row-table2").on("click", function () {
         const timestampNow = Date.now();
+
+        let id = timestampNow % 1000;
         tabela2.row
           .add([
+            `<span class="form-control num bg-body-secondary" name="tb-num-${timestampNow}"   id="num-${timestampNow}">${id}</span> `,
+
             `<input class="form-control num-solid" name="tb-num-soli-${timestampNow}"          type="text" id="num-soli-${timestampNow}">`,
 
             `<input class="form-control cod-acao"  name="tb-cod-acao-${timestampNow}" type="text" id="cod-acao-${timestampNow}">`,
@@ -976,9 +986,11 @@
       });
       // READY: Função para remover linha na tabela 2
       $("#tabela2 tbody").on("click", ".btn-remover", function () {
-        let codAcao = $(this).closest("tr").find(".cod-acao").val();
+        let id = $(this).closest("tr").find(".num").text();
         tabela2.row($(this).closest("tr")).remove().draw();
-        removeRowTable3(codAcao);
+        removeRowTable3(id);
+        validar();
+        //reorganizeTableRows();
       });
       // READY: Função para formatar valor suplementado na tabela 2
       $("#tabela2 tbody").on("input", ".valor-suplementado", function () {
@@ -991,7 +1003,10 @@
         let $row = $(this).closest("tr");
         let codAcao = $row.find(".cod-acao").val();
         let saldoOrcamentarioAtual = $row.find(".valor-suplementado").val();
-        addRowTable3(codAcao, saldoOrcamentarioAtual);
+        let id = $row.find(".num").text();
+
+        validar();
+        addRowTable3(id, codAcao, saldoOrcamentarioAtual);
       });
 
       // READY: Função para formatar valor a reduzir na tabela 2
@@ -1063,6 +1078,20 @@
         }
       });
 
+      // READY: Função para verificar se é numero:
+      function eNumero(value) {
+        return !isNaN(value) && !isNaN(parseFloat(value));
+      }
+
+      //vertifica se foi informado a suplementação
+      function valorSuplementado() {
+        let valor = $("#input-valor-total-suplementacao").val();
+        if (valor == 0) {
+          $("#tb-2-aviso").text("Informe o valor total da suplementação");
+          return true;
+        }
+      }
+
       //READY: Função para preencher automatico os campos ação anulada e valor a reduzir
       $("#tabela2 tbody").on("focusout", function () {
         validar();
@@ -1070,55 +1099,72 @@
 
       //READY: Validar valor informado com os distribuidos
       function validar() {
-        const valorTotal = converterNumero(
+        const valorInformado = converterNumero(
           $("#input-valor-total-suplementacao").val()
         );
+
         let somatorio = 0;
+
         $("#tabela2 tbody tr").each(function () {
-          const valor = converterNumero(
+          let valor = converterNumero(
             $(this).find(".valor-suplementado").val()
           );
           somatorio += valor;
         });
 
-        if (valorTotal !== somatorio) {
-          let elemento = $("#tb-2-aviso");
-          if (valorTotal > somatorio) {
-            let valor = somatorio - valorTotal;
-            let novoTexto = `Valor Diferente do Informado ! Faltam R$ ${valor}`;
-            elemento.text(novoTexto);
-          } else {
-            let valor = somatorio - valorTotal;
-            let novoTexto = `Valor Diferente do Informado ! Ultrapassou R$ ${valor}`;
-            elemento.text(novoTexto);
-          }
+        // caso não tenha informado o valor da suplementação no pedido
+        if (valorSuplementado()) {
+          $("#tb-2-aviso").removeAttr("hidden");
+          return;
+        }
+        if (valorInformado > somatorio) {
+          $("#tb-2-aviso").text(
+            `Faltam R$ ${
+              valorInformado - somatorio
+            } para completar o valor da suplementação`
+          );
+          $("#tb-2-aviso").removeAttr("hidden");
+        } else if (valorInformado < somatorio) {
+          $("#tb-2-aviso").text(
+            `O valor informado ultrapassou R$ ${valorInformado - somatorio}`
+          );
           $("#tb-2-aviso").removeAttr("hidden");
         } else {
           $("#tb-2-aviso").attr("hidden", "hidden");
         }
       }
-      // TODO: adicionar as linhas na tabela 3 e 4 de acordo com o preenchimento da tabela 2
-      // TODO: FUNÇÃO ADD LINHA TB3
-      function addRowTable3(codAcao, saldoOrcamentarioAtual) {
+      // READY: adicionar as linhas na tabela 3 e 4 de acordo com o preenchimento da tabela 2
+      // READY: FUNÇÃO ADD LINHA TB3
+      function addRowTable3(id, codAcao, saldoOrcamentarioAtual) {
+        console.log(id);
         const timestampNow = Date.now();
         let custoUnitarioMedio = lista_ppa[codAcao][6] / lista_ppa[codAcao][5];
 
         // Verifica se a linha já existe
-        let existingRow = null;
-        tabela3.rows().every(function () {
-          const rowData = this.data();
-          if ($(rowData[0]).val() == lista_ppa[codAcao][0]) {
-            existingRow = this;
+        let existingRowIndex = null;
+        $("#tabela3 tbody tr").each(function (index) {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          const acao = linha.find(".acao").val();
+
+          // Verifica se o ID e a ação correspondem
+          if (linhaId == id && acao == lista_ppa[codAcao][0]) {
+            linha
+              .find(".saldo-orcamentario-autorizado-atual")
+              .val(saldoOrcamentarioAtual);
+            existingRowIndex = index;
+            return false; // Para o loop quando encontrar a linha existente
           }
         });
 
-        // Se a linha já existe, remove-a
-        if (existingRow) {
-          existingRow.remove().draw();
+        if (existingRowIndex !== null) {
+          return;
         }
 
         tabela3.row
           .add([
+            `<span class="form-control num bg-body-secondary" name="tb-num-${timestampNow}"   id="num-${timestampNow}">${id}</span>`,
+
             `<input class="form-control acao bg-body-secondary" name="tb3-acao-${timestampNow}" type="text" id="tb3-cod-acao-${timestampNow}" value="${lista_ppa[codAcao][0]}" readonly>`,
 
             `<input class="form-control produto bg-body-secondary" name="tb3-produto-${timestampNow}" type="text" id="tb3-produto-${timestampNow}" value="${lista_ppa[codAcao][1]}"readonly>`,
@@ -1149,39 +1195,47 @@
           ])
           .draw();
 
-        addRowTable4(codAcao);
+        addRowTable4(id, codAcao);
       }
 
-      //READY: Remover a linha da tabela
-      function removeRowTable3(codAcao) {
-        tabela3.rows().every(function () {
-          const rowData = this.data();
-          if ($(rowData[0]).val() == lista_ppa[codAcao][0]) {
-            this.remove().draw();
-            return false; // Para parar a iteração uma vez que a linha é encontrada e removida
+      //READY: Remover a linha da tabela 3
+      function removeRowTable3(id) {
+        $("#tabela3 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            tabela3.row($(this).closest("tr")).remove().draw();
           }
         });
+        removeRowTable4(id);
       }
 
-      //  TODO: FUNÇÃO ADD LINHA TB4
-      function addRowTable4(codAcao) {
+      //  READY: FUNÇÃO ADD LINHA TB4
+      function addRowTable4(id, codAcao) {
         const timestampNow = Date.now();
+        let custoUnitarioMedio = lista_ppa[codAcao][6] / lista_ppa[codAcao][5];
+
         // Verifica se a linha já existe
-        let existingRow = null;
-        tabela4.rows().every(function () {
-          const rowData = this.data();
-          if ($(rowData[0]).val() == lista_ppa[codAcao][0]) {
-            existingRow = this;
+        let existingRowIndex = null;
+        $("#tabela4 tbody tr").each(function (index) {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          const acao = linha.find(".acao").val();
+
+          // Verifica se o ID e a ação correspondem
+          if (linhaId == id) {
+            return false; // Para o loop quando encontrar a linha existente
           }
         });
 
-        // Se a linha já existe, remove-a
-        if (existingRow) {
-          existingRow.remove().draw();
+        if (existingRowIndex !== null) {
+          return;
         }
 
         tabela4.row
           .add([
+            `<span class="form-control num bg-body-secondary" name="tb4-num-${timestampNow}"   id="num-${timestampNow}">${id}</span>`,
+
             `<input class="form-control acao bg-body-secondary" name="tb4-acao-${timestampNow}" type="text" id="tb3-cod-acao-${timestampNow}" value="${lista_ppa[codAcao][0]}" readonly>`,
 
             `<input class="form-control produto bg-body-secondary" name="tb4-produto-${timestampNow}" type="text" id="tb3-produto-${timestampNow}" value="${lista_ppa[codAcao][1]}"readonly>`,
@@ -1203,51 +1257,266 @@
           .draw();
       }
 
-      // BUG: CALCULOS DA TABELA 4
+      function removeRowTable4(id) {
+        $("#tabela4 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            tabela4.row($(this).closest("tr")).remove().draw();
+          }
+        });
+      }
+
+      //FIXME: CALCULOS DA TABELA 4
       $("#tabela4 tbody").on("change", ".meta-fisica-proposta", function () {
-        // Captura a linha atual onde ocorreu a mudança
         let linha = $(this).closest("tr");
-
-        // Captura o valor da ação na tabela4
-        let acaoTb4 = linha.find(".acao").text(); // Use .text() se .acao for um elemento de texto
-
-        // Captura o valor da meta-fisica-proposta na tabela4
+        let ID = linha.find(".num").text();
         let metaProposta = linha.find(".meta-fisica-proposta").val();
+        let metaAtual;
+        $("#tabela3 tbody tr").each(function () {
+          const linhatb3 = $(this);
+          const linhaId = linhatb3.find(".num").text();
+          if (linhaId == ID) {
+            metaAtual = linhatb3.find(".meta-fisica-atual").val();
+          }
+        });
+        //console.log("Meta Atual: ", metaAtual, "Meta Proposta: ", metaProposta);
+        let porcAlteracaoDeMetas =
+          ((metaProposta - metaAtual) / metaAtual) * 100;
+        //console.log(metaAtual,"-", metaProposta, "/", metaAtual, "*", 100, "=", porcAlteracaoDeMetas);
+        linha
+          .find(".alteracao-meta-fisica")
+          .val(porcAlteracaoDeMetas.toFixed(2) + "%");
 
-        console.log("ACAO TB4:", acaoTb4);
-        console.log("META PROPOSTA:", metaProposta);
+        custoEstimadoSuplementado(ID);
+        custoUnitarioMedioTB4(ID);
+        relSuplementadoCustoEstimado(ID);
+        relSuplementadoOrcamentario(ID);
+        relLiquidadoOrcamentario(ID);
+      });
 
-        // Encontra o input com a classe .meta-fisica-atual na tabela3 usando a acaoTb4
-        var metaAntiga = $("#tabela3 tbody")
-          .find(".acao:contains('" + acaoTb4 + "')") // Adicione aspas simples dentro de contains para garantir que o texto seja tratado corretamente
-          .closest("tr")
-          .find(".meta-fisica-atual")
-          .val(); // Obter o valor do atributo 'value'
+      //READY: CALCULO DE CUSTO ESTIMADO SUPLEMENTADO
+      function custoEstimadoSuplementado(id) {
+        let custoFinalEstimadoDoProduto = 0;
+        let valorEstimadoAno = 0;
+        let valorSuplementado = 0;
 
-        console.log(
-          "AÇÃO = ",
-          acaoTb4,
-          "Meta Atual: ",
-          metaAntiga,
-          "Meta Proposta: ",
-          metaProposta
+        $("#tabela2 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            valorSuplementado = linha.find(".valor-suplementado").val();
+          }
+        });
+
+        $("#tabela3 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            valorEstimadoAno = linha.find(".custo-estimado-ppa").val();
+          }
+        });
+
+        valorEstimadoAno = parseFloat(
+          converterNumero(valorEstimadoAno).toFixed(2)
         );
+        valorSuplementado = parseFloat(
+          converterNumero(valorSuplementado).toFixed(2)
+        );
+
+        console.log("valorEstimadoAno: ", valorEstimadoAno);
+        console.log("valorSuplementado: ", valorSuplementado);
+
+        custoFinalEstimadoDoProduto = valorEstimadoAno + valorSuplementado;
+
+        console.log("custoEstimadoDoProduto: ", custoFinalEstimadoDoProduto);
+
+        $("#tabela4 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            linha
+              .find(".custo-estimado-suplementado")
+              .val(
+                formatarMoeda(
+                  parseFloat(custoFinalEstimadoDoProduto).toFixed(2)
+                )
+              );
+          }
+        });
+      }
+
+      //READY: CUSTO UNITARIO MEDIO
+      function custoUnitarioMedioTB4(id) {
+        let custoFinalUnitarioMedio = 0;
+        let metaFisicaProposta = 0;
+        let valorEstimadoDoProduto = 0;
+
+        // metaFisicaProposta /  valor
+
+        $("#tabela4 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            metaFisicaProposta = parseInt(
+              converterNumero(
+                linha.find(".meta-fisica-proposta").val()
+              ).toFixed(2)
+            );
+
+            valorEstimadoDoProduto = parseFloat(
+              converterNumero(
+                linha.find(".custo-estimado-suplementado").val()
+              ).toFixed(2)
+            );
+
+            custoFinalUnitarioMedio =
+              valorEstimadoDoProduto / metaFisicaProposta;
+
+            linha
+              .find(".custo-unitario-medio")
+              .val(
+                formatarMoeda(parseFloat(custoFinalUnitarioMedio).toFixed(2))
+              );
+          }
+        });
+      }
+
+      //FIXME: calculo relação suplementado x custoEstimado
+      function relSuplementadoCustoEstimado(id) {
+        let relSuplementacaoCustoEstimado = 0;
+        let valorTotalSuplementacao = 0;
+        let custoEstimadoParaAno = 0;
+
+        $("#tabela3 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            custoEstimadoParaAno = parseFloat(
+              converterNumero(linha.find(".custo-estimado-ppa").val()).toFixed(
+                2
+              )
+            );
+          }
+        });
+
+        $("#tabela4 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            valorTotalSuplementacao = parseInt(
+              converterNumero(
+                linha.find(".custo-estimado-suplementado").val()
+              ).toFixed(2)
+            );
+
+            relSuplementacaoCustoEstimado =
+              (custoEstimadoParaAno / valorTotalSuplementacao) * 100;
+
+            linha
+              .find(".suplementado-estimado")
+              .val(
+                formatarMoeda(
+                  parseFloat(relSuplementacaoCustoEstimado).toFixed(2) + "%"
+                )
+              );
+          }
+        });
+      }
+
+      //FIXME:  calculo relação suplementado x orcamentario
+      function relSuplementadoOrcamentario(id) {
+        let relSuplementadoOrcamentario = 0;
+        let valorTotalSuplementacao = 0;
+        let saldoOrcamentario = 0;
+
+        $("#tabela3 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            saldoOrcamentario = parseFloat(
+              converterNumero(
+                linha.find(".saldo-orcamentario-autorizado-atual").val()
+              ).toFixed(2)
+            );
+          }
+        });
+
+        $("#tabela4 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            valorTotalSuplementacao = parseInt(
+              converterNumero(
+                linha.find(".custo-estimado-suplementado").val()
+              ).toFixed(2)
+            );
+
+            relSuplementadoOrcamentario =
+              (saldoOrcamentario / valorTotalSuplementacao) * 100;
+
+            linha
+              .find(".suplementado-orcamentario")
+              .val(
+                formatarMoeda(
+                  parseFloat(relSuplementadoOrcamentario).toFixed(2) + "%"
+                )
+              );
+          }
+        });
+      }
+
+      //FIXME:  calculo relação suplementado x orcamentario
+      function relLiquidadoOrcamentario(id) {
+        let relLiquidadoOrcamentario = 0;
+        let valorLiquidado = 0;
+        let valorOrcamentario = 0;
+
+        $("#tabela3 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            valorOrcamentario = parseFloat(
+              converterNumero(
+                linha.find(".saldo-orcamentario-autorizado-atual").val()
+              ).toFixed(2)
+            );
+
+            valorLiquidado = parseFloat(
+              converterNumero(
+                linha.find(".saldo-liquidado-atual").val()
+              ).toFixed(2)
+            );
+          }
+        });
+
+        relLiquidadoOrcamentario = (valorOrcamentario / valorLiquidado) * 100;
+
+        $("#tabela4 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            linha
+              .find(".liquidado-orcamentario")
+              .val(
+                formatarMoeda(
+                  parseFloat(relLiquidadoOrcamentario).toFixed(2) + "%"
+                )
+              );
+          }
+        });
+      }
+
+      //TODO: GERAR PDF
+      $("#btn-gerar-pdf").on("click", function () {
+        alert("gerando pdf");
       });
 
       // NOTE:FIM DA FUNÇÃO READY @
+      // NOTE: Preenchiemnto
+      $("#input-valor-total-suplementacao").val("5500");
+      $("#select-sigla-orgao").val("TCE");
     });
-    /*<th scope="col">Nº</th>
-                <th scope="col">AÇÃO</th>
-                <th scope="col">PRODUTO</th>
-                <th scope="col">META FÍSICA ATUAL</th>
-                <th scope="col">ACUMU-LÁ?</th>
-                <th scope="col">UNIDADE DE MEDIDA</th>
-                <th scope="col">CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO</th>
-                <th scope="col">
-                  CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO
-                </th>
-                <th scope="col">SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
-                <th scope="col">SALDO LIQUIDADO ATUAL</th>*/
   </script>
 
   <!-- BIBLIOTECAS -->
