@@ -4,9 +4,9 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <script src="../jquery-3.7.1.min.js"></script>
+    <script src="./jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="../DataTables/datatables.min.css" />
-    <script src="../DataTables/datatables.min.js"></script>
+    <script src="./DataTables/datatables.min.js"></script>
 
     <!-- TOASTI FY -->
     <link
@@ -1782,6 +1782,7 @@
           </head>
           <body>
             <div class="container">
+              
               <div class="d-flex gap-5">
                 <div class="d-flex gap-2">
                   <label class="fw-bold" for="sigla-orgao"><strong>Sigla:</strong></label>
@@ -1952,7 +1953,7 @@
                <h2 class="mt-5 mb-3 text-start">Tabela 4 - EFEITOS DO PEDIDO DE SUPLEMENTAÇÃO NOS ELEMENTOS DO MACROPROCESSO ORÇAMENTÁRIO</h2>
 
               <div style="width: 1280px">
-              <table class="table fixed-table">
+              <table class="table fixed-table table-bordered">
                 <thead>
                   <tr>
                     <th>AÇÃO</th>
@@ -1998,17 +1999,6 @@
           win.print();
         }, 1000);
 
-        //generatePDF();
-        teste2();
-
-        function teste2() {
-          var pdf = new jsPDF("p", "pt", "letter");
-          pdf.html(document.getElementById("page").innerHTML, {
-            callback: function (pdf) {
-              pdf.save("teste.pdf");
-            },
-          });
-        }
         function generatePDF() {
           const { jsPDF } = window.jspdf;
           const doc = new jsPDF();
