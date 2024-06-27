@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" id="page">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -48,10 +48,30 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
+    <style>
+      .bg-custom {
+        background-color: #027353 !important;
+      }
+      .fixed-table {
+        table-layout: fixed;
+        width: 100%;
+      }
+      .fixed-table th,
+      .fixed-table td {
+        overflow: hidden;
+        white-space: wrap;
+      }
+    </style>
   </head>
   <body>
     <div class="container mt-5">
-      <h1 class="bg-warning text-center p-5 rounded">Nota Técnica Clean</h1>
+      <div class="header bg-custom d-flex rounded justify-content-center">
+        <img
+          src="https://ppa.go.gov.br/wp-content/uploads/sites/9/2023/05/Governo_Horizontal_-21093b4c-1920w.webp"
+          alt="logo-governo"
+        />
+      </div>
       <form id="formulario">
         <div id="apresentacao" class="d-flex flex-column gap-2 mt-5">
           <div class="row d-flex align-items-center">
@@ -292,6 +312,7 @@
                 </td>
                 <td><span hidden id="valor-somatorio"></span></td>
                 <td></td>
+                <td></td>
               </tr>
             </tfoot>
           </table>
@@ -337,36 +358,39 @@
             </thead>
             <tbody id="container-table3"></tbody>
           </table>
-          <!-- INÍCIO TABELA 4 -->7
-          <div style="width: 1280px">
-            <table class="table" id="tabela4">
-              <thead>
-                <tr>
-                  <th scope="col">ID</th>
-                  <th scope="col">AÇÃO</th>
-                  <th scope="col">PRODUTO</th>
-                  <th scope="col">META FÍSICA PROPOSTA</th>
-                  <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
-                  <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
-                  <th scope="col">
-                    CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
-                  </th>
-                  <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
-                  <th scope="col">% SUPLEMENTADO X SALDO ORÇAMENTÁRIO</th>
-                  <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
-                </tr>
-              </thead>
-              <tbody id="container-table4"></tbody>
-            </table>
+          <!-- INÍCIO TABELA 4 -->
+          <div style="max-width: 1280px">
+            <div class="table-responsive">
+              <table class="table fixed-table" id="tabela4">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">AÇÃO</th>
+                    <th scope="col">PRODUTO</th>
+                    <th scope="col">META FÍSICA PROPOSTA</th>
+                    <th scope="col">% ALTERAÇÃO DA META FÍSICA</th>
+                    <th scope="col">CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO</th>
+                    <th scope="col">
+                      CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
+                    </th>
+                    <th scope="col">% SUPLEMENTADO X CUSTO ESTIMADO</th>
+                    <th scope="col">% SUPLEMENTADO X SALDO ORÇAMENTÁRIO</th>
+                    <th scope="col">% LIQUIDADO X SALDO ORÇAMENTÁRIO</th>
+                  </tr>
+                </thead>
+                <tbody id="container-table4"></tbody>
+              </table>
+            </div>
           </div>
-
           <!-- FIM TABELA 4 -->
         </div>
       </form>
     </div>
 
     <div class="d-flex justify-content-center mt-5 mb-5 gap-3">
-      <button id="btn-gerar-pdf" class="btn btn-warning px-5">GERAR PDF</button>
+      <button id="btn-gerar-pdf" class="btn btn-success px-5 fw-bold">
+        Gerar Nota Técnica
+      </button>
     </div>
   </body>
 
@@ -885,6 +909,10 @@
           currency: "BRL",
         }).format(valores);
       };
+      //BUG: conversao de moeda
+      // --> moeda n consegue identificar um valor negativo
+
+      //READY: conversao de moeda
       const converterNumero = (valor) => {
         let valorLimpo = valor.replace(/[^\d,]/g, "");
         valorLimpo = valorLimpo.replace(",", ".");
@@ -912,10 +940,42 @@
       $("#input-whatsapp").inputmask("99 9 9999-9999");
 
       // READY: Criação das tabelas
-      let tabela1 = new DataTable("#tabela1");
-      let tabela2 = new DataTable("#tabela2");
-      let tabela3 = new DataTable("#tabela3");
-      let tabela4 = new DataTable("#tabela4");
+      let tabela1 = new DataTable("#tabela1",{
+        info: false, // Desabilita a informação de registros
+        paging: false, // Desabilita a paginação
+        searching: false, // Desabilita a funcionalidade de pesquisa
+        lengthChange: false, // Desabilita o seletor de entradas por página
+      });
+      let tabela2 = new DataTable("#tabela2",{
+        info: false, // Desabilita a informação de registros
+        paging: false, // Desabilita a paginação
+        searching: false, // Desabilita a funcionalidade de pesquisa
+        lengthChange: false, // Desabilita o seletor de entradas por página
+      });
+      let tabela3 = new DataTable("#tabela3", {
+        info: false, // Desabilita a informação de registros
+        paging: false, // Desabilita a paginação
+        searching: false, // Desabilita a funcionalidade de pesquisa
+        lengthChange: false, // Desabilita o seletor de entradas por página
+      });
+      let tabela4 = new DataTable("#tabela4", {
+        info: false, // Desabilita a informação de registros
+        paging: false, // Desabilita a paginação
+        searching: false, // Desabilita a funcionalidade de pesquisa
+        lengthChange: false, // Desabilita o seletor de entradas por página
+        columns: [
+          { width: "5%" }, // ID
+          { width: "6%" }, // AÇÃO
+          { width: "8%" }, // PRODUTO
+          { width: "8%" }, // META FÍSICA PROPOSTA
+          { width: "10%" }, // % ALTERAÇÃO DA META FÍSICA
+          { width: "12%" }, // CUSTO ESTIMADO DO PRODUTO SUPLEMENTADO
+          { width: "10%" }, // CUSTO UNITÁRIO MÉDIO ESTIMADO SUPLEMENTADO
+          { width: "10%" }, // % SUPLEMENTADO X CUSTO ESTIMADO
+          { width: "10%" }, // % SUPLEMENTADO X SALDO ORÇAMENTÁRIO
+          { width: "10%" }, // % LIQUIDADO X SALDO ORÇAMENTÁRIO
+        ],
+      });
 
       // READY: Função para adicionar linha na tabela 1
       $("#btn-add-row-table1").click(function () {
@@ -954,21 +1014,21 @@
         let id = timestampNow % 1000;
         tabela2.row
           .add([
-            `<span class="form-control num bg-body-secondary" name="tb-num-${timestampNow}"   id="num-${timestampNow}">${id}</span> `,
+            `<span class="form-control num bg-body-secondary" name="tb2-num-${timestampNow}"   id="num-${timestampNow}">${id}</span> `,
 
-            `<input class="form-control num-solid" name="tb-num-soli-${timestampNow}"          type="text" id="num-soli-${timestampNow}">`,
+            `<input class="form-control num-solid" name="tb2-num-soli-${timestampNow}"          type="text" id="num-soli-${timestampNow}">`,
 
-            `<input class="form-control cod-acao"  name="tb-cod-acao-${timestampNow}" type="text" id="cod-acao-${timestampNow}">`,
+            `<input class="form-control cod-acao"  name="tb2-cod-acao-${timestampNow}" type="text" id="cod-acao-${timestampNow}">`,
 
-            `<input class="bg-body-secondary form-control acao"  name="tb-acao-${timestampNow}" type="text" id="acao-${timestampNow}" readonly>`,
+            `<input class="bg-body-secondary form-control acao"  name="tb2-acao-${timestampNow}" type="text" id="acao-${timestampNow}" readonly>`,
 
-            `<input class="bg-body-secondary form-control produto"   name="tb-produto-${timestampNow}" type="text" id="produto-${timestampNow}" readonly>`,
+            `<input class="bg-body-secondary form-control produto"   name="tb2-produto-${timestampNow}" type="text" id="produto-${timestampNow}" readonly>`,
 
-            `<input class="bg-body-secondary form-control iniciativa" name="tb-iniciativa-${timestampNow}" type="text" id="iniciativa-${timestampNow}" readonly>`,
+            `<input class="bg-body-secondary form-control iniciativa" name="tb2-iniciativa-${timestampNow}" type="text" id="iniciativa-${timestampNow}" readonly>`,
 
-            `<input class="form-control valor-suplementado" name="tb-valor-suplementado-${timestampNow}" type="text" id="valor-suplementado-${timestampNow}">`,
+            `<input class="form-control valor-suplementado" name="tb2-valor-suplementado-${timestampNow}" type="text" id="valor-suplementado-${timestampNow}">`,
 
-            `<select class="form-select origem-recurso" name="tb-origem-recursos-${timestampNow}" id="origem-recursos-${timestampNow}" >
+            `<select class="form-select origem-recurso" name="tb2-origem-recursos-${timestampNow}" id="origem-recursos-${timestampNow}" >
               <option selected>Selecione</option>
               <option value="Anulação total ou parcial de dotação orçamentária">Anulação total ou parcial de dotação orçamentária</option>
               <option value="Excesso de arrecadação">Excesso de arrecadação</option>
@@ -976,9 +1036,9 @@
               <option value="Superávit financeiro diretamente arrecadado">Superávit financeiro diretamente arrecadado</option>
             </select>`,
 
-            `<input class="bg-body-secondary form-control acao-anulada" name="tb-acao-anulada-${timestampNow}" type="text" id="acao-anulada-${timestampNow}" readonly>`,
+            `<input class="bg-body-secondary form-control acao-anulada" name="tb2-acao-anulada-${timestampNow}" type="text" id="acao-anulada-${timestampNow}" readonly>`,
 
-            `<input class="bg-body-secondary form-control valor-reduzir" name="tb-valor-reduzir-${timestampNow}" type="text" id="valor-reduzir-${timestampNow}" readonly>`,
+            `<input class="bg-body-secondary form-control valor-reduzir" name="tb2-valor-reduzir-${timestampNow}" type="text" id="valor-reduzir-${timestampNow}" readonly>`,
 
             `<button type="button" class="btn btn-danger btn-remover">Remover</button>`,
           ])
@@ -1163,7 +1223,7 @@
 
         tabela3.row
           .add([
-            `<span class="form-control num bg-body-secondary" name="tb-num-${timestampNow}"   id="num-${timestampNow}">${id}</span>`,
+            `<span class="form-control num bg-body-secondary" name="tb3-num-${timestampNow}"   id="num-${timestampNow}">${id}</span>`,
 
             `<input class="form-control acao bg-body-secondary" name="tb3-acao-${timestampNow}" type="text" id="tb3-cod-acao-${timestampNow}" value="${lista_ppa[codAcao][0]}" readonly>`,
 
@@ -1257,6 +1317,7 @@
           .draw();
       }
 
+      //READY: Remover a linha da tabela 4
       function removeRowTable4(id) {
         $("#tabela4 tbody tr").each(function () {
           const linha = $(this);
@@ -1267,7 +1328,7 @@
         });
       }
 
-      //FIXME: CALCULOS DA TABELA 4
+      //READY: CALCULOS DA TABELA 4
       $("#tabela4 tbody").on("change", ".meta-fisica-proposta", function () {
         let linha = $(this).closest("tr");
         let ID = linha.find(".num").text();
@@ -1280,10 +1341,7 @@
             metaAtual = linhatb3.find(".meta-fisica-atual").val();
           }
         });
-        //console.log("Meta Atual: ", metaAtual, "Meta Proposta: ", metaProposta);
-        let porcAlteracaoDeMetas =
-          ((metaProposta - metaAtual) / metaAtual) * 100;
-        //console.log(metaAtual,"-", metaProposta, "/", metaAtual, "*", 100, "=", porcAlteracaoDeMetas);
+        let porcAlteracaoDeMetas = (metaProposta / metaAtual) * 100;
         linha
           .find(".alteracao-meta-fisica")
           .val(porcAlteracaoDeMetas.toFixed(2) + "%");
@@ -1382,18 +1440,18 @@
         });
       }
 
-      //FIXME: calculo relação suplementado x custoEstimado
+      //READY: calculo relação suplementado x custoEstimado
       function relSuplementadoCustoEstimado(id) {
         let relSuplementacaoCustoEstimado = 0;
-        let valorTotalSuplementacao = 0;
-        let custoEstimadoParaAno = 0;
+        let valorCustoEstimado = 0;
+        let valorSuplementado = 0;
 
-        $("#tabela3 tbody tr").each(function () {
+        $("#tabela2 tbody tr").each(function () {
           const linha = $(this);
           const linhaId = linha.find(".num").text();
           if (linhaId == id) {
-            custoEstimadoParaAno = parseFloat(
-              converterNumero(linha.find(".custo-estimado-ppa").val()).toFixed(
+            valorSuplementado = parseFloat(
+              converterNumero(linha.find(".valor-suplementado").val()).toFixed(
                 2
               )
             );
@@ -1404,30 +1462,26 @@
           const linha = $(this);
           const linhaId = linha.find(".num").text();
           if (linhaId == id) {
-            valorTotalSuplementacao = parseInt(
+            valorCustoEstimado = parseInt(
               converterNumero(
                 linha.find(".custo-estimado-suplementado").val()
               ).toFixed(2)
             );
 
             relSuplementacaoCustoEstimado =
-              (custoEstimadoParaAno / valorTotalSuplementacao) * 100;
+              (valorSuplementado / valorCustoEstimado) * 100;
 
             linha
               .find(".suplementado-estimado")
-              .val(
-                formatarMoeda(
-                  parseFloat(relSuplementacaoCustoEstimado).toFixed(2) + "%"
-                )
-              );
+              .val(parseFloat(relSuplementacaoCustoEstimado).toFixed(2) + "%");
           }
         });
       }
 
-      //FIXME:  calculo relação suplementado x orcamentario
+      //READY:  calculo relação suplementado x orcamentario
       function relSuplementadoOrcamentario(id) {
         let relSuplementadoOrcamentario = 0;
-        let valorTotalSuplementacao = 0;
+        let valorSuplementado = 0;
         let saldoOrcamentario = 0;
 
         $("#tabela3 tbody tr").each(function () {
@@ -1442,31 +1496,33 @@
           }
         });
 
+        $("#tabela2 tbody tr").each(function () {
+          const linha = $(this);
+          const linhaId = linha.find(".num").text();
+          if (linhaId == id) {
+            valorSuplementado = parseInt(
+              converterNumero(linha.find(".valor-suplementado").val()).toFixed(
+                2
+              )
+            );
+          }
+        });
+
+        relSuplementadoOrcamentario =
+          (valorSuplementado / saldoOrcamentario) * 100;
+
         $("#tabela4 tbody tr").each(function () {
           const linha = $(this);
           const linhaId = linha.find(".num").text();
           if (linhaId == id) {
-            valorTotalSuplementacao = parseInt(
-              converterNumero(
-                linha.find(".custo-estimado-suplementado").val()
-              ).toFixed(2)
-            );
-
-            relSuplementadoOrcamentario =
-              (saldoOrcamentario / valorTotalSuplementacao) * 100;
-
             linha
               .find(".suplementado-orcamentario")
-              .val(
-                formatarMoeda(
-                  parseFloat(relSuplementadoOrcamentario).toFixed(2) + "%"
-                )
-              );
+              .val(parseFloat(relSuplementadoOrcamentario).toFixed(2) + "%");
           }
         });
       }
 
-      //FIXME:  calculo relação suplementado x orcamentario
+      //READY:  calculo relação liquidado x orcamentario
       function relLiquidadoOrcamentario(id) {
         let relLiquidadoOrcamentario = 0;
         let valorLiquidado = 0;
@@ -1490,7 +1546,7 @@
           }
         });
 
-        relLiquidadoOrcamentario = (valorOrcamentario / valorLiquidado) * 100;
+        relLiquidadoOrcamentario = (valorLiquidado / valorOrcamentario) * 100;
 
         $("#tabela4 tbody tr").each(function () {
           const linha = $(this);
@@ -1498,20 +1554,521 @@
           if (linhaId == id) {
             linha
               .find(".liquidado-orcamentario")
-              .val(
-                formatarMoeda(
-                  parseFloat(relLiquidadoOrcamentario).toFixed(2) + "%"
-                )
-              );
+              .val(parseFloat(relLiquidadoOrcamentario).toFixed(2) + "%");
           }
         });
+      }
+      //READY: estrutura json:
+      let formulario = {
+        apresentacao: {
+          orgao: "",
+          nomeOrgao: "",
+          responsavel: "",
+          whatsapp: "",
+          valorTotalSuplementacao: "",
+          valorTotalSuplementacaoExtenso: "",
+          numeroFonte: "",
+          fonte: "",
+          objeto: "",
+          justificativa: "",
+          impacto: "",
+        },
+        tabela1: [
+          {
+            classificacao: [],
+            tipo: [],
+            valor: [],
+          },
+        ],
+        tabela2: [
+          {
+            num_solicitacao: [],
+            cod_acao: [],
+            acao: [],
+            produto: [],
+            iniciativa: [],
+            valor_suplementado: [],
+            origem_recurso: [],
+            acao_anulada: [],
+            valor_reduzir: [],
+          },
+        ],
+        tabela3: [
+          {
+            acao: [],
+            produto: [],
+            meta_fisica_atual: [],
+            acumula: [],
+            unidade: [],
+            custo_estimado_ppa: [],
+            custo_unitario_ppa: [],
+            saldo_orcamentario: [],
+            saldo_liquidado: [],
+          },
+        ],
+        tabela4: [
+          {
+            acao: [],
+            produto: [],
+            meta_fisica_proposta: [],
+            alteracao_meta: [],
+            custo_estimado_suplementado: [],
+            custo_unitario: [],
+            suplementado_estimado: [],
+            suplementado_orcamentario: [],
+            liquidado_orcamentario: [],
+          },
+        ],
+      };
+
+      function preencherJson() {
+        const form = $("form").serializeArray();
+        console.log("preencher JSON() ", form);
+
+        let cont = 11;
+
+        form.forEach(function (input) {
+          const chave = input.name;
+          const valor = input.value;
+
+          formulario.apresentacao.orgao = form[0].value;
+          formulario.apresentacao.nomeOrgao = form[1].value;
+          formulario.apresentacao.responsavel = form[2].value;
+          formulario.apresentacao.whatsapp = form[3].value;
+          formulario.apresentacao.valorTotalSuplementacao = form[4].value;
+          formulario.apresentacao.valorTotalSuplementacaoExtenso =
+            form[5].value;
+          formulario.apresentacao.numeroFonte = form[6].value;
+          formulario.apresentacao.fonte = form[7].value;
+          formulario.apresentacao.objeto = form[8].value;
+          formulario.apresentacao.justificativa = form[9].value;
+          formulario.apresentacao.impacto = form[10].value;
+
+          let regexClass = /tb1-class-orcamentaria-(\d+)/;
+          let regexTipo = /tb1-tipo-remanejamento-(\d+)/;
+          let regexValor = /tb1-valor-(\d+)/;
+
+          let regexNumSolid = /tb2-num-soli-(\d+)/;
+          let regexCodAcao = /tb2-cod-acao-(\d+)/;
+          let regexAcao = /tb2-acao-(\d+)/;
+          let regexProduto = /tb2-produto-(\d+)/;
+          let regexIniciativa = /tb2-iniciativa-(\d+)/;
+          let regexValorSuplementado = /tb2-valor-suplementado-(\d+)/;
+          let regexOrigemRecurso = /tb2-origem-recursos-(\d+)/;
+          let regexAcaoAnulada = /tb2-acao-anulada-(\d+)/;
+          let regexValorReduzir = /tb2-valor-reduzir-(\d+)/;
+
+          let regexAcaotb3 = /tb3-acao-(\d+)/;
+          let regexProdutotb3 = /tb3-produto-(\d+)/;
+          let regexMetaFisicaAtualtb3 = /tb3-meta-fisica-atual-(\d+)/;
+          let regexAcumulatb3 = /tb3-acumula-(\d+)/;
+          let regexUnidadeMedidatb3 = /tb3-unidade-medida-(\d+)/;
+          let regexCustoEstimadoPPAtb3 = /tb3-custo-estimado-ppa-(\d+)/;
+          let regexCustoUnitarioMediotb3 =
+            /tb3-custo-unitario-medio-estimado-(\d+)/;
+          let regexSaldoOrcamentariotb3 =
+            /tb3-saldo-orcamentario-autorizado-atual-(\d+)/;
+          let regexSaldoLiquidadotb3 = /tb3-saldo-liquidado-atual-(\d+)/;
+
+          let regexAcaotb4 = /tb4-acao-(\d+)/;
+          let regexProdutotb4 = /tb4-produto-(\d+)/;
+          let regexMetaFisicaProposta = /tb4-meta-fisica-proposta-(\d+)/;
+          let regexAlteracaoMetaFisica = /tb4-alteracao-meta-fisica-(\d+)/;
+          let regexCustoEstimadoSuplementado =
+            /tb4-custo-estimado-suplementado-(\d+)/;
+          let regexCustoUnitarioMedio = /tb4-custo-unitario-medio-(\d+)/;
+          let regexSuplementadoEstimado = /tb4-suplementado-estimado-(\d+)/;
+          let regexSuplementadoOrcamentario =
+            /tb4-suplementado-orcamentario-(\d+)/;
+          let regexLiquidadoOrcamentario = /tb4-liquidado-orcamentario-(\d+)/;
+
+          // TODO:  TABELA 1 - CLASSIFICAÇÃO ORÇAMENTÁRIA
+          if (regexClass.test(chave))
+            formulario.tabela1[0].classificacao.push(valor);
+          if (regexTipo.test(chave)) formulario.tabela1[0].tipo.push(valor);
+          if (regexValor.test(chave)) formulario.tabela1[0].valor.push(valor);
+
+          // TODO: TABELA 2 - SOLICITAÇÃO DE REMANEJAMENTO
+          if (regexNumSolid.test(chave))
+            formulario.tabela2[0].num_solicitacao.push(valor);
+          if (regexCodAcao.test(chave))
+            formulario.tabela2[0].cod_acao.push(valor);
+          if (regexAcao.test(chave)) formulario.tabela2[0].acao.push(valor);
+          if (regexProduto.test(chave))
+            formulario.tabela2[0].produto.push(valor);
+          if (regexIniciativa.test(chave))
+            formulario.tabela2[0].iniciativa.push(valor);
+          if (regexValorSuplementado.test(chave))
+            formulario.tabela2[0].valor_suplementado.push(valor);
+          if (regexOrigemRecurso.test(chave))
+            formulario.tabela2[0].origem_recurso.push(valor);
+          if (regexAcaoAnulada.test(chave))
+            formulario.tabela2[0].acao_anulada.push(valor);
+          if (regexValorReduzir.test(chave))
+            formulario.tabela2[0].valor_reduzir.push(valor);
+
+          // TODO: TABELA 3 - DETALHAMENTO DA AÇÃO
+          if (regexAcaotb3.test(chave)) formulario.tabela3[0].acao.push(valor);
+          if (regexProdutotb3.test(chave))
+            formulario.tabela3[0].produto.push(valor);
+          if (regexMetaFisicaAtualtb3.test(chave))
+            formulario.tabela3[0].meta_fisica_atual.push(valor);
+          if (regexAcumulatb3.test(chave))
+            formulario.tabela3[0].acumula.push(valor);
+          if (regexUnidadeMedidatb3.test(chave))
+            formulario.tabela3[0].unidade.push(valor);
+          if (regexCustoEstimadoPPAtb3.test(chave))
+            formulario.tabela3[0].custo_estimado_ppa.push(valor);
+          if (regexCustoUnitarioMediotb3.test(chave))
+            formulario.tabela3[0].custo_unitario_ppa.push(valor);
+          if (regexSaldoOrcamentariotb3.test(chave))
+            formulario.tabela3[0].saldo_orcamentario.push(valor);
+          if (regexSaldoLiquidadotb3.test(chave))
+            formulario.tabela3[0].saldo_liquidado.push(valor);
+
+          // TODO: TABELA 4 - DETALHAMENTO DA AÇÃO
+          if (regexAcaotb4.test(chave)) formulario.tabela4[0].acao.push(valor);
+          if (regexProdutotb4.test(chave))
+            formulario.tabela4[0].produto.push(valor);
+          if (regexMetaFisicaProposta.test(chave))
+            formulario.tabela4[0].meta_fisica_proposta.push(valor);
+          if (regexAlteracaoMetaFisica.test(chave))
+            formulario.tabela4[0].alteracao_meta.push(valor);
+          if (regexCustoEstimadoSuplementado.test(chave))
+            formulario.tabela4[0].custo_estimado_suplementado.push(valor);
+          if (regexCustoUnitarioMedio.test(chave))
+            formulario.tabela4[0].custo_unitario.push(valor);
+          if (regexSuplementadoEstimado.test(chave))
+            formulario.tabela4[0].suplementado_estimado.push(valor);
+          if (regexSuplementadoOrcamentario.test(chave))
+            formulario.tabela4[0].suplementado_orcamentario.push(valor);
+          if (regexLiquidadoOrcamentario.test(chave))
+            formulario.tabela4[0].liquidado_orcamentario.push(valor);
+        });
+        console.log(formulario);
       }
 
       //TODO: GERAR PDF
       $("#btn-gerar-pdf").on("click", function () {
-        alert("gerando pdf");
-      });
+        preencherJson();
 
+        const { jsPDF } = window.jspdf;
+
+        const apresentacao = formulario.apresentacao;
+        const tabela1 = formulario.tabela1;
+        const tabela2 = formulario.tabela2;
+        const tabela3 = formulario.tabela3;
+        const tabela4 = formulario.tabela4;
+
+        const win = window.open("", "_blank");
+        win.document.write(`
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>PDF Content</title>
+            <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+            <style>
+              .container {
+                margin: 0px;
+                max-width: 100%;
+                padding: 0px;
+              }
+              .label-col, .content-col {
+                text-align: start;
+              }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="d-flex gap-5">
+                <div class="d-flex gap-2">
+                  <label class="fw-bold" for="sigla-orgao"><strong>Sigla:</strong></label>
+                  <p>${apresentacao.orgao}</p>
+                </div>
+
+                <div class="d-flex gap-2 ml-5">
+                  <label class="fw-bold" for="sigla-orgao"><strong>Órgão:</strong></label>
+                  <p>${apresentacao.nomeOrgao}</p>
+                </div>
+              </div>
+
+              <div class="d-flex gap-5">
+                <div class="d-flex gap-2">
+                  <label class="fw-bold" for="sigla-orgao"><strong>Responsável:</strong></label>
+                  <p>${apresentacao.responsavel}</p>
+                </div>
+
+                <div class="d-flex gap-2 ml-5">
+                  <label class="fw-bold" for="sigla-orgao"><strong>Whatsapp:</strong></label>
+                  <p>${apresentacao.whatsapp}</p>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-12 label-col d-flex gap-2">
+                  <label for="valor-total-suplementacao" class="fw-bold"><strong>Valor Total Suplementação:</strong></label>
+                  <p>${
+                    apresentacao.valorTotalSuplementacao
+                  } - ${apresentacao.valorTotalSuplementacaoExtenso}</p>
+                </div>
+              </div>
+
+              <div class="row mb-3">
+                <div class="col-12 label-col">
+                  <label for="fonte" class="fw-bold"><strong>Fonte:</strong></label>
+                </div>
+                <div class="col-12 content-col">
+                  <p>${apresentacao.numeroFonte} - ${apresentacao.fonte}</p>
+                </div>
+              </div>
+
+              <div id="detalhes_credito" class="mb-5">
+                <div id="objeto" class="mb-4">
+                  <div class="row">
+                    <div class="col-12 text-start">
+                      <label for="objeto" class="fw-bold"><strong>Objeto:</strong></label>
+                      <p>${apresentacao.objeto}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="justificativa" class="mb-4">
+                  <div class="row">
+                    <div class="col-12 text-start">
+                      <label for="justificativa" class="fw-bold"><strong>Justificativa:</strong></label>
+                      <p>${apresentacao.justificativa}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="impacto" class="mb-4">
+                  <div class="row">
+                    <div class="col-12 text-start">
+                      <label for="impacto" class="fw-bold"><strong>Impacto:</strong></label>
+                      <p>${apresentacao.impacto}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <h2 class="mt-5 mb-3 text-start">Tabela 1 - INDICAÇÃO DAS CLASSIFICAÇÕES ORÇAMENTÁRIAS IMPACTADAS PELA SUPLEMENTAÇÃO</h2>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>CLASSIFICAÇÃO ORÇAMENTÁRIA</th>
+                    <th>TIPO DE REMANEJAMENTO</th>
+                    <th class="col-3">VALOR</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tabela1[0].classificacao
+                    .map(
+                      (classif, index) => `
+                    <tr>
+                      <td>${classif}</td>
+                      <td>${tabela1[0].tipo[index]}</td>
+                      <td>R$ ${tabela1[0].valor[index]}</td>
+                    </tr>
+                  `
+                    )
+                    .join("")}
+                </tbody>
+              </table>
+
+              <h2 class="mt-5 mb-3 text-start">Tabela 2 -  DETALHAMENTO DO PEDIDO DE SUPLEMENTAÇÃO </h2>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>Nº SOLICITAÇÃO SIOFI</th>
+                    <th>COD. AÇÃO</th>
+                    <th>AÇÃO</th>
+                    <th>PRODUTO</th>
+                    <th>INICIATIVA</th>
+                    <th>VALOR A SER SUPLEMENTADO</th>
+                    <th>ORIGEM DO RECURSO</th>
+                    <th>AÇÃO A SER ANULADA</th>
+                    <th>VALOR A SER REDUZIDO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tabela2[0].num_solicitacao
+                    .map(
+                      (classif, index) => `
+                    <tr>
+                      <td>${classif}</td>
+                      <td>${tabela2[0].cod_acao[index]}</td>
+                      <td>${tabela2[0].acao[index]}</td>
+                      <td>${tabela2[0].produto[index]}</td>
+                      <td>${tabela2[0].iniciativa[index]}</td>
+                      <td>${tabela2[0].valor_suplementado[index]}</td>
+                      <td>${tabela2[0].origem_recurso[index]}</td>
+                      <td>${tabela2[0].acao_anulada[index]}</td>
+                      <td>${tabela2[0].valor_reduzir[index]}</td>
+                    </tr>
+                  `
+                    )
+                    .join("")}
+                </tbody>
+              </table>
+
+              <h2 class="mt-5 mb-3 text-start">Tabela 3 - ELEMENTOS DO MACROPROCESSO ORÇAMENTÁRIO AFETADOS PELO PEDIDO DE SUPLEMENTAÇÃO</h2>
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th>AÇÃO</th>
+                    <th>PRODUTO</th>
+                    <th>META FÍSICA ATUAL</th>
+                    <th>UNIDADE DE MEDIDA</th>
+                    <th>ACUMULA</th>
+                    <th>CUSTO ESTIMADO DO PRODUTO (PPA) PARA O ANO</th>
+                    <th>CUSTO UNITÁRIO MEDIO ESTIMADO (PPA) PARA O ANO</th>
+                    <th>SALDO ORÇAMENTÁRIO AUTORIZADO ATUAL</th>
+                    <th>SALDO LIQUIDADO ATUAL</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tabela3[0].acao
+                    .map(
+                      (classif, index) => `
+                    <tr>
+                      <td>${classif}</td>
+                      <td>${tabela3[0].produto[index]}</td>
+                      <td>${tabela3[0].meta_fisica_atual[index]}</td>
+                      <td>${tabela3[0].acumula[index]}</td>
+                      <td>${tabela3[0].unidade[index]}</td>
+                      <td>${tabela3[0].custo_estimado_ppa[index]}</td>
+                      <td>${tabela3[0].custo_unitario_ppa[index]}</td>
+                      <td>${tabela3[0].saldo_orcamentario[index]}</td>
+                      <td>${tabela3[0].saldo_liquidado[index]}</td>
+                    </tr>
+                  `
+                    )
+                    .join("")}
+                </tbody>
+              </table>
+
+               <h2 class="mt-5 mb-3 text-start">Tabela 4 - EFEITOS DO PEDIDO DE SUPLEMENTAÇÃO NOS ELEMENTOS DO MACROPROCESSO ORÇAMENTÁRIO</h2>
+
+              <div style="width: 1280px">
+              <table class="table fixed-table">
+                <thead>
+                  <tr>
+                    <th>AÇÃO</th>
+                    <th>PRODUTO</th>
+                    <th>META FÍSICA PROPOSTA</th>
+                    <th>ALTERAÇÃO DE META FÍSICA</th>
+                    <th>CUSTO ESTIMADO SUPLEMENTADO</th>
+                    <th>CUSTO UNITÁRIO MÉDIO</th>
+                    <th>SUPLEMENTADO ESTIMADO</th>
+                    <th>SUPLEMENTADO ORÇAMENTÁRIO</th>
+                    <th>LIQUIDADO ORÇAMENTÁRIO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${tabela4[0].acao
+                    .map(
+                      (classif, index) => `
+                    <tr>
+                      <td>${classif}</td>
+                      <td>${tabela4[0].produto[index]}</td>
+                      <td>${tabela4[0].meta_fisica_proposta[index]}</td>
+                      <td>${tabela4[0].alteracao_meta[index]}</td>
+                      <td>${tabela4[0].custo_estimado_suplementado[index]}</td>
+                      <td>${tabela4[0].custo_unitario[index]}</td>
+                      <td>${tabela4[0].suplementado_estimado[index]}</td>
+                      <td>${tabela4[0].suplementado_orcamentario[index]}</td>
+                      <td>${tabela4[0].liquidado_orcamentario[index]}</td>
+                    </tr>
+                  `
+                    )
+                    .join("")}
+                </tbody>
+                </table>
+                </div>
+            </div>
+          </body>
+          </html>
+          `);
+        //FIXME:
+        // Fechar o corpo do HTML
+        win.document.close();
+        setTimeout(() => {
+          win.print();
+        }, 1000);
+
+        //generatePDF();
+        teste2();
+
+        function teste2() {
+          var pdf = new jsPDF("p", "pt", "letter");
+          pdf.html(document.getElementById("page").innerHTML, {
+            callback: function (pdf) {
+              pdf.save("teste.pdf");
+            },
+          });
+        }
+        function generatePDF() {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+
+          // Cabeçalhos da Tabela 4
+          const headers4 = [
+            "AÇÃO",
+            "PRODUTO",
+            "META FÍSICA PROPOSTA",
+            "ALTERAÇÃO DE META FÍSICA",
+            "CUSTO ESTIMADO SUPLEMENTADO",
+            "CUSTO UNITÁRIO MÉDIO",
+            "SUPLEMENTADO ESTIMADO",
+            "SUPLEMENTADO ORÇAMENTÁRIO",
+            "LIQUIDADO ORÇAMENTÁRIO",
+          ];
+
+          // Dados da Tabela 4
+          const data4 = tabela4[0].acao.map((classif, index) => [
+            classif,
+            tabela4[0].produto[index],
+            tabela4[0].meta_fisica_proposta[index],
+            tabela4[0].alteracao_meta[index],
+            tabela4[0].custo_estimado_suplementado[index],
+            tabela4[0].custo_unitario[index],
+            tabela4[0].suplementado_estimado[index],
+            tabela4[0].suplementado_orcamentario[index],
+            tabela4[0].liquidado_orcamentario[index],
+          ]);
+
+          // Adicionar a Tabela 4 ao PDF
+          doc.setFontSize(16);
+          doc.text(
+            "Tabela 4 - EFEITOS DO PEDIDO DE SUPLEMENTAÇÃO NOS ELEMENTOS DO MACROPROCESSO ORÇAMENTÁRIO",
+            14,
+            15
+          );
+          doc.autoTable({
+            head: [headers4],
+            body: data4,
+            startY: 25,
+            theme: "striped",
+            margin: { top: 10, bottom: 10 },
+            styles: { fontSize: 8 },
+            columnStyles: {
+              0: { cellWidth: "auto" },
+              1: { cellWidth: "auto" },
+              2: { cellWidth: "auto" },
+              3: { cellWidth: "auto" },
+              4: { cellWidth: "auto" },
+              5: { cellWidth: "auto" },
+              6: { cellWidth: "auto" },
+              7: { cellWidth: "auto" },
+              8: { cellWidth: "auto" },
+            },
+          });
+
+          doc.save("tabela4.pdf");
+        }
+      });
       // NOTE:FIM DA FUNÇÃO READY @
       // NOTE: Preenchiemnto
       $("#input-valor-total-suplementacao").val("5500");
@@ -1520,9 +2077,45 @@
   </script>
 
   <!-- BIBLIOTECAS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.23/jspdf.plugin.autotable.min.js"></script>
 </html>
+
+<!-- NOTE:
+ const tabela1 = document.getElementById("tabela1").innerHTML;
+        const tabela2 = document.getElementById("tabela2").innerHTML;
+        const tabela3 = document.getElementById("tabela3").innerHTML;
+        const tabela4 = document.getElementById("tabela4").innerHTML;
+
+        const win = window.open(
+          "",
+          "_blank",
+          "height=700,width=700,resizable=yes,scrollbars=yes"
+        );
+
+        const style = `<style>  
+            table {width: 100%; border-collapse: collapse;}
+            table, th, td {border: 2px solid black;}
+            padding: 4px 8px; text-align: left;}
+          </style>`;
+
+        win.document.write("<html><head>");
+        win.document.write("<title>Relatório de Suplementação</title>");
+        win.document.write(style);
+        win.document.write("</head><body>");
+        win.document.write("<h1>Relatório de Suplementação</h1>");
+        win.document.write("<h2>1. Classificação Orçamentária</h2>");
+        win.document.write(tabela1);
+        win.document.write("<h2>2. Detalhamento da Suplementação</h2>");
+        win.document.write(tabela2);
+        win.document.write("<h2>3. Relação de Metas Físicas</h2>");
+        win.document.write(tabela3);
+        win.document.write("<h2>4. Relação de Custos</h2>");
+        win.document.write(tabela4);
+        win.document.write("</body></html>");
+
+        win.print(); -->
