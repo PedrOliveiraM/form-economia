@@ -35,10 +35,9 @@ Não será necessário.
 Será utilziado pelos órgãos disponibilizados no sistema interno.
 
 ## Fotos
-![Texto Alternativo](img2.png)
-![Texto Alternativo](img1.png)
-![Texto Alternativo](img4.png)
-![Texto Alternativo](img3.png)
+![Texto Alternativo](telaMain.png)
+![Texto Alternativo](telaForm.png)
+
 
 ## Contato
 
