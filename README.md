@@ -11,8 +11,7 @@ Este projeto tem como objetivo desenvolver uma página web para automatizar e ge
 - [Sobre](#sobre)
 - [Funcionalidades](#funcionalidades)
 - [Tecnologias](#tecnologias)
-- [Instalação](#instalação)
-- [Uso](#uso)
+- [Aplicação](#aplicação)
 - [Fotos](#fotos)
 - [Contato](#contato)
 
