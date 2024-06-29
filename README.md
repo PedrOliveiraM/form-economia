@@ -26,13 +26,10 @@ Com isso poupariamos tempo dos órgãos com o preenchimento e digitação de doc
 - Preenchimento automatizado pelo código da ação.
 - Geração de pdf formato no padrão exigido.
 
-## Instalação
+## Aplicação
 
-Não será necessário.
+- https://formeconomia.netlify.app/
 
-## Uso
-
-Será utilziado pelos órgãos disponibilizados no sistema interno.
 
 ## Fotos
 ![Texto Alternativo](telaMain.png)
